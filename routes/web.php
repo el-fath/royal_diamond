@@ -13,4 +13,4 @@
 
 Route::get('/', function () { return view('welcome'); });
 
-Route::resource('auth', 'admin');
+Route::resource('adm', 'admin');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Member;
 
 class Admin extends Controller
 {
@@ -13,8 +14,8 @@ class Admin extends Controller
      */
     public function index()
     {
-        // echo "Assem";
-        return view('admintemplate');
+        $data = Member::all();
+        return view('admin/member', compact('data'));
     }
 
     /**
@@ -35,7 +36,22 @@ class Admin extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $file = $request->file('photo');
+        $ext = $file->getClientOriginalExtension();
+        $newName = rand(100000,1001238912).".".$ext;
+        $file->move('image/member',$newName);
+
+        $data = [
+            'name'     => $request->get('name'),
+            'email'    => $request->get('email'),
+            'gender'   => $request->get('gender'),
+            'password' => $request->get('password'),
+            'address'  => $request->get('address'),
+            'photo'    => $newName
+        ];
+        
+        dd($data);
+        $data = Member::create($data);
     }
 
     /**
