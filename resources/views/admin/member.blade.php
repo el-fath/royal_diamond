@@ -1,6 +1,6 @@
 @extends('../admintemplate')
 @section('title')
-<title>Assem</title>
+<title>{{$title}}</title>
 @endsection
 @section('content')
 <div class="col-sm-12">
@@ -21,7 +21,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form class="form-material" action="{{ route('adm.store') }}" method="post" enctype="multipart/form-data">
+                    <form class="form-material" action="{{ route('admin.store') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body">
                     {{ csrf_field() }}
                         <div class="row">
@@ -100,7 +100,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($data as $val)
+                        @foreach($member as $val)
                         <tr>
                             <td>{{ $val->name }}</td>
                             <td>{{ $val->gender }}</td>

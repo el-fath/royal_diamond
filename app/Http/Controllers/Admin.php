@@ -14,8 +14,10 @@ class Admin extends Controller
      */
     public function index()
     {
-        $data = Member::all();
-        return view('admin/member', compact('data'));
+        $data = $this->data;
+        $title = "Member";
+        $member = Member::all();
+        return view('admin/member', compact('member','title','data'));
     }
 
     /**
@@ -37,17 +39,13 @@ class Admin extends Controller
     public function store(Request $request)
     {
         $file = $request->file('photo');
-        $ext = $file->getClientOriginalExtension();
-        $newName = rand(100000,1001238912).".".$ext;
-        $file->move('image/member',$newName);
-
         $data = [
             'name'     => $request->get('name'),
             'email'    => $request->get('email'),
             'gender'   => $request->get('gender'),
             'password' => $request->get('password'),
             'address'  => $request->get('address'),
-            'photo'    => $newName
+            'photo'    => $this->uploadFileCustom($file,'image/member/'),
         ];
         
         dd($data);
