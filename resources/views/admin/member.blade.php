@@ -116,7 +116,7 @@
                             <td>{{ $val->address }}</td>
                             <td>{{ $val->photo }}</td>
                             <td>
-                                <form action="{{ route('admin.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('member.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
@@ -150,7 +150,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('admin') }}/"+ id,
+        url: "{{ URL('member') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
@@ -165,7 +165,7 @@ function edit(id){
             }
             $("#address").val(response.address);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('admin') }}/"+ id);
+            $('#form').attr('action', "{{ URL('member') }}/"+ id);
         }
     })
 }
@@ -177,7 +177,7 @@ function add(){
     $("#gender-male").prop("checked", false);                
     $("#gender-female").prop("checked", false);
     $("#address").val("");
-    $('#form').attr('action', "{{ route('admin.store') }}");
+    $('#form').attr('action', "{{ route('member.store') }}");
     $('#form').attr('method', "post");
 }
 function readURL(input) {
