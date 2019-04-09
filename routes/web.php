@@ -13,4 +13,5 @@
 
 Route::get('/', function () { return view('welcome'); });
 
+Route::post('admin/{admin}', 'admin@update')->name('admin.update');
 Route::resource('admin', 'admin');

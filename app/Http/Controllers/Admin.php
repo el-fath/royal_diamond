@@ -38,18 +38,26 @@ class Admin extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('photo');
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('image/member',$newName);
+        }else{
+            $newName = NULL;
+        }
+
         $data = [
             'name'     => $request->get('name'),
             'email'    => $request->get('email'),
             'gender'   => $request->get('gender'),
             'password' => $request->get('password'),
             'address'  => $request->get('address'),
-            'photo'    => $this->uploadFileCustom($file,'image/member/'),
+            'photo'    => $newName
         ];
         
-        dd($data);
         $data = Member::create($data);
+        return redirect('admin')->with('alert', 'Data Added...!');
     }
 
     /**
@@ -60,7 +68,8 @@ class Admin extends Controller
      */
     public function show($id)
     {
-        //
+        $data = Member::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -83,7 +92,34 @@ class Admin extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = Member::find($id);
+
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('image/member',$newName);
+            $newdata = [
+                'name'     => $request->get('name'),
+                'email'    => $request->get('email'),
+                'gender'   => $request->get('gender'),
+                'password' => $request->get('password'),
+                'address'  => $request->get('address'),
+                'photo'    => $newName
+            ];
+        }else{
+            $newdata = [
+                'name'     => $request->get('name'),
+                'email'    => $request->get('email'),
+                'gender'   => $request->get('gender'),
+                'password' => $request->get('password'),
+                'address'  => $request->get('address'),
+            ];
+        }
+
+        $data->update($newdata);
+        
+        return redirect('admin')->with('alert', 'Data Edited...!');
     }
 
     /**
@@ -94,6 +130,12 @@ class Admin extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Member::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "image/member/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('admin')->with('alert', 'Data Deleted...!');
     }
 }
