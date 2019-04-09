@@ -10,6 +10,12 @@
     <link rel="apple-touch-icon" sizes="144x144" href="{{ url('public/assets/main') }}/images/favicon144.png">
     <link rel="apple-touch-icon" sizes="114x114" href="{{ url('public/assets/main') }}/images/favicon114.png">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/medical-icons.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/social-icons.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/icon-font.css">
@@ -17,12 +23,26 @@
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/frontend-grid.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/style.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/mobile.css">
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <!--[if IE]>
     <script type="text/javascript" src="{{ url('public/assets/main') }}/https://ajax.googleapis.com/ajax/libs/mootools/1.4.0/mootools-yui-compressed.js"></script>
     <script type="text/javascript" src="{{ url('public/assets/main') }}/js/selectivizr-min.js"></script>
     <script src="https://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <style>
+        .label {
+            font-size: 100%;
+            color: #3c3d41;
+        }
+    </style>
+
 </head>
 <body>
 <div id="page">
@@ -39,21 +59,21 @@
                 <div class="fl">
                     <!-- Social link -->
                     <div class="social-link">
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a href="{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a href="{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a href="{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                     <!-- END Social link -->
                 </div>
                 <div class="fr">
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>4321 Your Address, Country</span></span>
+                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>{{$profile->address}}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>Monday - Sunday 08:00-19:00</span></span>
+                    <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>{{$profile->OpenCloseTime}}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-telephone-1"></i> <span>8 800 2336 7811</span></span>
+                    <span class="contact-item"><i class="icon-font icon-telephone-1"></i> <span>{{$profile->phone}}</span></span>
                     <!-- END Contact item -->
                 </div>
             </div>
@@ -107,8 +127,8 @@
                         <!-- END Social link -->
                         <div class="search-module">
                             <form action="javascript:void(0);">
-                                <input type="text" class="input" name="search" placeholder="Search">
-                                <button type="submit" class="submit"><i class="icon-font icon-search"></i></button>
+                                <div class="label">Login</div>
+                                <button type="submit" class="submit"><i class="icon-font icon-profile"></i></button>
                             </form>
                         </div>
                         <!-- Mobile navigation -->
@@ -234,19 +254,19 @@
             <div class="fw-row">
                 <div class="fw-col-xs-12 fw-col-sm-5 fw-col-md-4">
                     <div class="footer-logo"><a href="{{ url('public/assets/main') }}//"><img src="{{ url('public/assets/main') }}/images/imgs/logo.svg" alt="Medina template"></a></div>
-                    <p class="footer-text taj">Sed magna nulla, pulvinar vel ante vel, fringilla vulputate nibh. Dictum, placerat massa non, bibendum ante. Sed magna nulla, pulvinar vel ante vel, fringilla vulputate nibh.</p>
-                    <div class="footer-copy">(c) promo-theme.com 2016</div>
+                    <p class="footer-text taj">{{$profile->desc}}</p>
+                    <div class="footer-copy">(c) royaldiamondclinic.com {{date('Y')}}</div>
                 </div>
                 <div class="fw-col-xs-12 fw-col-sm-4 fw-col-md-3">
                     <h6>Contact us:</h6>
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>4321 Your Address, Country</span></span>
+                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>{{$profile->address}}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>Monday - Sunday 08:00-19:00</span></span>
+                    <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>{{$profile->OpenCloseTime}}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-telephone-1"></i> <span>8 800 2336 7811</span></span>
+                    <span class="contact-item"><i class="icon-font icon-telephone-1"></i> <span>{{$profile->phone}}</span></span>
                     <!-- END Contact item -->
                 </div>
                 <div class="fw-col-xs-12 fw-col-sm-3 fw-col-md-2">
@@ -268,9 +288,9 @@
                     </form>
                     <h6>Follow us:</h6>
                     <div class="social-link">
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="{{ url('public/assets/main') }}/javascript:void(0);"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a href="{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a href="{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a href="{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                 </div>
             </div>

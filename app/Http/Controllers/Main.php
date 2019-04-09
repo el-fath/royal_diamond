@@ -9,6 +9,7 @@ class Main extends Controller
     //
     function index(){
         $title = "Home";
-        return view('main/index', compact('title'));
+        $profile = $this->profile;
+        return view('main/index', compact('title','profile'));
     }
 }

@@ -663,9 +663,9 @@ select.style1 {
 
 input[type="checkbox"].style1,
 input[type="radio"].style1 {
-    display:none;            
+    display:none;
 }
-input[type="checkbox"].style1 + label, 
+input[type="checkbox"].style1 + label,
 input[type="radio"].style1 + label {
     background: #f5f5f5;
     box-shadow: inset 1px 1px 1px #d4d4d4;
@@ -870,7 +870,7 @@ input[type="radio"].style1:checked:disabled + label::before {
     -webkit-transform: translate(0, -50%);
 }
 
-.navigation .sub-nav .sub-menu li.current-menu-item > a, 
+.navigation .sub-nav .sub-menu li.current-menu-item > a,
 .navigation .sub-nav .sub-menu li:hover > a {
     background: #23abe1;
     color: #fff;

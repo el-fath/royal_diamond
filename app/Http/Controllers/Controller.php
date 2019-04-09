@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,6 +15,7 @@ class Controller extends BaseController
     public function __construct()
     {
         $this->data = array();
+        $this->profile = Profile::find(1);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

@@ -11,8 +11,8 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- Dumping structure for table royal_diamond.admin
-CREATE TABLE IF NOT EXISTS `admin` (
+-- Dumping structure for table royal_diamond.admins
+CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   `username` varchar(50) DEFAULT NULL,
@@ -23,12 +23,12 @@ CREATE TABLE IF NOT EXISTS `admin` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.admin: ~0 rows (approximately)
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.admins: ~0 rows (approximately)
+/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.blog
-CREATE TABLE IF NOT EXISTS `blog` (
+-- Dumping structure for table royal_diamond.blogs
+CREATE TABLE IF NOT EXISTS `blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   `content` text,
@@ -39,12 +39,12 @@ CREATE TABLE IF NOT EXISTS `blog` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.blog: ~0 rows (approximately)
-/*!40000 ALTER TABLE `blog` DISABLE KEYS */;
-/*!40000 ALTER TABLE `blog` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.blogs: ~0 rows (approximately)
+/*!40000 ALTER TABLE `blogs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `blogs` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.config
-CREATE TABLE IF NOT EXISTS `config` (
+-- Dumping structure for table royal_diamond.configs
+CREATE TABLE IF NOT EXISTS `configs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `web_name` varchar(50) DEFAULT NULL,
   `description` text,
@@ -59,12 +59,12 @@ CREATE TABLE IF NOT EXISTS `config` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.config: ~0 rows (approximately)
-/*!40000 ALTER TABLE `config` DISABLE KEYS */;
-/*!40000 ALTER TABLE `config` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.configs: ~0 rows (approximately)
+/*!40000 ALTER TABLE `configs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `configs` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.consultation
-CREATE TABLE IF NOT EXISTS `consultation` (
+-- Dumping structure for table royal_diamond.consultations
+CREATE TABLE IF NOT EXISTS `consultations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `view` int(11) DEFAULT NULL,
   `name` varchar(50) DEFAULT NULL,
@@ -77,9 +77,9 @@ CREATE TABLE IF NOT EXISTS `consultation` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.consultation: ~0 rows (approximately)
-/*!40000 ALTER TABLE `consultation` DISABLE KEYS */;
-/*!40000 ALTER TABLE `consultation` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.consultations: ~0 rows (approximately)
+/*!40000 ALTER TABLE `consultations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `consultations` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.members
 CREATE TABLE IF NOT EXISTS `members` (
@@ -120,14 +120,20 @@ CREATE TABLE IF NOT EXISTS `news` (
 /*!40000 ALTER TABLE `news` DISABLE KEYS */;
 /*!40000 ALTER TABLE `news` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.profile
-CREATE TABLE IF NOT EXISTS `profile` (
+-- Dumping structure for table royal_diamond.profiles
+CREATE TABLE IF NOT EXISTS `profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `desc` text,
   `address` varchar(50) DEFAULT NULL,
+  `phone` varchar(50) DEFAULT NULL,
   `owner` varchar(50) DEFAULT NULL,
   `logo` varchar(50) DEFAULT NULL,
+  `facebook` varchar(50) DEFAULT NULL,
+  `instagram` varchar(50) DEFAULT NULL,
+  `twitter` varchar(50) DEFAULT NULL,
+  `start_day` varchar(50) DEFAULT NULL,
+  `end_day` varchar(50) DEFAULT NULL,
   `open_time` varchar(50) DEFAULT NULL,
   `close_time` varchar(50) DEFAULT NULL,
   `latitude` varchar(50) DEFAULT NULL,
@@ -135,14 +141,16 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.profile: ~0 rows (approximately)
-/*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-/*!40000 ALTER TABLE `profile` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.profiles: ~1 rows (approximately)
+/*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
+INSERT INTO `profiles` (`id`, `name`, `desc`, `address`, `phone`, `owner`, `logo`, `facebook`, `instagram`, `twitter`, `start_day`, `end_day`, `open_time`, `close_time`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
+	(1, 'Royal Diamond', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'Surabaya', '0310310003', 'Admin', NULL, NULL, NULL, NULL, 'Senin', 'Jum\'at', '08:00', '17:00', NULL, NULL, '2019-04-10 00:17:42', '2019-04-10 00:32:50');
+/*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.slide
-CREATE TABLE IF NOT EXISTS `slide` (
+-- Dumping structure for table royal_diamond.slides
+CREATE TABLE IF NOT EXISTS `slides` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   `content` text,
@@ -152,12 +160,12 @@ CREATE TABLE IF NOT EXISTS `slide` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.slide: ~0 rows (approximately)
-/*!40000 ALTER TABLE `slide` DISABLE KEYS */;
-/*!40000 ALTER TABLE `slide` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.slides: ~0 rows (approximately)
+/*!40000 ALTER TABLE `slides` DISABLE KEYS */;
+/*!40000 ALTER TABLE `slides` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.treatment
-CREATE TABLE IF NOT EXISTS `treatment` (
+-- Dumping structure for table royal_diamond.treatments
+CREATE TABLE IF NOT EXISTS `treatments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `desc` text,
@@ -166,9 +174,9 @@ CREATE TABLE IF NOT EXISTS `treatment` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.treatment: ~0 rows (approximately)
-/*!40000 ALTER TABLE `treatment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `treatment` ENABLE KEYS */;
+-- Dumping data for table royal_diamond.treatments: ~0 rows (approximately)
+/*!40000 ALTER TABLE `treatments` DISABLE KEYS */;
+/*!40000 ALTER TABLE `treatments` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
