@@ -17,31 +17,31 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ url('assets/admin') }}/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{ url('public/assets/admin') }}/assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
-    <link rel="stylesheet" href="{{ url('assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('public/assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/bower_components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/bootstrap/css/bootstrap.min.css">
     <!-- jquery file upload Frame work -->
-    <link href="{{ url('assets/admin') }}/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
-    <link href="{{ url('assets/admin') }}/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <link href="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
+    <link href="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
     <!-- waves.css -->
-    <link rel="stylesheet" href="{{ url('assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ url('public/assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- themify-icons line icon -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/themify-icons/themify-icons.css">
     <!-- ico font -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/icon/icofont/css/icofont.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/icofont/css/icofont.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/icon/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/font-awesome/css/font-awesome.min.css">
     <!-- Data Table Css -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/pages/data-table/css/buttons.dataTables.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/pages/data-table/css/buttons.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('assets/admin') }}/assets/css/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/jquery.mCustomScrollbar.css">
 </head>
 
 <body>
@@ -120,7 +120,7 @@
                             </div>
                         </div>
                         <a href="index.html">
-                            <img class="img-fluid" src="{{ url('assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -150,7 +150,7 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="{{ url('assets/admin') }}/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    <img src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                     <span>John Doe</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
@@ -184,7 +184,7 @@
                 </div>
                 <div class="media chat-messages">
                     <a class="media-left photo-table" href="#!">
-                        <img class="media-object img-radius img-radius m-t-5" src="{{ url('assets/admin') }}/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+                        <img class="media-object img-radius img-radius m-t-5" src="{{ url('public/assets/admin') }}/assets/images/avatar-3.jpg" alt="Generic placeholder image">
                     </a>
                     <div class="media-body chat-menu-content">
                         <div class="">
@@ -202,7 +202,7 @@
                     </div>
                     <div class="media-right photo-table">
                         <a href="#!">
-                            <img class="media-object img-radius img-radius m-t-5" src="{{ url('assets/admin') }}/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                            <img class="media-object img-radius img-radius m-t-5" src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                         </a>
                     </div>
                 </div>
@@ -343,31 +343,31 @@
         <ul class="iew-download">
             <li>
                 <a href="http://www.google.com/chrome/">
-                    <img src="{{ url('assets/admin') }}/assets/images/browser/chrome.png" alt="Chrome">
+                    <img src="{{ url('public/assets/admin') }}/assets/images/browser/chrome.png" alt="Chrome">
                     <div>Chrome</div>
                 </a>
             </li>
             <li>
                 <a href="https://www.mozilla.org/en-US/firefox/new/">
-                    <img src="{{ url('assets/admin') }}/assets/images/browser/firefox.png" alt="Firefox">
+                    <img src="{{ url('public/assets/admin') }}/assets/images/browser/firefox.png" alt="Firefox">
                     <div>Firefox</div>
                 </a>
             </li>
             <li>
                 <a href="http://www.opera.com">
-                    <img src="{{ url('assets/admin') }}/assets/images/browser/opera.png" alt="Opera">
+                    <img src="{{ url('public/assets/admin') }}/assets/images/browser/opera.png" alt="Opera">
                     <div>Opera</div>
                 </a>
             </li>
             <li>
                 <a href="https://www.apple.com/safari/">
-                    <img src="{{ url('assets/admin') }}/assets/images/browser/safari.png" alt="Safari">
+                    <img src="{{ url('public/assets/admin') }}/assets/images/browser/safari.png" alt="Safari">
                     <div>Safari</div>
                 </a>
             </li>
             <li>
                 <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                    <img src="{{ url('assets/admin') }}/assets/images/browser/ie.png" alt="">
+                    <img src="{{ url('public/assets/admin') }}/assets/images/browser/ie.png" alt="">
                     <div>IE (9 & above)</div>
                 </a>
             </li>
@@ -378,38 +378,38 @@
 <![endif]-->
 <!-- Warning Section Ends -->
 <!-- Required Jquery -->
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/jquery/js/jquery.min.js"></script>
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/popper.js/js/popper.min.js"></script>
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery/js/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/popper.js/js/popper.min.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/bootstrap/js/bootstrap.min.js"></script>
 <!-- waves js -->
-<script src="{{ url('assets/admin') }}/assets/pages/waves/js/waves.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/waves/js/waves.min.js"></script>
 <!-- jquery slimscroll js -->
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 <!-- modernizr js -->
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/modernizr/js/modernizr.js"></script>
-<script type="text/javascript" src="{{ url('assets/admin') }}/bower_components/modernizr/js/css-scrollbars.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/modernizr/js/modernizr.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/modernizr/js/css-scrollbars.js"></script>
 <!-- jquery file upload js -->
-<script src="{{ url('assets/admin') }}/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
-<script src="{{ url('assets/admin') }}/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/js/jquery.filer.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script>
 <!-- data-table js -->
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/pages/data-table/js/jszip.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/pages/data-table/js/pdfmake.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/pages/data-table/js/vfs_fonts.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-<script src="{{ url('assets/admin') }}/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/data-table/js/jszip.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/data-table/js/pdfmake.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/data-table/js/vfs_fonts.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
 <!-- Custom js -->
-<script src="{{ url('assets/admin') }}/assets/pages/data-table/js/data-table-custom.js"></script>
-<script src="{{ url('assets/admin') }}/assets/js/pcoded.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/js/vertical/vertical-layout.min.js"></script>
-<script src="{{ url('assets/admin') }}/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-<script type="text/javascript" src="{{ url('assets/admin') }}/assets/js/script.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/pages/data-table/js/data-table-custom.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/js/pcoded.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/js/vertical/vertical-layout.min.js"></script>
+<script src="{{ url('public/assets/admin') }}/assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/assets/js/script.js"></script>
 </body>
 
 </html>
