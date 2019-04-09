@@ -47,6 +47,7 @@ class Admin extends Controller
             $newName = NULL;
         }
 
+
         $data = [
             'name'     => $request->get('name'),
             'email'    => $request->get('email'),
