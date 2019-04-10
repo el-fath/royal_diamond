@@ -3,16 +3,51 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 use App\Models\Member;
 
 class AdminCtr extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+    public function auth()
+    {
+        return view('admin/login');
+    }
+
+    public function authentification(Request $request)
+    {
+        $username = $request->username;
+        $password = $request->password;
+
+        $data = Admin::where('username', $username)->first();
+        if($data){ 
+            if(Hash::check($password,$data->password)){
+                $Session = [
+                    'id'       => $data->id,
+                    'username' => $data->username,
+                    'login'    => TRUE
+                ];
+                Session::put($Session);
+                return redirect()->route('admin.index');
+            }else{
+                return redirect()->route('auth')
+                ->with('alert', 'Your password is wrong, please type again...!')
+                ->with('username', $username);
+            }
+        }else{
+            return redirect()->route('auth')
+            ->with('alert', 'Login failed, your username is not registered...!');
+        }
+    }
+
+    public function log_out()
+    {
+        Session::flush();
+        return redirect()->route('auth');
+    }
+
     public function index()
     {
         $data = $this->data;
@@ -21,28 +56,17 @@ class AdminCtr extends Controller
         return view('admin/admin', compact('admin','title','data'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $data = [
             'name'     => $request->get('name'),
             'username' => $request->get('username'),
-            'password' => $request->get('password'),
+            'password' => Hash::make($request->get('password')),
             'role'     => "admin"
         ];
         // dd($data);
@@ -50,36 +74,17 @@ class AdminCtr extends Controller
         return redirect('admin')->with('alert', 'Data Added...!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $data = Admin::find($id);
         return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $data = Admin::find($id);
@@ -87,7 +92,7 @@ class AdminCtr extends Controller
         $newdata = [
             'name'     => $request->get('name'),
             'username' => $request->get('username'),
-            'password' => $request->get('password')
+            // 'password' => $request->get('password')
         ];
 
         $data->update($newdata);
@@ -95,12 +100,6 @@ class AdminCtr extends Controller
         return redirect('admin')->with('alert', 'Data Edited...!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $data = Admin::find($id);
