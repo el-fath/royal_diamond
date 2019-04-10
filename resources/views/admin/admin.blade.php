@@ -112,7 +112,8 @@ function edit(id){
             $('#title').html("Form Edit admin")
             $("#name").val(response.name);
             $("#username").val(response.username);
-            $("#password").val(response.password);
+            // $("#password").val(response.password);
+            $("#password").prop('disabled', true);
             $('#form').attr('method', "post");
             $('#form').attr('action', "{{ URL('admin') }}/"+ id);
         }

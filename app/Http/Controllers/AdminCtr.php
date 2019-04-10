@@ -92,7 +92,7 @@ class AdminCtr extends Controller
         $newdata = [
             'name'     => $request->get('name'),
             'username' => $request->get('username'),
-            'password' => $request->get('password')
+            // 'password' => $request->get('password')
         ];
 
         $data->update($newdata);
