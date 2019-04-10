@@ -17,7 +17,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{ url('public/assets/admin') }}/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="{{$config->IconPath}}" type="image/png">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->

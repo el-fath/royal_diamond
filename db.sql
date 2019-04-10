@@ -16,15 +16,17 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '0',
   `username` varchar(50) DEFAULT NULL,
-  `password` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.admins: ~0 rows (approximately)
+-- Dumping data for table royal_diamond.admins: ~1 rows (approximately)
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
+INSERT INTO `admins` (`id`, `name`, `username`, `password`, `role`, `created_at`, `updated_at`) VALUES
+	(1, 'admin', 'admin', '$2y$10$d52qSr9VRxMSgRwvkW7DpeaYT5p/qvLm/7qaUtw6uXWiEDDB/DSDW', 'admin', '2019-04-10 16:57:39', '2019-04-10 16:57:39');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.blogs
@@ -32,15 +34,21 @@ CREATE TABLE IF NOT EXISTS `blogs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   `content` text,
+  `url_segment` text,
   `photo` varchar(50) DEFAULT NULL,
   `view` int(11) DEFAULT NULL,
+  `id_admin` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.blogs: ~0 rows (approximately)
+-- Dumping data for table royal_diamond.blogs: ~3 rows (approximately)
 /*!40000 ALTER TABLE `blogs` DISABLE KEYS */;
+INSERT INTO `blogs` (`id`, `title`, `content`, `url_segment`, `photo`, `view`, `id_admin`, `created_at`, `updated_at`) VALUES
+	(1, 'Blog 1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'blog1.png', NULL, 1, '2019-04-10 22:58:56', '2019-04-10 23:00:11'),
+	(2, 'Blog 2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'blog2.png', NULL, 1, '2019-04-10 22:59:56', '2019-04-10 23:05:52'),
+	(3, 'Blog 3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', NULL, 'blog3.png', NULL, 1, '2019-04-10 23:01:56', '2019-04-10 23:06:23');
 /*!40000 ALTER TABLE `blogs` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.configs
@@ -57,10 +65,12 @@ CREATE TABLE IF NOT EXISTS `configs` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.configs: ~0 rows (approximately)
+-- Dumping data for table royal_diamond.configs: ~1 rows (approximately)
 /*!40000 ALTER TABLE `configs` DISABLE KEYS */;
+INSERT INTO `configs` (`id`, `web_name`, `description`, `meta_keyword`, `meta_desc`, `icon`, `head_script`, `after_body_script`, `before_body_script`, `created_at`, `updated_at`) VALUES
+	(1, 'Royal Diamond', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'keyowrd', 'desc', 'icon.png', '', '', '', '2019-04-10 20:22:27', '2019-04-10 20:46:24');
 /*!40000 ALTER TABLE `configs` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.consultations
@@ -80,6 +90,24 @@ CREATE TABLE IF NOT EXISTS `consultations` (
 -- Dumping data for table royal_diamond.consultations: ~0 rows (approximately)
 /*!40000 ALTER TABLE `consultations` DISABLE KEYS */;
 /*!40000 ALTER TABLE `consultations` ENABLE KEYS */;
+
+-- Dumping structure for table royal_diamond.events
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `content` text,
+  `url_segment` text,
+  `photo` varchar(50) DEFAULT NULL,
+  `view` int(11) DEFAULT NULL,
+  `id_admin` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Dumping data for table royal_diamond.events: ~0 rows (approximately)
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.members
 CREATE TABLE IF NOT EXISTS `members` (
@@ -103,29 +131,13 @@ INSERT INTO `members` (`id`, `name`, `email`, `password`, `gender`, `address`, `
 	(1, 'Paijo', 'paijo@gmail.com', '12345', 'male', 'testing', 'test.jpg', NULL, NULL, '2019-04-06 21:57:59', '0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `members` ENABLE KEYS */;
 
--- Dumping structure for table royal_diamond.news
-CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) DEFAULT NULL,
-  `content` text,
-  `photo` text,
-  `view` int(11) DEFAULT NULL,
-  `id_admin` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Dumping data for table royal_diamond.news: ~0 rows (approximately)
-/*!40000 ALTER TABLE `news` DISABLE KEYS */;
-/*!40000 ALTER TABLE `news` ENABLE KEYS */;
-
 -- Dumping structure for table royal_diamond.profiles
 CREATE TABLE IF NOT EXISTS `profiles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `desc` text,
   `address` varchar(50) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `phone` varchar(50) DEFAULT NULL,
   `owner` varchar(50) DEFAULT NULL,
   `logo` varchar(50) DEFAULT NULL,
@@ -145,37 +157,89 @@ CREATE TABLE IF NOT EXISTS `profiles` (
 
 -- Dumping data for table royal_diamond.profiles: ~1 rows (approximately)
 /*!40000 ALTER TABLE `profiles` DISABLE KEYS */;
-INSERT INTO `profiles` (`id`, `name`, `desc`, `address`, `phone`, `owner`, `logo`, `facebook`, `instagram`, `twitter`, `start_day`, `end_day`, `open_time`, `close_time`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
-	(1, 'Royal Diamond', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'Surabaya', '0310310003', 'Admin', NULL, NULL, NULL, NULL, 'Senin', 'Jum\'at', '08:00', '17:00', NULL, NULL, '2019-04-10 00:17:42', '2019-04-10 00:32:50');
+INSERT INTO `profiles` (`id`, `name`, `desc`, `address`, `email`, `phone`, `owner`, `logo`, `facebook`, `instagram`, `twitter`, `start_day`, `end_day`, `open_time`, `close_time`, `latitude`, `longitude`, `created_at`, `updated_at`) VALUES
+	(1, 'Royal Diamond', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'Surabaya', NULL, '0310310003', 'Admin', 'logo.png', NULL, NULL, NULL, 'Senin', 'Jum\'at', '08:00', '17:00', NULL, NULL, '2019-04-10 00:17:42', '2019-04-10 19:56:09');
 /*!40000 ALTER TABLE `profiles` ENABLE KEYS */;
+
+-- Dumping structure for table royal_diamond.services
+CREATE TABLE IF NOT EXISTS `services` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(50) DEFAULT NULL,
+  `description` text,
+  `icon` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table royal_diamond.services: ~6 rows (approximately)
+/*!40000 ALTER TABLE `services` DISABLE KEYS */;
+INSERT INTO `services` (`id`, `title`, `description`, `icon`, `created_at`, `updated_at`) VALUES
+	(1, 'Therapiya', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-stethoscope', '2019-04-10 23:47:50', '2019-04-10 23:48:08'),
+	(2, 'Pharmocology', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-drugs-3', '2019-04-10 23:48:20', '2019-04-10 23:49:07'),
+	(3, 'Dentistry', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-premolar', '2019-04-10 23:48:29', '2019-04-10 23:49:54'),
+	(4, 'Cardiology', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-cardiogram-2', '2019-04-10 23:49:24', '2019-04-10 23:50:01'),
+	(5, 'Virusology', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-virus', '2019-04-10 23:49:28', '2019-04-10 23:50:10'),
+	(6, 'Eye Surgery', 'Sirius WordPress Theme features a slick and clean design that is suitable for virtually any type of website', 'icon medical-icon med-icon-eye', '2019-04-10 23:49:36', '2019-04-10 23:50:29');
+/*!40000 ALTER TABLE `services` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.slides
 CREATE TABLE IF NOT EXISTS `slides` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT NULL,
   `content` text,
-  `url` varchar(50) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.slides: ~0 rows (approximately)
+-- Dumping data for table royal_diamond.slides: ~2 rows (approximately)
 /*!40000 ALTER TABLE `slides` DISABLE KEYS */;
+INSERT INTO `slides` (`id`, `title`, `content`, `url`, `photo`, `created_at`, `updated_at`) VALUES
+	(1, 'Slide 1', 'lorem ipsum dolor sit amet consectetur adipiscing elit', NULL, 'slide1.png', '2019-04-10 21:26:22', '2019-04-10 22:33:22'),
+	(2, 'Slide 2', 'lorem ipsum dolor sit amet consectetur adipiscing elit', NULL, 'slide2.png', '2019-04-10 21:26:22', '2019-04-10 22:33:27');
 /*!40000 ALTER TABLE `slides` ENABLE KEYS */;
+
+-- Dumping structure for table royal_diamond.teams
+CREATE TABLE IF NOT EXISTS `teams` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `position` varchar(255) DEFAULT NULL,
+  `content` text,
+  `photo` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+-- Dumping data for table royal_diamond.teams: ~4 rows (approximately)
+/*!40000 ALTER TABLE `teams` DISABLE KEYS */;
+INSERT INTO `teams` (`id`, `name`, `position`, `content`, `photo`, `created_at`, `updated_at`) VALUES
+	(1, 'Team 1', 'Owner', NULL, 'team1.png', '2019-04-10 23:36:37', '2019-04-10 23:37:23'),
+	(2, 'Team 2', 'Doctor', NULL, 'team2.png', '2019-04-10 23:36:37', '2019-04-10 23:38:08'),
+	(3, 'Team 3', 'Customer Service', NULL, 'team3.png', '2019-04-10 23:36:37', '2019-04-10 23:38:11'),
+	(4, 'Team 4', 'Doctor', NULL, 'team4.png', '2019-04-10 23:36:37', '2019-04-10 23:38:14');
+/*!40000 ALTER TABLE `teams` ENABLE KEYS */;
 
 -- Dumping structure for table royal_diamond.treatments
 CREATE TABLE IF NOT EXISTS `treatments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
   `desc` text,
+  `photo` text,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
--- Dumping data for table royal_diamond.treatments: ~0 rows (approximately)
+-- Dumping data for table royal_diamond.treatments: ~3 rows (approximately)
 /*!40000 ALTER TABLE `treatments` DISABLE KEYS */;
+INSERT INTO `treatments` (`id`, `name`, `desc`, `photo`, `created_at`, `updated_at`) VALUES
+	(1, 'Treatment 1', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'treatment1.png', '2019-04-10 23:24:02', '2019-04-10 23:24:38'),
+	(2, 'Treatment 2', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'treatment2.png', '2019-04-10 23:24:02', '2019-04-10 23:25:37'),
+	(3, 'Treatment 3', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod', 'treatment3.png', '2019-04-10 23:24:02', '2019-04-10 23:25:34');
 /*!40000 ALTER TABLE `treatments` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

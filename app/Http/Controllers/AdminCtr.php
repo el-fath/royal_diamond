@@ -50,10 +50,9 @@ class AdminCtr extends Controller
 
     public function index()
     {
-        $data = $this->data;
         $title = "Admin";
         $admin = Admin::all();
-        return view('admin/admin', compact('admin','title','data'));
+        return view('admin/admin', compact('admin','title'));
     }
 
     public function create()
@@ -108,10 +107,9 @@ class AdminCtr extends Controller
     }
 
     public function index_member(){
-        $data = $this->data;
         $title = "Member";
         $member = Member::all();
-        return view('admin/member', compact('member','title','data'));
+        return view('admin/member', compact('member','title'));
     }
 
     public function store_member(Request $request)

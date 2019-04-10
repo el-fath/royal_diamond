@@ -70,7 +70,8 @@
 	}
 
 	.logo-area img {
-		max-height: 30px;
+		max-height: 45px;
+		margin-top: 10px;
 	}
 
 	.header .search-module {

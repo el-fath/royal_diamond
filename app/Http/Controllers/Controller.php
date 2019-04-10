@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Config;
 use App\Models\Profile;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -9,13 +10,17 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Image; //Intervention Image
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\View;
 
 class Controller extends BaseController
 {
     public function __construct()
     {
-        $this->data = array();
-        $this->profile = Profile::find(1);
+        $profile = Profile::find(1);
+        $config = Config::find(1);
+
+        View::share('profile', $profile);
+        View::share('config', $config);
     }
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
