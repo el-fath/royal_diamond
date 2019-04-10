@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Default Ordering</h5>
+            <h5>Admin Master</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Member</h4>
+                        <h4 class="modal-title" id="title">Form Admin</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -109,6 +109,7 @@ function edit(id){
         type: 'GET',
         success: function(response){
             console.log(response);
+            $('#title').html("Form Edit admin")
             $("#name").val(response.name);
             $("#username").val(response.username);
             $("#password").val(response.password);
@@ -118,6 +119,7 @@ function edit(id){
     })
 }
 function add(){
+    $('#title').html("Form Add admin")
     $("#name").val("");
     $("#username").val("");
     $("#password").val("");

@@ -151,7 +151,7 @@
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
                                     <img src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
-                                    <span>John Doe</span>
+                                    <span>{{Session::get('username')}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
@@ -166,7 +166,7 @@
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
-                                        <a href="auth-normal-sign-in.html">
+                                        <a href="{{ route('log_out') }}">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
                                     </li>
@@ -231,7 +231,7 @@
                         <div class="pcoded-inner-navbar main-menu">
                             <div class="p-15 p-b-0">
                             </div>
-                            <div class="pcoded-navigation-label">Navigation</div>
+                            <div class="pcoded-navigation-label">Configuration</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
@@ -248,58 +248,29 @@
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
-                                        <li class="">
-                                            <a href="dashboard-ecommerce.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Ecommerce</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class="">
-                                            <a href="dashboard-crm.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">CRM</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="dashboard-analytics.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Analytics</span>
-                                                <span class="pcoded-badge label label-info ">NEW</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-                                        <li class=" ">
-                                            <a href="dashboard-project.html" class="waves-effect waves-dark">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Project</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
-                                <li class="">
-                                    <a href="navbar-light.html" class="waves-effect waves-dark">
+                            </ul>
+                            <div class="pcoded-navigation-label">Data Master</div>
+                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="{{ Request::segment(1) == 'admin' ? 'active':'' }}">
+                                    <a href="{{ route('admin.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                                        <span class="pcoded-mtext">Navigation</span>
+                                        <span class="pcoded-mtext">Admin</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                            </ul>
-                            <div class="pcoded-navigation-label">Support</div>
-                            <ul class="pcoded-item pcoded-left-item">
+                                <li class="{{ Request::segment(1) == 'member' ? 'active':'' }}">
+                                    <a href="{{ route('member.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Member</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="">
                                     <a href="#" target="_blank" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>
                                         <span class="pcoded-mtext">Documentation</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#" target="_blank" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-list-post"></i><b>SI</b></span>
-                                        <span class="pcoded-mtext">Need Support ?</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
