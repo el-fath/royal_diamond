@@ -29,5 +29,11 @@ Route::post('team', 'adminCtr@store_team')->name('team.store');
 Route::post('team/{team}', 'adminCtr@update_team')->name('team.update');
 Route::delete('team/{team}', 'adminCtr@destroy_team')->name('team.destroy');
 
+Route::get('slide', 'adminCtr@index_slide')->name('slide.index');
+Route::get('slide/{slide}', 'adminCtr@show_slide')->name('slide.show');
+Route::post('slide', 'adminCtr@store_slide')->name('slide.store');
+Route::post('slide/{slide}', 'adminCtr@update_slide')->name('slide.update');
+Route::delete('slide/{slide}', 'adminCtr@destroy_slide')->name('slide.destroy');
+
 Route::post('admin/{admin}', 'adminCtr@update')->name('admin.update');
 Route::resource('admin', 'adminCtr');

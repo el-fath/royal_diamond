@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 use App\Models\Member;
 use App\Models\Team;
+use App\Models\Slide;
 
 class AdminCtr extends Controller
 {
@@ -53,7 +54,7 @@ class AdminCtr extends Controller
     {
         if(Session::get('login')){
             $title = "Admin";
-            $admin = Admin::all();
+            $admin = Admin::all()->sortByDesc('id');
             return view('admin/admin', compact('admin','title'));
         }else{
             return redirect('auth');
@@ -114,7 +115,7 @@ class AdminCtr extends Controller
     public function index_member(){
         if(Session::get('login')){
             $title = "Member";
-            $member = Member::all();
+            $member = Member::all()->sortByDesc('id');
             return view('admin/member', compact('member','title'));
         }else{
             return redirect('auth');
@@ -194,7 +195,7 @@ class AdminCtr extends Controller
     public function index_team(){
         if(Session::get('login')){
             $title = "Team";
-            $team = Team::all();
+            $team = Team::all()->sortByDesc('id');
             return view('admin/team', compact('team','title'));
         }else{
             return redirect('auth');
@@ -267,4 +268,82 @@ class AdminCtr extends Controller
         $data->delete();
         return redirect('team')->with('alert', 'Data Deleted...!');
     }
+
+    public function index_slide(){
+        if(Session::get('login')){
+            $title = "Slide";
+            $slide = Slide::all()->sortByDesc('id');
+            return view('admin/slide', compact('slide','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function store_slide(Request $request)
+    {
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/slide',$newName);
+        }else{
+            $newName = NULL;
+        }
+
+        $data = [
+            'title'   => $request->get('title'),
+            'url'     => $request->get('url'),
+            'content' => $request->get('content'),
+            'photo'   => $newName
+        ];
+        
+        $data = Slide::create($data);
+        return redirect('slide')->with('alert', 'Data Added...!');
+    }
+
+    public function show_slide($id)
+    {
+        $data = Slide::find($id);
+        return response()->json($data);
+    }
+
+    public function update_slide(Request $request, $id)
+    {
+        $data = Slide::find($id);
+
+        if ($request->file('photo')) {
+            $myFile = "public/image/slide/".$data->photo;
+            unlink($myFile);
+
+            $file = $request->file('photo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/slide',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
+        }
+
+        $newdata = [
+            'title'   => $request->get('title'),
+            'url'     => $request->get('url'),
+            'content' => $request->get('content')
+        ];
+
+        $data->update($newdata);
+
+        return redirect('slide')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_slide($id)
+    {
+        $data = Slide::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "public/image/slide/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('slide')->with('alert', 'Data Deleted...!');
+    }
+    
 }

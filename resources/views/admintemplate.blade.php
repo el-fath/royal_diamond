@@ -274,6 +274,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(1) == 'slide' ? 'active':'' }}">
+                                    <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Slide</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="">
                                     <a href="#" target="_blank" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>
