@@ -83,12 +83,12 @@
                             <span class="form-bar"></span>
                             <label class="float-label">Address</label>
                         </div>
-                        <!-- <div class="form-group form-default">
+                        <div class="form-group form-default">
                             <div class="sub-title">Upload photo</div>
-                            <input type="file" name="photo" id="filer_input">
+                            {{-- <input type="file" name="photo" id="filer_input"> --}}
                             <input type="file" class="form-control" name="photo" id="foto" onchange="readURL(this);">
                             <img id="preview" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" alt="your image" style=" width: 200px;"/>
-                        </div> -->
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-primary waves-effect waves-light ">Save</button>
@@ -165,6 +165,7 @@ function edit(id){
                 $("#gender-female").prop("checked", true);
             }
             $("#address").val(response.address);
+            $('#preview').attr('src', "{{ url('image/member') }}/"+ response.photo);
             $('#form').attr('method', "post");
             $('#form').attr('action', "{{ URL('member') }}/"+ id);
         }
@@ -179,6 +180,7 @@ function add(){
     $("#gender-male").prop("checked", false);                
     $("#gender-female").prop("checked", false);
     $("#address").val("");
+    $('#preview').attr('src', "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg");
     $('#form').attr('action', "{{ route('member.store') }}");
     $('#form').attr('method', "post");
 }
