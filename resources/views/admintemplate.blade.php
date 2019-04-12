@@ -267,6 +267,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(1) == 'team' ? 'active':'' }}">
+                                    <a href="{{ route('team.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Team</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="">
                                     <a href="#" target="_blank" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>

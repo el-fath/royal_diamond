@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\Models\Admin;
 use App\Models\Member;
+use App\Models\Team;
 
 class AdminCtr extends Controller
 {
@@ -50,9 +51,13 @@ class AdminCtr extends Controller
 
     public function index()
     {
-        $title = "Admin";
-        $admin = Admin::all();
-        return view('admin/admin', compact('admin','title'));
+        if(Session::get('login')){
+            $title = "Admin";
+            $admin = Admin::all();
+            return view('admin/admin', compact('admin','title'));
+        }else{
+            return redirect('auth');
+        }
     }
 
     public function create()
@@ -107,9 +112,13 @@ class AdminCtr extends Controller
     }
 
     public function index_member(){
-        $title = "Member";
-        $member = Member::all();
-        return view('admin/member', compact('member','title'));
+        if(Session::get('login')){
+            $title = "Member";
+            $member = Member::all();
+            return view('admin/member', compact('member','title'));
+        }else{
+            return redirect('auth');
+        }
     }
 
     public function store_member(Request $request)
@@ -118,7 +127,7 @@ class AdminCtr extends Controller
             $file    = $request->file('photo');
             $ext     = $file->getClientOriginalExtension();
             $newName = rand(100000,1001238912).".".$ext;
-            $file->move('image/member',$newName);
+            $file->move('public/image/member',$newName);
         }else{
             $newName = NULL;
         }
@@ -147,27 +156,24 @@ class AdminCtr extends Controller
         $data = Member::find($id);
 
         if ($request->file('photo')) {
+            $myFile = "public/image/member/".$data->photo;
+            unlink($myFile);
+
             $file    = $request->file('photo');
             $ext     = $file->getClientOriginalExtension();
             $newName = rand(100000,1001238912).".".$ext;
-            $file->move('image/member',$newName);
-            $newdata = [
-                'name'     => $request->get('name'),
-                'email'    => $request->get('email'),
-                'gender'   => $request->get('gender'),
-                'password' => $request->get('password'),
-                'address'  => $request->get('address'),
-                'photo'    => $newName
-            ];
-        }else{
-            $newdata = [
-                'name'     => $request->get('name'),
-                'email'    => $request->get('email'),
-                'gender'   => $request->get('gender'),
-                'password' => $request->get('password'),
-                'address'  => $request->get('address'),
-            ];
+            $file->move('public/image/member',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
         }
+        $newdata = [
+            'name'     => $request->get('name'),
+            'email'    => $request->get('email'),
+            'gender'   => $request->get('gender'),
+            'password' => $request->get('password'),
+            'address'  => $request->get('address'),
+        ];
 
         $data->update($newdata);
         
@@ -178,10 +184,87 @@ class AdminCtr extends Controller
     {
         $data = Member::find($id);
         if ($data->photo != NULL) {
-            $myFile = "image/member/".$data->photo;
+            $myFile = "public/image/member/".$data->photo;
             unlink($myFile);
         }
         $data->delete();
         return redirect('member')->with('alert', 'Data Deleted...!');
+    }
+
+    public function index_team(){
+        if(Session::get('login')){
+            $title = "Team";
+            $team = Team::all();
+            return view('admin/team', compact('team','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function store_team(Request $request)
+    {
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/team',$newName);
+        }else{
+            $newName = NULL;
+        }
+
+        $data = [
+            'name'     => $request->get('name'),
+            'position' => $request->get('position'),
+            'content'  => $request->get('content'),
+            'photo'    => $newName
+        ];
+        
+        $data = Team::create($data);
+        return redirect('team')->with('alert', 'Data Added...!');
+    }
+
+    public function show_team($id)
+    {
+        $data = Team::find($id);
+        return response()->json($data);
+    }
+
+    public function update_team(Request $request, $id)
+    {
+        $data = Team::find($id);
+
+        if ($request->file('photo')) {
+            $myFile = "public/image/team/".$data->photo;
+            unlink($myFile);
+
+            $file = $request->file('photo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/team',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
+        }
+
+        $newdata = [
+            'name'     => $request->get('name'),
+            'position' => $request->get('position'),
+            'content'  => $request->get('content')
+        ];
+
+        $data->update($newdata);
+
+        return redirect('team')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_team($id)
+    {
+        $data = Team::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "public/image/team/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('team')->with('alert', 'Data Deleted...!');
     }
 }

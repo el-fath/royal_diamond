@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Member Master</h5>
+            <h5>Team Master</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="title">Form Member</h4>
+                        <h4 class="modal-title" id="title">Form Team</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -42,49 +42,19 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group form-primary">
-                                    <input type="text" name="email" id="email" class="form-control" required="">
+                                    <input type="text" name="position" id="position" class="form-control" required="">
                                     <span class="form-bar"></span>
-                                    <label class="float-label">Email (exa@gmail.com)</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-radio">
-                            <div class="radio radiofill radio-inline">
-                                <label>
-                                    <input type="radio" name="gender" id="gender-male" value="male">
-                                    <i class="helper"></i>Male
-                                </label>
-                            </div>
-                            <div class="radio radiofill radio-inline">
-                                <label>
-                                    <input type="radio" name="gender" id="gender-female" value="female">
-                                    <i class="helper"></i>Female
-                                </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="password" name="password" id="password" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Password</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="password" name="confirm-password" id="confirm-password" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Confirm Password</label>
+                                    <label class="float-label">Position</label>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group form-default">
-                            <textarea class="form-control" name="address" id="address"></textarea>
+                            <textarea class="form-control" name="content" id="content"></textarea>
                             <span class="form-bar"></span>
-                            <label class="float-label">Address</label>
+                            <label class="float-label">Content</label>
                         </div>
                         <div class="form-group form-default">
-                            <div class="sub-title">Upload photo</div>
+                            <div class="sub-title">photo</div>
                             {{-- <input type="file" name="photo" id="filer_input"> --}}
                             <input type="file" class="form-control" name="photo" id="foto" onchange="readURL(this);">
                             <img id="preview" src="https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" alt="your image" style=" width: 200px;"/>
@@ -102,21 +72,19 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Gender</th>
-                            <th>Address</th>
+                            <th>Position</th>
                             <th>Photo</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($member as $val)
+                        @foreach($team as $val)
                         <tr>
                             <td>{{ $val->name }}</td>
-                            <td>{{ $val->gender }}</td>
-                            <td>{{ $val->address }}</td>
+                            <td>{{ $val->position }}</td>
                             <td>{{ $val->photo }}</td>
                             <td>
-                                <form action="{{ route('member.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('team.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
@@ -135,8 +103,7 @@
                     <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>Gender</th>
-                            <th>Address</th>
+                            <th>Position</th>
                             <th>Photo</th>
                             <th>Action</th>
                         </tr>
@@ -150,38 +117,27 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('member') }}/"+ id,
+        url: "{{ URL('team') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
-            $('#title').html("Form Edit Member")
+            $('#title').html("Form Edit Team")
             $("#name").val(response.name);
-            $("#email").val(response.email);
-            $("#password").val(response.password);
-            $("#confirm-password").val(response.password);
-            if ( response.gender === "male" ) {
-                $("#gender-male").prop("checked", true);                
-            }else{
-                $("#gender-female").prop("checked", true);
-            }
-            $("#address").val(response.address);
-            $('#preview').attr('src', "{{ url('public/image/member') }}/"+ response.photo);
+            $("#position").val(response.position);
+            $("#content").val(response.content);
+            $('#preview').attr('src', "{{ url('public/image/team') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('member') }}/"+ id);
+            $('#form').attr('action', "{{ URL('team') }}/"+ id);
         }
     })
 }
 function add(){
-    $('#title').html("Form Add Member")
+    $('#title').html("Form Add Team")
     $("#name").val("");
-    $("#email").val("");
-    $("#password").val("");
-    $("#confirm-password").val("");
-    $("#gender-male").prop("checked", false);                
-    $("#gender-female").prop("checked", false);
-    $("#address").val("");
+    $("#position").val("");
+    $("#content").val("");
     $('#preview').attr('src', "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg");
-    $('#form').attr('action', "{{ route('member.store') }}");
+    $('#form').attr('action', "{{ route('team.store') }}");
     $('#form').attr('method', "post");
 }
 function readURL(input) {
