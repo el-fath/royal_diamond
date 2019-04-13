@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="title">Form Team</h4>
+                        <h4 class="modal-title" id="title">Form Treatment</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -32,26 +32,15 @@
                     <form class="form-material" id="form" enctype="multipart/form-data">
                     <div class="modal-body">
                     {{ csrf_field() }}
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="text" name="name" id="name" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Name</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="text" name="position" id="position" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Position</label>
-                                </div>
-                            </div>
+                        <div class="form-group form-primary">
+                            <input type="text" name="name" id="name" class="form-control" required="">
+                            <span class="form-bar"></span>
+                            <label class="float-label">Name</label>
                         </div>
                         <div class="form-group form-default">
-                            <textarea class="form-control" name="content" id="content"></textarea>
+                            <textarea class="form-control" name="desc" id="desc"></textarea>
                             <span class="form-bar"></span>
-                            <label class="float-label">Content</label>
+                            <label class="float-label">Description</label>
                         </div>
                         <div class="form-group form-default">
                             <div class="sub-title">photo</div>
@@ -72,19 +61,19 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Content</th>
+                            <th>Description</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($team as $val)
+                        @foreach($treatment as $val)
                         <tr>
                             <td>{{ $val->name }}</td>
-                            <td>{{ $val->position }}</td>
-                            <td>{{ $val->content }}</td>
+                            <td>{{ $val->desc }}</td>
+                            <td>{{ $val->photo }}</td>
                             <td>
-                                <form action="{{ route('team.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('treatment.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
@@ -103,8 +92,8 @@
                     <tfoot>
                         <tr>
                             <th>Name</th>
-                            <th>Position</th>
-                            <th>Content</th>
+                            <th>Description</th>
+                            <th>Photo</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -117,27 +106,25 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('team') }}/"+ id,
+        url: "{{ URL('treatment') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
-            $('#title').html("Form Edit Team")
+            $('#title').html("Form Edit Treatment")
             $("#name").val(response.name);
-            $("#position").val(response.position);
-            $("#content").val(response.content);
-            $('#preview').attr('src', "{{ url('public/image/team') }}/"+ response.photo);
+            $("#desc").val(response.desc);
+            $('#preview').attr('src', "{{ url('public/image/treatment') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('team') }}/"+ id);
+            $('#form').attr('action', "{{ URL('treatment') }}/"+ id);
         }
     })
 }
 function add(){
-    $('#title').html("Form Add Team")
+    $('#title').html("Form Add Treatment")
     $("#name").val("");
-    $("#position").val("");
-    $("#content").val("");
+    $("#desc").val("");
     $('#preview').attr('src', "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg");
-    $('#form').attr('action', "{{ route('team.store') }}");
+    $('#form').attr('action', "{{ route('treatment.store') }}");
     $('#form').attr('method', "post");
 }
 function readURL(input) {

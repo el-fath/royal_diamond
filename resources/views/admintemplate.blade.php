@@ -250,6 +250,13 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="{{ Request::segment(1) == 'slide' ? 'active':'' }}">
+                                    <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Slide</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
                             <div class="pcoded-navigation-label">Data Master</div>
                             <ul class="pcoded-item pcoded-left-item">
@@ -274,17 +281,10 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'slide' ? 'active':'' }}">
-                                    <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
+                                <li class="{{ Request::segment(1) == 'treatment' ? 'active':'' }}">
+                                    <a href="{{ route('treatment.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                                        <span class="pcoded-mtext">Slide</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="#" target="_blank" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-file"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">Documentation</span>
+                                        <span class="pcoded-mtext">Treatment</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

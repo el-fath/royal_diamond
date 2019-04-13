@@ -9,8 +9,9 @@ use App\Models\Admin;
 use App\Models\Member;
 use App\Models\Team;
 use App\Models\Slide;
+use App\Models\Treatment;
 
-class AdminCtr extends Controller
+class AdminCtr1 extends Controller
 {
 
     public function auth()
@@ -346,4 +347,79 @@ class AdminCtr extends Controller
         return redirect('slide')->with('alert', 'Data Deleted...!');
     }
     
+    public function index_treatment(){
+        if(Session::get('login')){
+            $title = "Treatment";
+            $treatment = Treatment::all()->sortByDesc('id');
+            return view('admin/treatment', compact('treatment','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function store_treatment(Request $request)
+    {
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/treatment',$newName);
+        }else{
+            $newName = NULL;
+        }
+
+        $data = [
+            'name'  => $request->get('name'),
+            'desc'  => $request->get('desc'),
+            'photo' => $newName
+        ];
+        
+        $data = Treatment::create($data);
+        return redirect('treatment')->with('alert', 'Data Added...!');
+    }
+
+    public function show_treatment($id)
+    {
+        $data = Treatment::find($id);
+        return response()->json($data);
+    }
+
+    public function update_treatment(Request $request, $id)
+    {
+        $data = Treatment::find($id);
+
+        if ($request->file('photo')) {
+            $myFile = "public/image/treatment/".$data->photo;
+            unlink($myFile);
+
+            $file = $request->file('photo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/treatment',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
+        }
+
+        $newdata = [
+            'name' => $request->get('name'),
+            'desc' => $request->get('desc')
+        ];
+
+        $data->update($newdata);
+
+        return redirect('treatment')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_treatment($id)
+    {
+        $data = Treatment::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "public/image/treatment/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('treatment')->with('alert', 'Data Deleted...!');
+    }
+
 }

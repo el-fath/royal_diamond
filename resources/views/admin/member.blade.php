@@ -33,18 +33,25 @@
                     <div class="modal-body">
                     {{ csrf_field() }}
                         <div class="row">
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group form-primary">
                                     <input type="text" name="name" id="name" class="form-control" required="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Name</label>
                                 </div>
                             </div>
-                            <div class="col-sm-6">
+                            <div class="col-sm-4">
                                 <div class="form-group form-primary">
                                     <input type="text" name="email" id="email" class="form-control" required="">
                                     <span class="form-bar"></span>
                                     <label class="float-label">Email (exa@gmail.com)</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group form-primary">
+                                    <input type="password" name="password" id="password" class="form-control" required="">
+                                    <span class="form-bar"></span>
+                                    <label class="float-label">Password</label>
                                 </div>
                             </div>
                         </div>
@@ -60,22 +67,6 @@
                                     <input type="radio" name="gender" id="gender-female" value="female">
                                     <i class="helper"></i>Female
                                 </label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="password" name="password" id="password" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Password</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-group form-primary">
-                                    <input type="password" name="confirm-password" id="confirm-password" class="form-control" required="">
-                                    <span class="form-bar"></span>
-                                    <label class="float-label">Confirm Password</label>
-                                </div>
                             </div>
                         </div>
                         <div class="form-group form-default">
@@ -104,7 +95,7 @@
                             <th>Name</th>
                             <th>Gender</th>
                             <th>Address</th>
-                            <th>Photo</th>
+                            {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -114,7 +105,7 @@
                             <td>{{ $val->name }}</td>
                             <td>{{ $val->gender }}</td>
                             <td>{{ $val->address }}</td>
-                            <td>{{ $val->photo }}</td>
+                            {{-- <td>{{ $val->photo }}</td> --}}
                             <td>
                                 <form action="{{ route('member.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
@@ -137,7 +128,7 @@
                             <th>Name</th>
                             <th>Gender</th>
                             <th>Address</th>
-                            <th>Photo</th>
+                            {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -158,7 +149,7 @@ function edit(id){
             $("#name").val(response.name);
             $("#email").val(response.email);
             $("#password").val(response.password);
-            $("#confirm-password").val(response.password);
+            // $("#confirm-password").val(response.password);
             if ( response.gender === "male" ) {
                 $("#gender-male").prop("checked", true);                
             }else{
@@ -176,7 +167,7 @@ function add(){
     $("#name").val("");
     $("#email").val("");
     $("#password").val("");
-    $("#confirm-password").val("");
+    // $("#confirm-password").val("");
     $("#gender-male").prop("checked", false);                
     $("#gender-female").prop("checked", false);
     $("#address").val("");

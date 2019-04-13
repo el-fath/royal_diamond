@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Slide Master</h5>
+            <h5>Slide Configuration</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
@@ -74,7 +74,7 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Url</th>
-                            <th>Photo</th>
+                            {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -84,7 +84,7 @@
                             <td>{{ $val->title }}</td>
                             <td>{{ $val->content }}</td>
                             <td>{{ $val->url }}</td>
-                            <td>{{ $val->photo }}</td>
+                            {{-- <td>{{ $val->photo }}</td> --}}
                             <td>
                                 <form action="{{ route('slide.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
@@ -107,7 +107,7 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Url</th>
-                            <th>Photo</th>
+                            {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
                     </tfoot>
