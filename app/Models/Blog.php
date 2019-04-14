@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Blog extends Model
 {
+    protected $guarded = [];
     protected $appends 	= array('PhotoPath');
 
     public function getPhotoPathAttribute()

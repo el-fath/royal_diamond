@@ -41,5 +41,11 @@ Route::post('treatment', 'adminCtr1@store_treatment')->name('treatment.store');
 Route::post('treatment/{treatment}', 'adminCtr1@update_treatment')->name('treatment.update');
 Route::delete('treatment/{treatment}', 'adminCtr1@destroy_treatment')->name('treatment.destroy');
 
+Route::get('blog', 'adminCtr2@index_blog')->name('blog.index');
+Route::get('blog/{blog}', 'adminCtr2@show_blog')->name('blog.show');
+Route::post('blog', 'adminCtr2@store_blog')->name('blog.store');
+Route::post('blog/{blog}', 'adminCtr2@update_blog')->name('blog.update');
+Route::delete('blog/{blog}', 'adminCtr2@destroy_blog')->name('blog.destroy');
+
 Route::post('admin/{admin}', 'adminCtr1@update')->name('admin.update');
 Route::resource('admin', 'adminCtr1');

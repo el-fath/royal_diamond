@@ -29,6 +29,10 @@
     <link href="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
     <!-- waves.css -->
     <link rel="stylesheet" href="{{ url('public/assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <!-- Material Icon -->
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/material-design/css/material-design-iconic-font.min.css">
+    <!-- ion icon css -->
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/ion-icon/css/ionicons.min.css">
     <!-- themify-icons line icon -->
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/themify-icons/themify-icons.css">
     <!-- ico font -->
@@ -252,7 +256,7 @@
                                 </li>
                                 <li class="{{ Request::segment(1) == 'slide' ? 'active':'' }}">
                                     <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-micon"><i class="ti-gallery"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Slide</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
@@ -262,29 +266,36 @@
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="{{ Request::segment(1) == 'admin' ? 'active':'' }}">
                                     <a href="{{ route('admin.index') }}" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-micon"><i class="fa fa-gears"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Admin</span>
-                                        <span class="pcoded-mcaret"></span>
-                                    </a>
-                                </li>
-                                <li class="{{ Request::segment(1) == 'member' ? 'active':'' }}">
-                                    <a href="{{ route('member.index') }}" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
-                                        <span class="pcoded-mtext">Member</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'team' ? 'active':'' }}">
                                     <a href="{{ route('team.index') }}" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-micon"><i class="ion-person-stalker"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Team</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(1) == 'member' ? 'active':'' }}">
+                                    <a href="{{ route('member.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-group"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Member</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="{{ Request::segment(1) == 'treatment' ? 'active':'' }}">
                                     <a href="{{ route('treatment.index') }}" class="waves-effect waves-dark">
-                                        <span class="pcoded-micon"><i class="ti-layout-cta-right"></i><b>N</b></span>
+                                        <span class="pcoded-micon"><i class="fa fa-heartbeat"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Treatment</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(1) == 'blog' ? 'active':'' }}">
+                                    <a href="{{ route('blog.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-desktop"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Blog</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
