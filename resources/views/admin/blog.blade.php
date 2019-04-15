@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Treatment Master</h5>
+            <h5>Blog Master</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
@@ -24,7 +24,7 @@
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="title">Form Treatment</h4>
+                        <h4 class="modal-title" id="formtitle">Form Blog</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -33,14 +33,14 @@
                     <div class="modal-body">
                     {{ csrf_field() }}
                         <div class="form-group form-primary">
-                            <input type="text" name="name" id="name" class="form-control" required="">
+                            <input type="text" name="title" id="title" class="form-control" required="">
                             <span class="form-bar"></span>
-                            <label class="float-label">Name</label>
+                            <label class="float-label">Title</label>
                         </div>
                         <div class="form-group form-default">
-                            <textarea class="form-control" name="desc" id="desc"></textarea>
+                            <textarea class="form-control" name="content" id="content"></textarea>
                             <span class="form-bar"></span>
-                            <label class="float-label">Description</label>
+                            <label class="float-label">Content</label>
                         </div>
                         <div class="form-group form-default">
                             <div class="sub-title">photo</div>
@@ -60,20 +60,20 @@
                 <table id="order-table" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>view</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($treatment as $val)
+                        @foreach($blog as $val)
                         <tr>
-                            <td>{{ $val->name }}</td>
-                            <td>{{ $val->desc }}</td>
-                            <td>{{ $val->photo }}</td>
+                            <td>{{ $val->title }}</td>
+                            <td>{{ $val->content }}</td>
+                            <td>{{ $val->view }}</td>
                             <td>
-                                <form action="{{ route('treatment.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('blog.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
@@ -91,9 +91,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Photo</th>
+                            <th>Title</th>
+                            <th>Content</th>
+                            <th>view</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -106,25 +106,25 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('admin/treatment') }}/"+ id,
+        url: "{{ URL('admin/blog') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
-            $('#title').html("Form Edit Treatment")
-            $("#name").val(response.name);
-            $("#desc").val(response.desc);
-            $('#preview').attr('src', "{{ url('public/image/treatment') }}/"+ response.photo);
+            $('#formtitle').html("Form Edit Blog")
+            $("#title").val(response.title);
+            $("#content").val(response.content);
+            $('#preview').attr('src', "{{ url('public/image/blog') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('admin/treatment') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/blog') }}/"+ id);
         }
     })
 }
 function add(){
-    $('#title').html("Form Add Treatment")
-    $("#name").val("");
-    $("#desc").val("");
+    $('#formtitle').html("Form Add Blog")
+    $("#title").val("");
+    $("#content").val("");
     $('#preview').attr('src', "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg");
-    $('#form').attr('action', "{{ route('treatment.store') }}");
+    $('#form').attr('action', "{{ route('blog.store') }}");
     $('#form').attr('method', "post");
 }
 function readURL(input) {

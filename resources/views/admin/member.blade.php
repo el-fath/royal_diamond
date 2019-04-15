@@ -141,7 +141,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('member') }}/"+ id,
+        url: "{{ URL('admin/member') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
@@ -158,7 +158,7 @@ function edit(id){
             $("#address").val(response.address);
             $('#preview').attr('src', "{{ url('public/image/member') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('member') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/member') }}/"+ id);
         }
     })
 }

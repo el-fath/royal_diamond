@@ -105,7 +105,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('admin') }}/"+ id,
+        url: "{{ URL('admin/admin') }}/"+ id,
         type: 'GET',
         success: function(response){
             console.log(response);
@@ -115,7 +115,7 @@ function edit(id){
             // $("#password").val(response.password);
             $("#password").prop('disabled', true);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('admin') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/admin') }}/"+ id);
         }
     })
 }
