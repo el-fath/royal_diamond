@@ -254,7 +254,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'slide' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'slide' ? 'active':'' }}">
                                     <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-gallery"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Slide</span>
@@ -264,35 +264,35 @@
                             </ul>
                             <div class="pcoded-navigation-label">Data Master</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="{{ Request::segment(1) == 'admin' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'admin' ? 'active':'' }}">
                                     <a href="{{ route('admin.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-gears"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Admin</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'team' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'team' ? 'active':'' }}">
                                     <a href="{{ route('team.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ion-person-stalker"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Team</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'member' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'member' ? 'active':'' }}">
                                     <a href="{{ route('member.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-group"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Member</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'treatment' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'treatment' ? 'active':'' }}">
                                     <a href="{{ route('treatment.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-heartbeat"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Treatment</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'blog' ? 'active':'' }}">
+                                <li class="{{ Request::segment(2) == 'blog' ? 'active':'' }}">
                                     <a href="{{ route('blog.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-desktop"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Blog</span>

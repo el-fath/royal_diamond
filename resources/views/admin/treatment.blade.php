@@ -106,7 +106,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('treatment') }}/"+ id,
+        url: "{{ URL('admin/treatment') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
@@ -115,7 +115,7 @@ function edit(id){
             $("#desc").val(response.desc);
             $('#preview').attr('src', "{{ url('public/image/treatment') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('treatment') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/treatment') }}/"+ id);
         }
     })
 }

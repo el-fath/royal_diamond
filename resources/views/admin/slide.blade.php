@@ -120,7 +120,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('slide') }}/"+ id,
+        url: "{{ URL('admin/slide') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
@@ -130,7 +130,7 @@ function edit(id){
             $("#content").val(response.content);
             $('#preview').attr('src', "{{ url('public/image/slide') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('slide') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/slide') }}/"+ id);
         }
     })
 }

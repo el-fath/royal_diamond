@@ -117,7 +117,7 @@
 <script type="text/javascript">
 function edit(id){
     $.ajax({
-        url: "{{ URL('team') }}/"+ id,
+        url: "{{ URL('admin/team') }}/"+ id,
         type: 'GET',
         success: function(response){
             // console.log(response);
@@ -127,7 +127,7 @@ function edit(id){
             $("#content").val(response.content);
             $('#preview').attr('src', "{{ url('public/image/team') }}/"+ response.photo);
             $('#form').attr('method', "post");
-            $('#form').attr('action', "{{ URL('team') }}/"+ id);
+            $('#form').attr('action', "{{ URL('admin/team') }}/"+ id);
         }
     })
 }
