@@ -29,65 +29,67 @@ class Main extends Controller
         $title = "Blog";
         $blog = Blog::all();
 
-        return view('main/index', compact('title','blog'));
+        return view('main/blog/index', compact('title','blog'));
     }
 
     function blogdetail($slug){
         $title = "Blog";
         $blog = Blog::all();
 
-        return view('main/index', compact('title','blog'));
+        return view('main/blog/index', compact('title','blog'));
     }
 
     function event(){
         $title = "Event";
         $event = Event::all();
 
-        return view('main/index', compact('title','event'));
+        return view('main/event/index', compact('title','event'));
     }
 
     function eventdetail($slug){
         $title = "Event";
         $event = Event::all();
 
-        return view('main/index', compact('title','event'));
+        return view('main/event/index', compact('title','event'));
     }
 
     function promo(){
         $title = "Promo";
         $promo = Slide::all();
 
-        return view('main/index', compact('title','promo'));
+        return view('main/promo/index', compact('title','promo'));
     }
 
     function promodetail($slug){
         $title = "Promo";
         $promo = Slide::all();
 
-        return view('main/index', compact('title','promo'));
+        return view('main/promo/index', compact('title','promo'));
     }
 
     function aboutus(){
         $title = "About Us";
-        return view('main/index', compact('title'));
+        $team = Team::all();
+        $service = Service::all();
+        return view('main/aboutus/index', compact('title','team','service'));
     }
 
     function contactus(){
         $title = "Contact Us";
-        return view('main/index', compact('title'));
+        return view('main/contactus/index', compact('title'));
     }
 
     function treatment(){
         $title = "Treatment";
         $treatment = Treatment::all();
 
-        return view('main/index', compact('title','treatment'));
+        return view('main/treatment/index', compact('title','treatment'));
     }
 
     function treatmentdetail($slug){
         $title = "Treatment";
         $treatment = Treatment::all();
 
-        return view('main/index', compact('title','treatment'));
+        return view('main/treatment/index', compact('title','treatment'));
     }
 }
