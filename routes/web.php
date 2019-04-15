@@ -12,6 +12,13 @@
 */
 
 Route::get('/', 'main@index');
+Route::get('event', 'main@event');
+Route::get('event/{slug}', 'main@eventdetail');
+Route::get('promo/{slug}', 'main@promodetail');
+Route::get('blog/{slug}', 'main@blogdetail');
+Route::get('treatment/{slug}', 'main@treatmentdetail');
+Route::get('contactus', 'main@contactus');
+Route::get('aboutus', 'main@aboutus');
 
 Route::get('auth', 'adminCtr1@auth')->name('auth');
 Route::get('log_out', 'adminCtr1@log_out')->name('log_out');
