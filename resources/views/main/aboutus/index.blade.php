@@ -16,11 +16,11 @@
         <div class="fw-container">
             <h2 class="heading-decor">About us</h2>
             <div class="fw-row">
-                <div class="fw-col-md-6">
-                    <img src="{{$profile->PhotoPath}}" style="max-height: 300px;" alt="People">
-                </div>
-                <div class="fw-col-md-6 content">
-                    {{$profile->desc}}
+                {{--<div class="fw-col-md-6">--}}
+                    {{--<img src="{{$profile->PhotoPath}}" style="max-height: 300px;" alt="People">--}}
+                {{--</div>--}}
+                <div class="fw-col-md-12 content">
+                    {!! $profile->desc !!}
                 </div>
             </div>
         </div>

@@ -34,9 +34,9 @@ class Main extends Controller
 
     function blogdetail($slug){
         $title = "Blog";
-        $blog = Blog::all();
+        $blog = Blog::where('url_segment', $slug)->first();
 
-        return view('main/blog/index', compact('title','blog'));
+        return view('main/blog/detail', compact('title','blog'));
     }
 
     function event(){
@@ -48,9 +48,9 @@ class Main extends Controller
 
     function eventdetail($slug){
         $title = "Event";
-        $event = Event::all();
+        $event = Event::where('url_segment', $slug)->first();
 
-        return view('main/event/index', compact('title','event'));
+        return view('main/event/detail', compact('title','event'));
     }
 
     function promo(){
@@ -62,9 +62,9 @@ class Main extends Controller
 
     function promodetail($slug){
         $title = "Promo";
-        $promo = Slide::all();
+        $slide = Slide::where('url_segment', $slug)->first();
 
-        return view('main/promo/index', compact('title','promo'));
+        return view('main/promo/detail', compact('title','slide'));
     }
 
     function aboutus(){
@@ -88,8 +88,8 @@ class Main extends Controller
 
     function treatmentdetail($slug){
         $title = "Treatment";
-        $treatment = Treatment::all();
+        $treatment = Treatment::where('url_segment', $slug)->first();
 
-        return view('main/treatment/index', compact('title','treatment'));
+        return view('main/treatment/detail', compact('title','treatment'));
     }
 }

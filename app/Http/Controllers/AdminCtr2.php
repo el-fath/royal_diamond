@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Blog;
+use Illuminate\Support\Str;
 
 class AdminCtr2 extends Controller
 {
@@ -44,6 +45,10 @@ class AdminCtr2 extends Controller
         ];
         
         $data = Blog::create($data);
+
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
+
         return redirect('admin/blog')->with('alert', 'Data Added...!');
     }
 
@@ -79,6 +84,8 @@ class AdminCtr2 extends Controller
         ];
 
         $data->update($newdata);
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
 
         return redirect('admin/blog')->with('alert', 'Data Edited...!');
     }

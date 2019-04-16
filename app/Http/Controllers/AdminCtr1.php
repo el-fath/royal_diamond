@@ -10,6 +10,7 @@ use App\Models\Member;
 use App\Models\Team;
 use App\Models\Slide;
 use App\Models\Treatment;
+use Illuminate\Support\Str;
 
 class AdminCtr1 extends Controller
 {
@@ -221,6 +222,9 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Team::create($data);
+        $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
+        $data->save();
+
         return redirect('admin/team')->with('alert', 'Data Added...!');
     }
 
@@ -254,6 +258,8 @@ class AdminCtr1 extends Controller
         ];
 
         $data->update($newdata);
+        $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
+        $data->save();
 
         return redirect('admin/team')->with('alert', 'Data Edited...!');
     }
@@ -306,6 +312,8 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Slide::create($data);
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
         return redirect('admin/slide')->with('alert', 'Data Added...!');
     }
 
@@ -341,7 +349,8 @@ class AdminCtr1 extends Controller
         ];
 
         $data->update($newdata);
-
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
         return redirect('admin/slide')->with('alert', 'Data Edited...!');
     }
 
@@ -384,6 +393,9 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Treatment::create($data);
+        $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
+        $data->save();
+
         return redirect('admin/treatment')->with('alert', 'Data Added...!');
     }
 
@@ -416,6 +428,9 @@ class AdminCtr1 extends Controller
         ];
 
         $data->update($newdata);
+
+        $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
+        $data->save();
 
         return redirect('admin/treatment')->with('alert', 'Data Edited...!');
     }

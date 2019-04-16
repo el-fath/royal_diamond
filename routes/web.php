@@ -16,6 +16,7 @@
 Route::get('/', 'main@index')->name('home');
 Route::get('event', 'main@event')->name('event');
 Route::get('event/{slug}', 'main@eventdetail')->name('eventdetail');
+Route::get('promo', 'main@promo')->name('promo');
 Route::get('promo/{slug}', 'main@promodetail')->name('promodetail');
 Route::get('blog', 'main@blog')->name('blog');
 Route::get('blog/{slug}', 'main@blogdetail')->name('blogdetail');

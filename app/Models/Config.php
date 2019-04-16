@@ -10,6 +10,6 @@ class Config extends Model
 
     public function getIconPathAttribute()
     {
-        return "public/image/config/".$this->icon;
+        return url('/')."/public/image/config/".$this->icon;
     }
 }

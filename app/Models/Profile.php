@@ -16,6 +16,6 @@ class Profile extends Model
 
     public function getPhotoPathAttribute()
     {
-        return "public/image/profile/".$this->logo;
+        return url('/')."/public/image/profile/".$this->logo;
     }
 }

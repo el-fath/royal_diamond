@@ -10,6 +10,6 @@ class Event extends Model
 
     public function getPhotoPathAttribute()
     {
-        return "public/image/event/".$this->photo;
+        return url('/')."/public/image/event/".$this->photo;
     }
 }
