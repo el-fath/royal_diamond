@@ -279,6 +279,13 @@ class AdminCtr1 extends Controller
         }
     }
 
+    public function add_slide()
+    {
+        $title = "Add";
+        $action = route('slide.store');
+        return view('admin/slide/slideform', compact('title', 'action'));
+    }
+
     public function store_slide(Request $request)
     {
         if ($request->file('photo')) {
@@ -294,6 +301,7 @@ class AdminCtr1 extends Controller
             'title'   => $request->get('title'),
             'url'     => $request->get('url'),
             'content' => $request->get('content'),
+            'is_show' => 1,
             'photo'   => $newName
         ];
         
@@ -303,8 +311,10 @@ class AdminCtr1 extends Controller
 
     public function show_slide($id)
     {
-        $data = Slide::find($id);
-        return response()->json($data);
+        $title = "Edit";
+        $data  = Slide::find($id);
+        $action = route('slide.update', $data->id);
+        return view('admin/slide/slideform', compact('data','title', 'action'));
     }
 
     public function update_slide(Request $request, $id)

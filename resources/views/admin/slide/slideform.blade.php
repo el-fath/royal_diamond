@@ -18,6 +18,11 @@
                 <label class="float-label">Title</label>
             </div>
             <div class="form-group form-default">
+                <input type="text" name="url" id="url" class="form-control" value="{{ $title == 'Add' ? "" : $data->url }}" required="">
+                <span class="form-bar"></span>
+                <label class="float-label">Url</label>
+            </div>
+            <div class="form-group form-default">
                 <label>Content</label>
                 <textarea name="content" id="content" required="">{{ $title == 'Add' ? "" : $data->content }}</textarea>
             </div>
@@ -26,7 +31,7 @@
                 {{-- <input type="file" name="photo" id="filer_input"> --}}
                 <input type="file" class="form-control" name="photo" id="foto" onchange="readURL(this);">
                 <img id="preview" 
-                src="{{ $title == 'Add' ? "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" : url('public/image/blog')."/".$data->photo }}" 
+                src="{{ $title == 'Add' ? "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg" : url('public/image/slide')."/".$data->photo }}" 
                 alt="your image" style=" width: 200px;"/>
             </div>
             <button type="submit" class="btn btn-primary waves-effect waves-light ">Save</button>

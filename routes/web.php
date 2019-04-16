@@ -43,6 +43,7 @@ Route::post('admin/team/{team}', 'adminCtr1@update_team')->name('team.update');
 Route::delete('admin/team/{team}', 'adminCtr1@destroy_team')->name('team.destroy');
 
 Route::get('admin/slide', 'adminCtr1@index_slide')->name('slide.index');
+Route::get('admin/slide/add', 'adminCtr1@add_slide')->name('slide.add');
 Route::get('admin/slide/{slide}', 'adminCtr1@show_slide')->name('slide.show');
 Route::post('admin/slide', 'adminCtr1@store_slide')->name('slide.store');
 Route::post('admin/slide/{slide}', 'adminCtr1@update_slide')->name('slide.update');

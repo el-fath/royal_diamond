@@ -11,15 +11,15 @@
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
-        @if (session('alert'))
+            @if (session('alert'))
             <div class="alert alert-success background-success">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <i class="icofont icofont-close-line-circled text-white"></i>
                 </button>
                 <strong>{{ session('alert') }}</strong>
             </div>
-        @endif
-        <a class="btn btn-primary btn-sm" href="{{ route('blog.add') }}">Add</a>
+            @endif
+            <a class="btn btn-primary btn-sm" href="{{ route('blog.add') }}">Add</a>
             <div class="dt-responsive table-responsive">
                 <table id="order-table" class="table table-striped table-bordered nowrap">
                     <thead>
