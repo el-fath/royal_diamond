@@ -55,6 +55,7 @@ Route::post('admin/treatment/{treatment}', 'adminCtr1@update_treatment')->name('
 Route::delete('admin/treatment/{treatment}', 'adminCtr1@destroy_treatment')->name('treatment.destroy');
 
 Route::get('admin/blog', 'adminCtr2@index_blog')->name('blog.index');
+Route::get('admin/blog/add', 'adminCtr2@add_blog')->name('blog.add');
 Route::get('admin/blog/{blog}', 'adminCtr2@show_blog')->name('blog.show');
 Route::post('admin/blog', 'adminCtr2@store_blog')->name('blog.store');
 Route::post('admin/blog/{blog}', 'adminCtr2@update_blog')->name('blog.update');

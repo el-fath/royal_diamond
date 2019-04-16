@@ -75,9 +75,8 @@ class AdminCtr1 extends Controller
             'password' => Hash::make($request->get('password')),
             'role'     => "admin"
         ];
-        // dd($data);
         $data = Admin::create($data);
-        return redirect('admin')->with('alert', 'Data Added...!');
+        return redirect('admin/admin')->with('alert', 'Data Added...!');
     }
 
     public function show($id)
@@ -103,14 +102,14 @@ class AdminCtr1 extends Controller
 
         $data->update($newdata);
         
-        return redirect('admin')->with('alert', 'Data Edited...!');
+        return redirect('admin/admin')->with('alert', 'Data Edited...!');
     }
 
     public function destroy($id)
     {
         $data = Admin::find($id);
         $data->delete();
-        return redirect('admin')->with('alert', 'Data Deleted...!');
+        return redirect('admin/admin')->with('alert', 'Data Deleted...!');
     }
 
     public function index_member(){
@@ -144,7 +143,7 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Member::create($data);
-        return redirect('member')->with('alert', 'Data Added...!');
+        return redirect('admin/member')->with('alert', 'Data Added...!');
     }
 
     public function show_member($id)
@@ -179,7 +178,7 @@ class AdminCtr1 extends Controller
 
         $data->update($newdata);
         
-        return redirect('member')->with('alert', 'Data Edited...!');
+        return redirect('admin/member')->with('alert', 'Data Edited...!');
     }
 
     public function destroy_member($id)
@@ -190,7 +189,7 @@ class AdminCtr1 extends Controller
             unlink($myFile);
         }
         $data->delete();
-        return redirect('member')->with('alert', 'Data Deleted...!');
+        return redirect('admin/member')->with('alert', 'Data Deleted...!');
     }
 
     public function index_team(){
@@ -222,7 +221,7 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Team::create($data);
-        return redirect('team')->with('alert', 'Data Added...!');
+        return redirect('admin/team')->with('alert', 'Data Added...!');
     }
 
     public function show_team($id)
@@ -256,7 +255,7 @@ class AdminCtr1 extends Controller
 
         $data->update($newdata);
 
-        return redirect('team')->with('alert', 'Data Edited...!');
+        return redirect('admin/team')->with('alert', 'Data Edited...!');
     }
 
     public function destroy_team($id)
@@ -267,14 +266,14 @@ class AdminCtr1 extends Controller
             unlink($myFile);
         }
         $data->delete();
-        return redirect('team')->with('alert', 'Data Deleted...!');
+        return redirect('admin/team')->with('alert', 'Data Deleted...!');
     }
 
     public function index_slide(){
         if(Session::get('login')){
             $title = "Slide";
             $slide = Slide::all()->sortByDesc('id');
-            return view('admin/slide', compact('slide','title'));
+            return view('admin/slide/slide', compact('slide','title'));
         }else{
             return redirect('auth');
         }
@@ -299,7 +298,7 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Slide::create($data);
-        return redirect('slide')->with('alert', 'Data Added...!');
+        return redirect('admin/slide')->with('alert', 'Data Added...!');
     }
 
     public function show_slide($id)
@@ -333,7 +332,7 @@ class AdminCtr1 extends Controller
 
         $data->update($newdata);
 
-        return redirect('slide')->with('alert', 'Data Edited...!');
+        return redirect('admin/slide')->with('alert', 'Data Edited...!');
     }
 
     public function destroy_slide($id)
@@ -344,14 +343,14 @@ class AdminCtr1 extends Controller
             unlink($myFile);
         }
         $data->delete();
-        return redirect('slide')->with('alert', 'Data Deleted...!');
+        return redirect('admin/slide')->with('alert', 'Data Deleted...!');
     }
     
     public function index_treatment(){
         if(Session::get('login')){
             $title = "Treatment";
             $treatment = Treatment::all()->sortByDesc('id');
-            return view('admin/treatment', compact('treatment','title'));
+            return view('admin/treatment/treatment', compact('treatment','title'));
         }else{
             return redirect('auth');
         }
@@ -375,7 +374,7 @@ class AdminCtr1 extends Controller
         ];
         
         $data = Treatment::create($data);
-        return redirect('treatment')->with('alert', 'Data Added...!');
+        return redirect('admin/treatment')->with('alert', 'Data Added...!');
     }
 
     public function show_treatment($id)
@@ -408,7 +407,7 @@ class AdminCtr1 extends Controller
 
         $data->update($newdata);
 
-        return redirect('treatment')->with('alert', 'Data Edited...!');
+        return redirect('admin/treatment')->with('alert', 'Data Edited...!');
     }
 
     public function destroy_treatment($id)
@@ -419,7 +418,7 @@ class AdminCtr1 extends Controller
             unlink($myFile);
         }
         $data->delete();
-        return redirect('treatment')->with('alert', 'Data Deleted...!');
+        return redirect('admin/treatment')->with('alert', 'Data Deleted...!');
     }
 
 }

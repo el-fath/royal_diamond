@@ -46,6 +46,8 @@
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/jquery.mCustomScrollbar.css">
+    <!-- ck editor -->
+    <script src="{{ url('public/assets/admin') }}/assets/pages/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
