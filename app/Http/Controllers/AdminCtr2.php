@@ -22,7 +22,7 @@ class AdminCtr2 extends Controller
     {
         $title = "Add";
         $action = route('blog.store');
-        return view('admin/blog/blogform', compact('title'));
+        return view('admin/blog/blogform', compact('title', 'action'));
     }
 
     public function store_blog(Request $request)
