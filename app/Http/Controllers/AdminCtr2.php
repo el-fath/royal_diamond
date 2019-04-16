@@ -49,7 +49,7 @@ class AdminCtr2 extends Controller
 
     public function show_blog($id)
     {
-        $title = "Edit Blog";
+        $title = "Edit";
         $data  = Blog::find($id);
         $action = route('blog.update', $data->id);
         return view('admin/blog/blogform', compact('data','title', 'action'));
