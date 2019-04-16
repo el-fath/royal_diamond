@@ -12,10 +12,17 @@ class AdminCtr2 extends Controller
         if(Session::get('login')){
             $title = "Blog";
             $blog = Blog::all()->sortByDesc('id');
-            return view('admin/blog', compact('blog','title'));
+            return view('admin/blog/blog', compact('blog','title'));
         }else{
             return redirect('auth');
         }
+    }
+
+    public function add_blog()
+    {
+        $title = "Add";
+        $action = route('blog.store');
+        return view('admin/blog/blogform', compact('title', 'action'));
     }
 
     public function store_blog(Request $request)
@@ -37,13 +44,15 @@ class AdminCtr2 extends Controller
         ];
         
         $data = Blog::create($data);
-        return redirect('blog')->with('alert', 'Data Added...!');
+        return redirect('admin/blog')->with('alert', 'Data Added...!');
     }
 
     public function show_blog($id)
     {
-        $data = Blog::find($id);
-        return response()->json($data);
+        $title = "Edit";
+        $data  = Blog::find($id);
+        $action = route('blog.update', $data->id);
+        return view('admin/blog/blogform', compact('data','title', 'action'));
     }
 
     public function update_blog(Request $request, $id)
@@ -71,7 +80,7 @@ class AdminCtr2 extends Controller
 
         $data->update($newdata);
 
-        return redirect('blog')->with('alert', 'Data Edited...!');
+        return redirect('admin/blog')->with('alert', 'Data Edited...!');
     }
 
     public function destroy_blog($id)
@@ -82,6 +91,6 @@ class AdminCtr2 extends Controller
             unlink($myFile);
         }
         $data->delete();
-        return redirect('blog')->with('alert', 'Data Deleted...!');
+        return redirect('admin/blog')->with('alert', 'Data Deleted...!');
     }
 }
