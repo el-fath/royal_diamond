@@ -375,6 +375,13 @@ class AdminCtr1 extends Controller
         }
     }
 
+    public function add_treatment()
+    {
+        $title = "Add";
+        $action = route('treatment.store');
+        return view('admin/treatment/treatmentform', compact('title', 'action'));
+    }
+
     public function store_treatment(Request $request)
     {
         if ($request->file('photo')) {
@@ -401,8 +408,10 @@ class AdminCtr1 extends Controller
 
     public function show_treatment($id)
     {
-        $data = Treatment::find($id);
-        return response()->json($data);
+        $title = "Edit";
+        $data  = Treatment::find($id);
+        $action = route('treatment.update', $data->id);
+        return view('admin/treatment/treatmentform', compact('data','title', 'action'));
     }
 
     public function update_treatment(Request $request, $id)

@@ -51,6 +51,7 @@ Route::post('admin/slide/{slide}', 'adminCtr1@update_slide')->name('slide.update
 Route::delete('admin/slide/{slide}', 'adminCtr1@destroy_slide')->name('slide.destroy');
 
 Route::get('admin/treatment', 'adminCtr1@index_treatment')->name('treatment.index');
+Route::get('admin/treatment/add', 'adminCtr1@add_treatment')->name('treatment.add');
 Route::get('admin/treatment/{treatment}', 'adminCtr1@show_treatment')->name('treatment.show');
 Route::post('admin/treatment', 'adminCtr1@store_treatment')->name('treatment.store');
 Route::post('admin/treatment/{treatment}', 'adminCtr1@update_treatment')->name('treatment.update');

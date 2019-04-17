@@ -35,7 +35,7 @@
                         @foreach($slide as $val)
                         <tr>
                             <td>{{ $val->title }}</td>
-                            <td>{{ Str::limit($val->content, $limit = 70, $end = '...') }}</td>
+                            <td>{!! Str::limit($val->content, $limit = 70, $end = '...') !!}</td>
                             <td>{{ $val->url }}</td>
                             {{-- <td>{{ $val->photo }}</td> --}}
                             <td>
@@ -43,7 +43,7 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
-                                    <a class="btn btn-success btn-mini" href="{{ route('slide.destroy', $val->id) }}">                                        
+                                    <a class="btn btn-success btn-mini" href="{{ route('slide.show', $val->id) }}">                                        
                                         <i class="fa fa-pencil"></i>
                                     </a>
                                     <button type="submit" class="btn btn-danger btn-mini" onclick="return confirm('Yakin ingin menghapus data?')">
