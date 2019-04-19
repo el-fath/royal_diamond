@@ -31,6 +31,9 @@ Route::get('auth', 'adminCtr1@auth')->name('auth');
 Route::get('log_out', 'adminCtr1@log_out')->name('log_out');
 Route::post('authentification', 'adminCtr1@authentification')->name('authentification');
 
+Route::get('admin/profile', 'adminCtr2@index_profile')->name('profile.index');
+Route::post('admin/profile/update', 'adminCtr2@update_profile')->name('profile.update');
+
 Route::get('admin/member', 'adminCtr1@index_member')->name('member.index');
 Route::get('admin/member/{member}', 'adminCtr1@show_member')->name('member.show');
 Route::post('admin/member', 'adminCtr1@store_member')->name('member.store');
@@ -38,6 +41,7 @@ Route::post('admin/member/{member}', 'adminCtr1@update_member')->name('member.up
 Route::delete('admin/member/{member}', 'adminCtr1@destroy_member')->name('member.destroy');
 
 Route::get('admin/team', 'adminCtr1@index_team')->name('team.index');
+Route::get('admin/team/add', 'adminCtr1@add_team')->name('team.add');
 Route::get('admin/team/{team}', 'adminCtr1@show_team')->name('team.show');
 Route::post('admin/team', 'adminCtr1@store_team')->name('team.store');
 Route::post('admin/team/{team}', 'adminCtr1@update_team')->name('team.update');

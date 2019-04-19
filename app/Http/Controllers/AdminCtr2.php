@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use App\Models\Blog;
+use App\Models\Profile;
 use Illuminate\Support\Str;
 
 class AdminCtr2 extends Controller
@@ -99,5 +100,36 @@ class AdminCtr2 extends Controller
         }
         $data->delete();
         return redirect('admin/blog')->with('alert', 'Data Deleted...!');
+    }
+
+    public function index_profile()
+    {
+        $title = "Profile";
+        $data  = Profile::find(1);
+        $action = route('profile.update', $data->id);
+        return view('admin/profile', compact('data','title', 'action'));
+    }
+
+    public function update_profile(Request $request)
+    {
+        $data = Blog::find($id);
+        $newdata = [
+            'name'       => $request->name,
+            'email'      => $request->email,
+            'phone'      => $request->phone,
+            'facebook'   => $request->facebook,
+            'instagram'  => $request->instagram,
+            'twitter'    => $request->twitter,
+            'start_day'  => $request->start_day,
+            'end_day'    => $request->end_day,
+            'open_time'  => $request->open_time,
+            'close_time' => $request->close_time,
+            'address'    => $request->address,
+            'desc'       => $request->desc
+        ];
+
+        dd($newdata);
+        $data->update($newdata);
+
     }
 }
