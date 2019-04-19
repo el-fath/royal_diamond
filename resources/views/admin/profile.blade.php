@@ -10,7 +10,7 @@
         <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
     </div>
     <div class="card-block">
-        <form class="form-material" action="{{$action}}" method="POST" enctype="multipart/form-data">
+        <form class="form-material" action="{{$action}}" method="POST" id="formProfile" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-sm-4">
@@ -116,7 +116,8 @@
                 src="{{ url('public/image/profile')."/".$data->logo }}" 
                 alt="your image" style=" width: 200px;"/>
             </div>
-            <button type="submit" class="btn btn-primary waves-effect waves-light ">Save</button>
+            {{-- <button type="button" onclick="test()">Basic</button> --}}
+            <button type="submit" id="submit-btn" class="btn btn-primary waves-effect waves-light ">Save</button>
         </form>
     </div>
 </div>
@@ -134,5 +135,38 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
+// function test() {
+//     swal("Good job!", "You clicked the button!", "success")
+// }
+document.getElementById("formProfile").addEventListener("submit", function(e){
+    e.preventDefault()
+    var formData = new FormData( $("#formProfile")[0])
+    for (instance in CKEDITOR.instances) {
+        CKEDITOR.instances[instance].updateElement()
+    }
+    $.ajax({
+    url: $("#formProfile").attr('action'),
+        method:'POST',
+        data:new FormData(this),
+        contentType: false,
+        processData: false,
+        dataType: 'json',
+        success:function(data){
+            // console.log(data);
+            if (data.Code == 'Error') {
+                swal("error!", data.Message, "error")
+            }else{
+                swal({
+                    title: "Succes",
+                    text: data.Message,
+                    type: "success"
+                })
+            }
+        },
+        error:function(data){
+            alert("Gagal Bro")
+        },
+    })
+});
 </script>
 @endsection

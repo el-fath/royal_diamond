@@ -106,30 +106,54 @@ class AdminCtr2 extends Controller
     {
         $title = "Profile";
         $data  = Profile::find(1);
-        $action = route('profile.update', $data->id);
+        $action = route('profile.update');
         return view('admin/profile', compact('data','title', 'action'));
     }
 
     public function update_profile(Request $request)
     {
-        $data = Blog::find($id);
-        $newdata = [
-            'name'       => $request->name,
-            'email'      => $request->email,
-            'phone'      => $request->phone,
-            'facebook'   => $request->facebook,
-            'instagram'  => $request->instagram,
-            'twitter'    => $request->twitter,
-            'start_day'  => $request->start_day,
-            'end_day'    => $request->end_day,
-            'open_time'  => $request->open_time,
-            'close_time' => $request->close_time,
-            'address'    => $request->address,
-            'desc'       => $request->desc
-        ];
+        try {
+            $data = Profile::find(1);
 
-        dd($newdata);
-        $data->update($newdata);
+            if ($request->file('photo')) {
+                $myFile = "public/image/profile/".$data->photo;
+                unlink($myFile);
+    
+                $file = $request->file('photo');
+                $ext = $file->getClientOriginalExtension();
+                $newName = rand(100000,1001238912).".".$ext;
+                $file->move('public/image/profile',$newName);
+    
+                $newdata = [ 'photo' => $newName ];
+                $data->update($newdata);
+            }
+
+            $newdata = [
+                'name'       => $request->name,
+                'email'      => $request->email,
+                'phone'      => $request->phone,
+                'facebook'   => $request->facebook,
+                'instagram'  => $request->instagram,
+                'twitter'    => $request->twitter,
+                'start_day'  => $request->start_day,
+                'end_day'    => $request->end_day,
+                'open_time'  => $request->open_time,
+                'close_time' => $request->close_time,
+                'address'    => $request->address,
+                'desc'       => $request->desc
+            ];
+            $data->update($newdata);
+    
+            return response()->json([
+                'Code'    => "Success",
+                'Message' => "Company profile updated"
+            ]);
+        } catch (Esception $e) {
+            return response()->json([
+                'Code'    => "Error",
+                'message' => $e->getMessage()
+            ]);
+        }
 
     }
 }
