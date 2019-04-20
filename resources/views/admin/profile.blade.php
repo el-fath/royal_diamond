@@ -6,7 +6,7 @@
 <div class="col-sm-12">
 <div class="card">
     <div class="card-header">
-        <h5>Form Profile</h5>
+        <h5>Profile Configuration</h5>
         <!--<span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>-->
     </div>
     <div class="card-block">

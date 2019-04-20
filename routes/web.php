@@ -34,6 +34,9 @@ Route::post('authentification', 'adminCtr1@authentification')->name('authentific
 Route::get('admin/profile', 'adminCtr2@index_profile')->name('profile.index');
 Route::post('admin/profile/update', 'adminCtr2@update_profile')->name('profile.update');
 
+Route::get('admin/config', 'adminCtr2@index_config')->name('config.index');
+Route::post('admin/config/update', 'adminCtr2@update_config')->name('config.update');
+
 Route::get('admin/member', 'adminCtr1@index_member')->name('member.index');
 Route::get('admin/member/{member}', 'adminCtr1@show_member')->name('member.show');
 Route::post('admin/member', 'adminCtr1@store_member')->name('member.store');

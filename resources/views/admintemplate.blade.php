@@ -265,6 +265,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(2) == 'config' ? 'active':'' }}">
+                                    <a href="{{ route('config.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Website</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(2) == 'slide' ? 'active':'' }}">
                                     <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-gallery"></i><b>N</b></span>
