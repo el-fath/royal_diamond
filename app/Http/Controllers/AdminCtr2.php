@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Models\Blog;
 use App\Models\Profile;
 use App\Models\Config;
+use App\Models\Blog;
+use App\Models\Service;
 use Illuminate\Support\Str;
 
 class AdminCtr2 extends Controller
@@ -204,5 +205,65 @@ class AdminCtr2 extends Controller
         }
         $data->delete();
         return redirect('admin/blog')->with('alert', 'Data Deleted...!');
+    }
+    
+    public function index_service(){
+        if(Session::get('login')){
+            $title = "Service";
+            $service = Service::all()->sortByDesc('id');
+            return view('admin/service/service', compact('service','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function add_service()
+    {
+        $title = "Add";
+        $action = route('service.store');
+        return view('admin/service/serviceform', compact('title', 'action'));
+    }
+
+    public function store_service(Request $request)
+    {
+        $data = [
+            'icon'        => $request->get('icon'),
+            'title'       => $request->get('title'),
+            'description' => $request->get('description')
+        ];
+        
+        $data = Service::create($data);
+
+        return redirect('admin/service')->with('alert', 'Data Added...!');
+    }
+
+    public function show_service($id)
+    {
+        $title = "Edit";
+        $data  = Service::find($id);
+        $action = route('service.update', $data->id);
+        return view('admin/service/serviceform', compact('data','title', 'action'));
+    }
+
+    public function update_service(Request $request, $id)
+    {
+        $data = Service::find($id);
+
+        $newdata = [
+            'icon'        => $request->get('icon'),
+            'title'       => $request->get('title'),
+            'description' => $request->get('description')
+        ];
+
+        $data->update($newdata);
+
+        return redirect('admin/service')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_service($id)
+    {
+        $data = Service::find($id);
+        $data->delete();
+        return redirect('admin/service')->with('alert', 'Data Deleted...!');
     }
 }

@@ -71,5 +71,12 @@ Route::post('admin/blog', 'adminCtr2@store_blog')->name('blog.store');
 Route::post('admin/blog/{blog}', 'adminCtr2@update_blog')->name('blog.update');
 Route::delete('admin/blog/{blog}', 'adminCtr2@destroy_blog')->name('blog.destroy');
 
+Route::get('admin/service', 'adminCtr2@index_service')->name('service.index');
+Route::get('admin/service/add', 'adminCtr2@add_service')->name('service.add');
+Route::get('admin/service/{service}', 'adminCtr2@show_service')->name('service.show');
+Route::post('admin/service', 'adminCtr2@store_service')->name('service.store');
+Route::post('admin/service/{service}', 'adminCtr2@update_service')->name('service.update');
+Route::delete('admin/service/{service}', 'adminCtr2@destroy_service')->name('service.destroy');
+
 Route::post('admin/admin/{admin}', 'adminCtr1@update')->name('admin.update');
 Route::resource('admin/admin', 'adminCtr1');
