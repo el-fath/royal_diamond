@@ -8,6 +8,7 @@ use App\Models\Profile;
 use App\Models\Config;
 use App\Models\Blog;
 use App\Models\Service;
+use App\Models\Event;
 use Illuminate\Support\Str;
 
 class AdminCtr2 extends Controller
@@ -265,5 +266,97 @@ class AdminCtr2 extends Controller
         $data = Service::find($id);
         $data->delete();
         return redirect('admin/service')->with('alert', 'Data Deleted...!');
+    }
+
+    public function index_event(){
+        if(Session::get('login')){
+            $title = "Event";
+            $event = Event::all()->sortByDesc('id');
+            return view('admin/event/event', compact('event','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function add_event()
+    {
+        $title = "Add";
+        $action = route('event.store');
+        return view('admin/event/eventform', compact('title', 'action'));
+    }
+
+    public function store_event(Request $request)
+    {
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/event',$newName);
+        }else{
+            $newName = NULL;
+        }
+
+        $data = [
+            'title'    => $request->get('title'),
+            'content'  => $request->get('content'),
+            'id_admin' => Session::get('id'),
+            'photo'    => $newName
+        ];
+        
+        $data = Event::create($data);
+
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
+
+        return redirect('admin/event')->with('alert', 'Data Added...!');
+    }
+
+    public function show_event($id)
+    {
+        $title = "Edit";
+        $data  = Event::find($id);
+        $action = route('event.update', $data->id);
+        return view('admin/event/eventform', compact('data','title', 'action'));
+    }
+
+    public function update_event(Request $request, $id)
+    {
+        $data = Event::find($id);
+
+        if ($request->file('photo')) {
+            $myFile = "public/image/event/".$data->photo;
+            unlink($myFile);
+
+            $file = $request->file('photo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/event',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
+        }
+
+        $newdata = [
+            'title'    => $request->get('title'),
+            'content'  => $request->get('content'),
+            'id_admin' => Session::get('id')
+        ];
+
+        $data->update($newdata);
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
+
+        return redirect('admin/event')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_event($id)
+    {
+        $data = Event::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "public/image/event/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('admin/event')->with('alert', 'Data Deleted...!');
     }
 }

@@ -303,6 +303,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(2) == 'service' ? 'active':'' }}">
+                                    <a href="{{ route('service.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-asl-interpreting"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Service</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(2) == 'treatment' ? 'active':'' }}">
                                     <a href="{{ route('treatment.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-heartbeat"></i><b>N</b></span>
@@ -314,6 +321,13 @@
                                     <a href="{{ route('blog.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-desktop"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Blog</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(2) == 'event' ? 'active':'' }}">
+                                    <a href="{{ route('event.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-cubes"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Event</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>

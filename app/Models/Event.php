@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
-    protected $appends 	= array('PhotoPath');
+    protected $appends = array('PhotoPath');
+    protected $guarded = [];
 
     public function getPhotoPathAttribute()
     {

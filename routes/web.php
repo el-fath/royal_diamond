@@ -78,5 +78,12 @@ Route::post('admin/service', 'adminCtr2@store_service')->name('service.store');
 Route::post('admin/service/{service}', 'adminCtr2@update_service')->name('service.update');
 Route::delete('admin/service/{service}', 'adminCtr2@destroy_service')->name('service.destroy');
 
+Route::get('admin/event', 'adminCtr2@index_event')->name('event.index');
+Route::get('admin/event/add', 'adminCtr2@add_event')->name('event.add');
+Route::get('admin/event/{event}', 'adminCtr2@show_event')->name('event.show');
+Route::post('admin/event', 'adminCtr2@store_event')->name('event.store');
+Route::post('admin/event/{event}', 'adminCtr2@update_event')->name('event.update');
+Route::delete('admin/event/{event}', 'adminCtr2@destroy_event')->name('event.destroy');
+
 Route::post('admin/admin/{admin}', 'adminCtr1@update')->name('admin.update');
 Route::resource('admin/admin', 'adminCtr1');
