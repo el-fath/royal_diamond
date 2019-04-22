@@ -31,6 +31,12 @@ Route::get('auth', 'adminCtr1@auth')->name('auth');
 Route::get('log_out', 'adminCtr1@log_out')->name('log_out');
 Route::post('authentification', 'adminCtr1@authentification')->name('authentification');
 
+Route::get('admin/profile', 'adminCtr2@index_profile')->name('profile.index');
+Route::post('admin/profile/update', 'adminCtr2@update_profile')->name('profile.update');
+
+Route::get('admin/config', 'adminCtr2@index_config')->name('config.index');
+Route::post('admin/config/update', 'adminCtr2@update_config')->name('config.update');
+
 Route::get('admin/member', 'adminCtr1@index_member')->name('member.index');
 Route::get('admin/member/{member}', 'adminCtr1@show_member')->name('member.show');
 Route::post('admin/member', 'adminCtr1@store_member')->name('member.store');
@@ -38,6 +44,7 @@ Route::post('admin/member/{member}', 'adminCtr1@update_member')->name('member.up
 Route::delete('admin/member/{member}', 'adminCtr1@destroy_member')->name('member.destroy');
 
 Route::get('admin/team', 'adminCtr1@index_team')->name('team.index');
+Route::get('admin/team/add', 'adminCtr1@add_team')->name('team.add');
 Route::get('admin/team/{team}', 'adminCtr1@show_team')->name('team.show');
 Route::post('admin/team', 'adminCtr1@store_team')->name('team.store');
 Route::post('admin/team/{team}', 'adminCtr1@update_team')->name('team.update');
@@ -51,6 +58,7 @@ Route::post('admin/slide/{slide}', 'adminCtr1@update_slide')->name('slide.update
 Route::delete('admin/slide/{slide}', 'adminCtr1@destroy_slide')->name('slide.destroy');
 
 Route::get('admin/treatment', 'adminCtr1@index_treatment')->name('treatment.index');
+Route::get('admin/treatment/add', 'adminCtr1@add_treatment')->name('treatment.add');
 Route::get('admin/treatment/{treatment}', 'adminCtr1@show_treatment')->name('treatment.show');
 Route::post('admin/treatment', 'adminCtr1@store_treatment')->name('treatment.store');
 Route::post('admin/treatment/{treatment}', 'adminCtr1@update_treatment')->name('treatment.update');
@@ -62,6 +70,20 @@ Route::get('admin/blog/{blog}', 'adminCtr2@show_blog')->name('blog.show');
 Route::post('admin/blog', 'adminCtr2@store_blog')->name('blog.store');
 Route::post('admin/blog/{blog}', 'adminCtr2@update_blog')->name('blog.update');
 Route::delete('admin/blog/{blog}', 'adminCtr2@destroy_blog')->name('blog.destroy');
+
+Route::get('admin/service', 'adminCtr2@index_service')->name('service.index');
+Route::get('admin/service/add', 'adminCtr2@add_service')->name('service.add');
+Route::get('admin/service/{service}', 'adminCtr2@show_service')->name('service.show');
+Route::post('admin/service', 'adminCtr2@store_service')->name('service.store');
+Route::post('admin/service/{service}', 'adminCtr2@update_service')->name('service.update');
+Route::delete('admin/service/{service}', 'adminCtr2@destroy_service')->name('service.destroy');
+
+Route::get('admin/event', 'adminCtr2@index_event')->name('event.index');
+Route::get('admin/event/add', 'adminCtr2@add_event')->name('event.add');
+Route::get('admin/event/{event}', 'adminCtr2@show_event')->name('event.show');
+Route::post('admin/event', 'adminCtr2@store_event')->name('event.store');
+Route::post('admin/event/{event}', 'adminCtr2@update_event')->name('event.update');
+Route::delete('admin/event/{event}', 'adminCtr2@destroy_event')->name('event.destroy');
 
 Route::post('admin/admin/{admin}', 'adminCtr1@update')->name('admin.update');
 Route::resource('admin/admin', 'adminCtr1');

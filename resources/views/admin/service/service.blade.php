@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Slide Configuration</h5>
+            <h5>Service Master</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">
@@ -19,34 +19,33 @@
                 <strong>{{ session('alert') }}</strong>
             </div>
             @endif
-            <a class="btn btn-primary btn-sm" href="{{ route('slide.add') }}">Add</a>            
+            <a class="btn btn-primary btn-sm" href="{{ route('service.add') }}">Add</a>
             <div class="dt-responsive table-responsive">
                 <table id="order-table" class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
+                            <th>Icon</th>
                             <th>Title</th>
-                            <th>Content</th>
-                            <th>Url</th>
-                            {{-- <th>Photo</th> --}}
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($slide as $val)
+                        @foreach($service as $val)
                         <tr>
+                            <td>Icon</td>
                             <td>{{ $val->title }}</td>
-                            <td>{!! Str::limit($val->content, $limit = 70, $end = '...') !!}</td>
-                            <td>{{ $val->url }}</td>
-                            {{-- <td>{{ $val->photo }}</td> --}}
+                            <td>{!! Str::limit($val->description, $limit = 70, $end = '...') !!}</td>
                             <td>
-                                <form action="{{ route('slide.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('service.destroy', $val->id) }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
-                                    <a class="btn btn-success btn-mini" href="{{ route('slide.show', $val->id) }}">                                        
+                                    <a class="btn btn-success btn-mini" href="{{ route('service.show', $val->id) }}">                                        
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button type="submit" class="btn btn-danger btn-mini" onclick="return confirm('Yakin ingin menghapus data?')">
+                                    <button type="submit" class="btn btn-danger btn-mini"
+                                    onclick="return confirm('Yakin ingin menghapus data?')">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     </div>
@@ -57,10 +56,9 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>Icon</th>
                             <th>Title</th>
-                            <th>Content</th>
-                            <th>Url</th>
-                            {{-- <th>Photo</th> --}}
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -68,6 +66,5 @@
             </div>
         </div>
     </div>
-    <!-- Default ordering table end -->
 </div>
 @endsection

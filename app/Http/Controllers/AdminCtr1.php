@@ -197,10 +197,17 @@ class AdminCtr1 extends Controller
         if(Session::get('login')){
             $title = "Team";
             $team = Team::all()->sortByDesc('id');
-            return view('admin/team', compact('team','title'));
+            return view('admin/team/team', compact('team','title'));
         }else{
             return redirect('auth');
         }
+    }
+
+    public function add_team()
+    {
+        $title = "Add";
+        $action = route('team.store');
+        return view('admin/team/teamform', compact('title', 'action'));
     }
 
     public function store_team(Request $request)
@@ -230,8 +237,10 @@ class AdminCtr1 extends Controller
 
     public function show_team($id)
     {
-        $data = Team::find($id);
-        return response()->json($data);
+        $title = "Edit";
+        $data  = Team::find($id);
+        $action = route('team.update', $data->id);
+        return view('admin/team/teamform', compact('data','title', 'action'));
     }
 
     public function update_team(Request $request, $id)
@@ -258,8 +267,8 @@ class AdminCtr1 extends Controller
         ];
 
         $data->update($newdata);
-        $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
-        $data->save();
+        // $data->url_segment = Str::slug($data->name.'-'.$data->id, '-');
+        // $data->save();
 
         return redirect('admin/team')->with('alert', 'Data Edited...!');
     }
@@ -375,6 +384,13 @@ class AdminCtr1 extends Controller
         }
     }
 
+    public function add_treatment()
+    {
+        $title = "Add";
+        $action = route('treatment.store');
+        return view('admin/treatment/treatmentform', compact('title', 'action'));
+    }
+
     public function store_treatment(Request $request)
     {
         if ($request->file('photo')) {
@@ -401,8 +417,10 @@ class AdminCtr1 extends Controller
 
     public function show_treatment($id)
     {
-        $data = Treatment::find($id);
-        return response()->json($data);
+        $title = "Edit";
+        $data  = Treatment::find($id);
+        $action = route('treatment.update', $data->id);
+        return view('admin/treatment/treatmentform', compact('data','title', 'action'));
     }
 
     public function update_treatment(Request $request, $id)

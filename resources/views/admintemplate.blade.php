@@ -27,6 +27,8 @@
     <!-- jquery file upload Frame work -->
     <link href="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/css/jquery.filer.css" type="text/css" rel="stylesheet" />
     <link href="{{ url('public/assets/admin') }}/assets/pages/jquery.filer/css/themes/jquery.filer-dragdropbox-theme.css" type="text/css" rel="stylesheet" />
+    <!-- sweet alert framework -->
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/sweetalert/css/sweetalert.css">
     <!-- waves.css -->
     <link rel="stylesheet" href="{{ url('public/assets/admin') }}/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- Material Icon -->
@@ -239,7 +241,7 @@
                             </div>
                             <div class="pcoded-navigation-label">Configuration</div>
                             <ul class="pcoded-item pcoded-left-item">
-                                <li class="pcoded-hasmenu">
+                                {{-- <li class="pcoded-hasmenu">
                                     <a href="javascript:void(0)" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
                                         <span class="pcoded-mtext">Dashboard</span>
@@ -255,6 +257,20 @@
                                             </a>
                                         </li>
                                     </ul>
+                                </li> --}}
+                                <li class="{{ Request::segment(2) == 'profile' ? 'active':'' }}">
+                                    <a href="{{ route('profile.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Profile</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(2) == 'config' ? 'active':'' }}">
+                                    <a href="{{ route('config.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-layout"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Website</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
                                 </li>
                                 <li class="{{ Request::segment(2) == 'slide' ? 'active':'' }}">
                                     <a href="{{ route('slide.index') }}" class="waves-effect waves-dark">
@@ -287,6 +303,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(2) == 'service' ? 'active':'' }}">
+                                    <a href="{{ route('service.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-asl-interpreting"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Service</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                                 <li class="{{ Request::segment(2) == 'treatment' ? 'active':'' }}">
                                     <a href="{{ route('treatment.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-heartbeat"></i><b>N</b></span>
@@ -298,6 +321,13 @@
                                     <a href="{{ route('blog.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-desktop"></i><b>N</b></span>
                                         <span class="pcoded-mtext">Blog</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
+                                <li class="{{ Request::segment(2) == 'event' ? 'active':'' }}">
+                                    <a href="{{ route('event.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-cubes"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Event</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
@@ -380,6 +410,8 @@
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/bootstrap/js/bootstrap.min.js"></script>
+<!-- sweet alert js -->
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/sweetalert/js/sweetalert.min.js"></script>
 <!-- waves js -->
 <script src="{{ url('public/assets/admin') }}/assets/pages/waves/js/waves.min.js"></script>
 <!-- jquery slimscroll js -->

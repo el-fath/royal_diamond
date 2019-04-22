@@ -19,7 +19,7 @@
                 <strong>{{ session('alert') }}</strong>
             </div>
         @endif
-        <button type="button" class="btn btn-primary waves-effect" data-toggle="modal" data-target="#large-Modal" onclick="add()">Add</button>
+        <button type="button" class="btn btn-primary btn-sm waves-effect" data-toggle="modal" data-target="#large-Modal" onclick="add()">Add</button>
         <div class="modal fade" id="large-Modal" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
