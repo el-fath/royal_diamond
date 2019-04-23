@@ -39,15 +39,14 @@
                             <td>{{ $val->view }}</td>
                             <td>{{ $val->id_admin }}</td>
                             <td>
-                                <form action="{{ route('event.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('event.destroy', $val->id) }}" id="delete_data{{ $val->id }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
                                     <a class="btn btn-success btn-mini" href="{{ route('event.show', $val->id) }}">                                        
                                         <i class="fa fa-pencil"></i>
                                     </a>
-                                    <button type="submit" class="btn btn-danger btn-mini"
-                                    onclick="return confirm('Yakin ingin menghapus data?')">
+                                    <button type="button" class="btn btn-danger btn-mini" id="{{ $val->id }}" onClick="hapus(this.id)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     </div>
@@ -70,4 +69,33 @@
         </div>
     </div>
 </div>
+<script>
+function hapus(id){
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this data...!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Okey",
+                text: "Data will be deleted",
+                type: "success",
+            },function(){
+                document.getElementById("delete_data"+id).submit();
+            });
+            } else {
+            swal("Cancelled", "Your data is safe :)", "error");
+        }
+    });
+    return false;
+}
+</script>
 @endsection
