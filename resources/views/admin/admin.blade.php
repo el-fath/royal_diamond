@@ -124,6 +124,7 @@ function add(){
     $("#name").val("");
     $("#username").val("");
     $("#password").val("");
+    $("#password").prop("disabled", false);
     $('#form').attr('action', "{{ route('admin.store') }}");
     $('#form').attr('method', "post");
 }

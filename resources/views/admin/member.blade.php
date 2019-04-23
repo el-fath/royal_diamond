@@ -148,7 +148,7 @@ function edit(id){
             $('#title').html("Form Edit Member")
             $("#name").val(response.name);
             $("#email").val(response.email);
-            $("#password").val(response.password);
+            $("#password").prop("disabled", true);
             // $("#confirm-password").val(response.password);
             if ( response.gender === "male" ) {
                 $("#gender-male").prop("checked", true);                
@@ -167,6 +167,7 @@ function add(){
     $("#name").val("");
     $("#email").val("");
     $("#password").val("");
+    $("#password").prop("disabled", false);
     // $("#confirm-password").val("");
     $("#gender-male").prop("checked", false);                
     $("#gender-female").prop("checked", false);
