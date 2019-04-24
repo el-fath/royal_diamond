@@ -39,6 +39,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/themify-icons/themify-icons.css">
     <!-- ico font -->
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/icofont/css/icofont.css">
+    <!-- Switch component css -->
+    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/switchery/css/switchery.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/font-awesome/css/font-awesome.min.css">
     <!-- Data Table Css -->
@@ -127,8 +129,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="index.html">
+                        <a href="">
                             <img class="img-fluid" src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" />
+                            {{-- <img class="img-fluid" src="{{ $config->IconPath }}" alt="Theme-Logo" /> --}}
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
@@ -184,54 +187,6 @@
                     </div>
                 </div>
             </nav>
-            <div class="showChat_inner">
-                <div class="media chat-inner-header">
-                    <a class="back_chatBox">
-                        <i class="fa fa-chevron-left"></i> Josephin Doe
-                    </a>
-                </div>
-                <div class="media chat-messages">
-                    <a class="media-left photo-table" href="#!">
-                        <img class="media-object img-radius img-radius m-t-5" src="{{ url('public/assets/admin') }}/assets/images/avatar-3.jpg" alt="Generic placeholder image">
-                    </a>
-                    <div class="media-body chat-menu-content">
-                        <div class="">
-                            <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
-                            <p class="chat-time">8:20 a.m.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="media chat-messages">
-                    <div class="media-body chat-menu-reply">
-                        <div class="">
-                            <p class="chat-cont">I'm just looking around. Will you tell me something about yourself?</p>
-                            <p class="chat-time">8:20 a.m.</p>
-                        </div>
-                    </div>
-                    <div class="media-right photo-table">
-                        <a href="#!">
-                            <img class="media-object img-radius img-radius m-t-5" src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" alt="Generic placeholder image">
-                        </a>
-                    </div>
-                </div>
-                <div class="chat-reply-box">
-                    <div class="right-icon-control">
-                        <form class="form-material">
-                            <div class="form-group form-primary">
-                                <input type="text" name="footer-email" class="form-control" required="">
-                                <span class="form-bar"></span>
-                                <label class="float-label"><i class="fa fa-search m-r-10"></i>Share Your Thoughts</label>
-                            </div>
-                        </form>
-                        <div class="form-icon ">
-                            <button class="btn btn-success btn-icon  waves-effect waves-light">
-                                <i class="fa fa-paper-plane "></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Sidebar inner chat end-->
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">
@@ -349,9 +304,9 @@
                                 </div>
                             </div>
                             <!-- Main-body end -->
-                            <div id="styleSelector">
 
-                            </div>
+                            {{-- <div id="styleSelector">
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -414,6 +369,8 @@
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/sweetalert/js/sweetalert.min.js"></script>
 <!-- waves js -->
 <script src="{{ url('public/assets/admin') }}/assets/pages/waves/js/waves.min.js"></script>
+<!-- Switch component js -->
+<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/switchery/js/switchery.min.js"></script>
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 <!-- modernizr js -->

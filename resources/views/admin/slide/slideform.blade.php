@@ -23,6 +23,9 @@
                 <label class="float-label">Url</label>
             </div>
             <div class="form-group form-default">
+                <input type="date" name="expired" id="expired" class="form-control" value="{{ $title == 'Add' ? "" : $data->expired }}" required="">
+            </div>
+            <div class="form-group form-default">
                 <label>Content</label>
                 <textarea name="content" id="content" required="">{{ $title == 'Add' ? "" : $data->content }}</textarea>
             </div>
