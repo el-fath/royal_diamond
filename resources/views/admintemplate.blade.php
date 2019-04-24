@@ -130,8 +130,8 @@
                             </div>
                         </div>
                         <a href="">
-                            <img class="img-fluid" src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" />
-                            {{-- <img class="img-fluid" src="{{ $config->IconPath }}" alt="Theme-Logo" /> --}}
+                            {{-- <img class="img-fluid" src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" /> --}}
+                            <img class="img-fluid" src="{{ $config->IconPath }}" style="width:30px" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>
