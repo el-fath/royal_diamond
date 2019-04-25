@@ -286,6 +286,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(2) == 'consultation' ? 'active':'' }}">
+                                    <a href="{{ route('consultation.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="fa fa-comment"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Consultation</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>

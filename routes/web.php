@@ -37,6 +37,9 @@ Route::post('admin/profile/update', 'AdminCtr2@update_profile')->name('profile.u
 Route::get('admin/config', 'AdminCtr2@index_config')->name('config.index');
 Route::post('admin/config/update', 'AdminCtr2@update_config')->name('config.update');
 
+Route::get('admin/consultation', 'AdminCtr2@index_consultation')->name('consultation.index');
+Route::get('admin/consultation/{consultation}', 'AdminCtr2@show_consultation')->name('consultation.show');
+
 Route::get('admin/member', 'AdminCtr1@index_member')->name('member.index');
 Route::get('admin/member/{member}', 'AdminCtr1@show_member')->name('member.show');
 Route::post('admin/member', 'AdminCtr1@store_member')->name('member.store');
