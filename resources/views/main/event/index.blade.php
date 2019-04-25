@@ -16,13 +16,7 @@
                 <!-- END Blog item -->
             </div>
             <!-- Pagination -->
-            <div class="pagination">
-                <a href="javascript:void(0);" class="active">1</a>
-                <a href="javascript:void(0);">2</a>
-                <a href="javascript:void(0);">3</a>
-                <a href="javascript:void(0);">4</a>
-                <a href="javascript:void(0);"><i class="icon-font icon-right-arrow"></i></a>
-            </div>
+            {{ $event->links() }}
             <!-- END Pagination -->
         </div>
     </section>

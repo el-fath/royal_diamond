@@ -1566,11 +1566,11 @@ input[type="radio"].style1:checked:disabled + label::before {
 .pagination a {
     text-decoration: none;
     float: left;
-    padding: 0px 3px 0px;
+    padding: 3.5px 3px 0px;
     border: 1px solid #dddddd;
     margin-right: -1px;
-    min-width: 28px;
-    height: 28px;
+    min-width: 34.17px;
+    height: 35px;
     line-height: 26px;
     text-align: center;
     color: inherit;

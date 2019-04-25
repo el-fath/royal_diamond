@@ -9,6 +9,7 @@ use App\Models\Config;
 use App\Models\Blog;
 use App\Models\Service;
 use App\Models\Event;
+use App\Models\Consultation;
 use Illuminate\Support\Str;
 
 class AdminCtr2 extends Controller
@@ -358,5 +359,23 @@ class AdminCtr2 extends Controller
         }
         $data->delete();
         return redirect('admin/event')->with('alert', 'Data Deleted...!');
+    }
+
+    public function index_consultation(){
+        if(Session::get('login')){
+            $title = "Consultation";
+            $consultation = Consultation::all()->sortByDesc('id');
+            return view('admin/consultation', compact('consultation','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function show_consultation($id)
+    {
+        $data = Consultation::find($id);
+        $data->view = $data->view + 1;
+        $data->save();
+        return response()->json($data);
     }
 }

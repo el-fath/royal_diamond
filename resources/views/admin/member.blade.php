@@ -107,14 +107,14 @@
                             <td>{{ $val->address }}</td>
                             {{-- <td>{{ $val->photo }}</td> --}}
                             <td>
-                                <form action="{{ route('member.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('member.destroy', $val->id) }}" id="delete_data{{ $val->id }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
                                     <button type="button" class="btn btn-success btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <button type="submit" class="btn btn-danger btn-mini" onclick="return confirm('Yakin ingin menghapus data?')">
+                                    <button type="button" class="btn btn-danger btn-mini" id="{{ $val->id }}" onClick="hapus(this.id)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     </div>
@@ -148,7 +148,7 @@ function edit(id){
             $('#title').html("Form Edit Member")
             $("#name").val(response.name);
             $("#email").val(response.email);
-            $("#password").val(response.password);
+            $("#password").prop("disabled", true);
             // $("#confirm-password").val(response.password);
             if ( response.gender === "male" ) {
                 $("#gender-male").prop("checked", true);                
@@ -167,6 +167,7 @@ function add(){
     $("#name").val("");
     $("#email").val("");
     $("#password").val("");
+    $("#password").prop("disabled", false);
     // $("#confirm-password").val("");
     $("#gender-male").prop("checked", false);                
     $("#gender-female").prop("checked", false);
@@ -174,6 +175,33 @@ function add(){
     $('#preview').attr('src', "https://d3e54v103j8qbb.cloudfront.net/img/image-placeholder.svg");
     $('#form').attr('action', "{{ route('member.store') }}");
     $('#form').attr('method', "post");
+}
+function hapus(id){
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this data...!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Okey",
+                text: "Data will be deleted",
+                type: "success",
+            },function(){
+                document.getElementById("delete_data"+id).submit();
+            });
+            } else {
+            swal("Cancelled", "Your data is safe :)", "error");
+        }
+    });
+    return false;
 }
 function readURL(input) {
     if (input.files && input.files[0]) {

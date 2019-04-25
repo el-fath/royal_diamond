@@ -117,7 +117,7 @@
                 alt="your image" style=" width: 200px;"/>
             </div>
             {{-- <button type="button" onclick="test()">Basic</button> --}}
-            <button type="submit" id="submit-btn" class="btn btn-primary waves-effect waves-light ">Save</button>
+            <button type="submit" class="btn btn-primary waves-effect waves-light ">Save</button>
         </form>
     </div>
 </div>

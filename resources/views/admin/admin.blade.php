@@ -72,14 +72,14 @@
                             <td>{{ $val->username }}</td>
                             <td>{{ $val->role }}</td>
                             <td>
-                                <form action="{{ route('admin.destroy', $val->id) }}" method="post">
+                                <form action="{{ route('admin.destroy', $val->id) }}" id="delete_data{{ $val->id }}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
                                     <button type="button" class="btn btn-success btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <button type="submit" class="btn btn-danger btn-mini" onclick="return confirm('Yakin ingin menghapus data?')">
+                                    <button type="button" class="btn btn-danger btn-mini" id="{{ $val->id }}" onClick="hapus(this.id)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     </div>
@@ -124,8 +124,36 @@ function add(){
     $("#name").val("");
     $("#username").val("");
     $("#password").val("");
+    $("#password").prop("disabled", false);
     $('#form').attr('action', "{{ route('admin.store') }}");
     $('#form').attr('method', "post");
+}
+function hapus(id){
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this data...!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Okey",
+                text: "Data will be deleted",
+                type: "success",
+            },function(){
+                document.getElementById("delete_data"+id).submit();
+            });
+            } else {
+            swal("Cancelled", "Your data is safe :)", "error");
+        }
+    });
+    return false;
 }
 function readURL(input) {
     if (input.files && input.files[0]) {

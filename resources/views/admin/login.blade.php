@@ -98,7 +98,7 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                         <div class="text-center">
-                            <img src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="logo.png">
+                            <img src="{{ $profile->PhotoPath }}" style="width:15%" alt="logo.png">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
@@ -133,9 +133,9 @@
                                                     <span class="text-inverse">Remember me</span>
                                                 </label>
                                             </div> --}}
-                                            <div class="forgot-phone text-right f-right">
+                                            {{-- <div class="forgot-phone text-right f-right">
                                                 <a href="auth-reset-password.html" class="text-right f-w-600"> Forgot Password?</a>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                     <div class="row m-t-30">
@@ -144,16 +144,16 @@
                                         </div>
                                     </div>
                                 </form>
-                                <hr/>
+                                {{-- <hr/>
                                 <div class="row">
                                     <div class="col-md-10">
                                         <p class="text-inverse text-left m-b-0">Thank you.</p>
                                         <p class="text-inverse text-left"><a href="index.html"><b>Back to website</b></a></p>
                                     </div>
-                                    <!-- <div class="col-md-2">
+                                    <div class="col-md-2">
                                         <img src="{{ url('public/assets/admin') }}/assets/images/auth/Logo-small-bottom.png" alt="small-logo.png">
-                                    </div> -->
-                                </div>
+                                    </div>
+                                </div> --}}
                             </div>
                         </div>
                         <!-- end of form -->

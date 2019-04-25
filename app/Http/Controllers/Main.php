@@ -27,7 +27,7 @@ class Main extends Controller
 
     function blog(){
         $title = "Blog";
-        $blog = Blog::all();
+        $blog = Blog::Paginate(1);
 
         return view('main/blog/index', compact('title','blog'));
     }
@@ -41,7 +41,7 @@ class Main extends Controller
 
     function event(){
         $title = "Event";
-        $event = Event::all();
+        $event = Event::Paginate(1);
 
         return view('main/event/index', compact('title','event'));
     }

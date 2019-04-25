@@ -138,7 +138,7 @@ class AdminCtr1 extends Controller
             'name'     => $request->get('name'),
             'email'    => $request->get('email'),
             'gender'   => $request->get('gender'),
-            'password' => $request->get('password'),
+            'password' => Hash::make($request->get('password')),
             'address'  => $request->get('address'),
             'photo'    => $newName
         ];
@@ -173,7 +173,6 @@ class AdminCtr1 extends Controller
             'name'     => $request->get('name'),
             'email'    => $request->get('email'),
             'gender'   => $request->get('gender'),
-            'password' => $request->get('password'),
             'address'  => $request->get('address'),
         ];
 
@@ -316,6 +315,7 @@ class AdminCtr1 extends Controller
             'title'   => $request->get('title'),
             'url'     => $request->get('url'),
             'content' => $request->get('content'),
+            'expired' => $request->get('expired'),
             'is_show' => 1,
             'photo'   => $newName
         ];
@@ -353,6 +353,7 @@ class AdminCtr1 extends Controller
 
         $newdata = [
             'title'   => $request->get('title'),
+            'expired' => $request->get('expired'),
             'url'     => $request->get('url'),
             'content' => $request->get('content')
         ];
