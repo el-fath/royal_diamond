@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Consultation;
 use App\Models\Event;
+use App\Models\Member;
 use App\Models\Service;
 use App\Models\Slide;
 use App\Models\Team;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Mail;
+use Illuminate\Support\Facades\Session;
 
 class Main extends Controller
 {
@@ -24,10 +29,120 @@ class Main extends Controller
         return view('main/index', compact('title','slide','blog','treatment','team','service'));
     }
 
+    public function sendActivationMail($user)
+    {
+
+        if ($user->status) {
+            return;
+        }
+
+
+        $link = route('member.activate', $user->activation_code);
+        $message = sprintf('Activate account <a href="%s">%s</a>', $link, $link);
+
+        Mail::raw($message, function ($m) use ($user) {
+            $m->from('info@royaldiamond.com', 'Royal Diamond');
+            $m->to($user->email, $user->name)->subject('Activate account!');
+        });
+
+
+    }
+
+    protected function getToken()
+    {
+        return hash_hmac('sha256', str_random(40), config('app.key'));
+    }
+
+    function activateMember ($token){
+        $member = Member::where('activation_code', $token)->first();
+
+        if($member){
+            $member->status = 1;
+            $member->save();
+            echo "Success, Your Account is Active";
+        }
+    }
+
+
+    function doLogin(Request $request){
+        $data = Member::where('Email', $request->post('Email'))->first();
+        if($data){
+            if($data->status == 0){
+                echo json_encode(array(
+                    "Code" => 404,
+                    "Data" => "Gagal, akun anda belum active"
+                ));
+                return;
+            }
+
+            if(Hash::check($request->post('Password'),$data->password)){
+                $Session = [
+                    'id'       => $data->id,
+                    'Email' => $data->email,
+                    'IsLogin'    => TRUE
+                ];
+                Session::put($Session);
+
+            }else{
+                echo json_encode(array(
+                    "Code" => 404,
+                    "Data" => "Gagal, Silahkan check email atau password"
+                ));
+                return;
+            }
+        }else{
+            echo json_encode(array(
+                "Code" => 404,
+                "Data" => "Gagal, anda belum terdaftar"
+            ));
+            return;
+        }
+    }
+
+    function doLogout(){
+
+    }
+
+    function doRegister(Request $request){
+        $member = Member::where('email', $request->post('Email'))->first();
+
+        if($member ){
+            if($member->status == 0){
+                $member->delete();
+            }else{
+                echo json_encode(array(
+                    "Code" => 404,
+                    "Data" => "Email anda telah terdaftar"
+                ));
+                return;
+            }
+        }
+
+        $data = [
+            'name'     => $request->post('Name'),
+            'email'    => $request->post('Email'),
+            'gender'   => $request->post('Gender'),
+            'activation_code' => $this->getToken(),
+            'status' => 0,
+            'password' => Hash::make($request->post('password')),
+            'address'  => $request->post('Address'),
+        ];
+
+        $data = Member::create($data);
+
+        $this->sendActivationMail($data);
+
+        echo json_encode(array(
+            "Code" => 200,
+            "Data" => "Sukses, Silahkan check email untuk verifikasi"
+        ));
+        return;
+    }
+
 
     function blog(){
         $title = "Blog";
-        $blog = Blog::Paginate(1);
+        $blog = Blog::Paginate(3);
 
         return view('main/blog/index', compact('title','blog'));
     }
@@ -76,7 +191,28 @@ class Main extends Controller
 
     function contactus(){
         $title = "Contact Us";
-        return view('main/contactus/index', compact('title'));
+        $action = route('contactus.addconsult');
+        return view('main/contactus/index', compact('title','action'));
+    }
+
+    public function addconsult(Request $request){
+
+        $data = [
+            'Name'  => $request->post('Name'),
+            'Phone'  => $request->post('Phone'),
+            'Email'  => $request->post('Email'),
+            'DateTime'  => $request->post('DateTime'),
+            'Comment'  => $request->post('Comment'),
+        ];
+
+        $data = Consultation::create($data);
+        $data->save();
+
+       echo json_encode(array(
+            "Code" => 200,
+            "Data" => "Sukses"
+       ));
+       return;
     }
 
     function treatment(){

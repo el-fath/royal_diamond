@@ -6,13 +6,14 @@
     <title>{{$config->web_name}} - @yield('title')</title>
     <meta name="keywords" content="{{$config->meta_keyword}}">
     <meta name="description" content="{{$config->meta_desc}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link id="favicon" rel="shortcut icon" href="{{$config->IconPath}}" type="image/png">
     <link rel="apple-touch-icon" sizes="144x144" href="{{$config->IconPath}}">
     <link rel="apple-touch-icon" sizes="114x114" href="{{$config->IconPath}}">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/bootstrap/css/bootstrap.min.css">
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> --}}
+    {{--<link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/bootstrap/css/bootstrap.min.css">--}}
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
@@ -24,6 +25,8 @@
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/frontend-grid.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/style.css">
     <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/mobile.css">
+    <link rel="stylesheet" href="{{ url('public/assets/main') }}/css/sweetalert.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 
@@ -45,6 +48,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="{{ url('public/assets/main') }}/js/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+    <script type="text/javascript" src="{{ url('public/assets/main') }}/js/cak-js.js"></script>
     <style>
         .label {
             font-size: 100%;
@@ -275,11 +281,17 @@
                             <li class="{{ Request::segment(2) == 'aboutus' ? 'current-menu-item':'' }}">
                                 <a href="{{ route('aboutus') }}">About Us</a>
                             </li>
+
+                            @if($config->url_olshop)
+                                <li class="{{ Request::segment(2) == 'shop' ? 'current-menu-item':'' }}">
+                                    <a href="{{$config->url_olshop}}">Shop</a>
+                                </li>
+                            @endif
                         </ul>
                     </nav>
                     <div class="fw-col-sm-2 search-module">
                         <form action="javascript:void(0);">
-                            <button type="submit" href="#signup" data-toggle="modal" data-target=".log-sign" class="submit"><i class="icon-font icon-profile"></i></button>
+                            <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
                         </form>
                     </div>
                     <!-- Mobile side button -->
@@ -318,9 +330,12 @@
                                 <li class="{{ Request::segment(1) == 'contactus' ? 'current-menu-item':'' }}">
                                     <a href="{{ route('contactus') }}">Contact Us</a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'aboutus' ? 'current-menu-item':'' }}">
-                                    <a href="{{ route('aboutus') }}">About US</a>
-                                </li>
+
+                                @if($config->url_olshop)
+                                    <li class="{{ Request::segment(1) == 'shop' ? 'current-menu-item':'' }}">
+                                        <a href="{{$config->url_olshop}}}">Shop</a>
+                                    </li>
+                                @endif
                             </ul>
                         </nav>
                         <!-- END Mobile navigation -->
@@ -400,19 +415,19 @@
                 <div id="myTabContent" class="tab-content">
 
                     <div class="tab-pane fade active in" id="signin">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{route('member.login')}}" id="formlogin">
                             <fieldset>
                                 <!-- Sign In Form -->
                                 <!-- Text input-->
 
                                 <div class="group">
-                                    <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
+                                    <input required="" class="input" type="text" name="Email"><span class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="date">Email address</label></div>
 
 
                                 <!-- Password input-->
                                 <div class="group">
-                                    <input required="" class="input" type="password"><span class="highlight"></span><span class="bar"></span>
+                                    <input required="" class="input" type="password" name="Password"><span class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="date">Password</label>
                                 </div>
                                 <em>minimum 6 characters</em>
@@ -435,35 +450,44 @@
 
 
                     <div class="tab-pane fade" id="signup">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{route('member.register')}}" id="formregister">
                             <fieldset>
                                 <!-- Sign Up Form -->
                                 <!-- Text input-->
                                 <div class="group">
-                                    <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-                                    <label class="label" for="date">First Name</label></div>
+                                    <input required="" class="input" name="Name" type="text"><span class="highlight"></span><span class="bar"></span>
+                                    <label class="label" for="date">Nama</label></div>
 
                                 <!-- Text input-->
                                 <div class="group">
-                                    <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-                                    <label class="label" for="date">Last Name</label></div>
+
+                                    <select name="Gender" id="" class="input">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    
+                                    <span class="highlight"></span><span class="bar"></span>
+                                    <label class="label" for="date">Gender</label></div>
 
                                 <!-- Password input-->
                                 <div class="group">
-                                    <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
+                                    <input required="" class="input" type="email" name="Email"><span class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="date">Email</label></div>
 
                                 <!-- Text input-->
                                 <div class="group">
-                                    <input required="" class="input" type="password"><span class="highlight"></span><span class="bar"></span>
+                                    <input required="" class="input" name="ConfirmPassword" type="password"><span class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="date">Password</label></div>
                                 <em>1-8 Characters</em>
 
                                 <div class="group2">
-                                    <input required="" class="input" type="text"><span class="highlight"></span><span class="bar"></span>
-                                    <label class="label" for="date">Country</label></div>
+                                    <input required="" class="input" name="ConfirmPassword" type="password"><span class="highlight"></span><span class="bar"></span>
+                                    <label class="label" for="date">Confirm Password</label></div>
 
-
+                                <div class="group">
+                                    <input required="" class="input" name="Address" type="text"><span class="highlight"></span><span class="bar"></span>
+                                    <label class="label" for="date">Address</label></div>
 
                                 <!-- Button -->
                                 <div class="control-group">
@@ -491,5 +515,149 @@
 <script type="text/javascript" src="{{ url('public/assets/main') }}/js/script.js"></script>
 
 {{$config->before_body_script}}
+
+
+<script>
+
+    $(window, document, undefined).ready(function() {
+
+        $('.input').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+        });
+
+    });
+
+
+    $('#tab1').on('click' , function(){
+        $('#tab1').addClass('login-shadow');
+        $('#tab2').removeClass('signup-shadow');
+    });
+
+    $('#tab2').on('click' , function(){
+        $('#tab2').addClass('signup-shadow');
+        $('#tab1').removeClass('login-shadow');
+
+
+    });
+
+    $("#formlogin").submit(function(e){
+        e.preventDefault();
+
+        var formData = new FormData( $("#formlogin")[0] );
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: $("#formlogin").attr('action'),
+            processData: false,
+            contentType: false,
+            dataType : 'json',
+            encode  : true,
+            data:  		new FormData(this),
+            beforeSend: function(){
+                blockMessage($('#formlogin'),'Please Wait','#fff');
+            }
+        }).done(function(data){
+            $('#formlogin').unblock();
+            sweetAlert({
+                    title: 	((data.Code!=200) ? "Opps!" : 'Success'),
+                    text: 	((data.Code!=200) ?  data.Data : 'Success'),
+                    type: 	((data.Code!=200) ? "error" : "success"),
+                },
+                function(){
+                    location.reload();
+                });
+        })
+            .fail(function() {
+                $('#formlogin').unblock();
+                sweetAlert({
+                        title: 	"Opss!",
+                        text: 	"Ada Yang Salah! , Silahkan Coba Lagi Nanti",
+                        type: 	"error",
+                    },
+                    function(){
+                    });
+            })
+    });
+
+    $("#formregister").submit(function(e){
+        e.preventDefault();
+
+        var formData = new FormData( $("#formregister")[0] );
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: $("#formregister").attr('action'),
+            processData: false,
+            contentType: false,
+            dataType : 'json',
+            encode  : true,
+            data:  		new FormData(this),
+            beforeSend: function(){
+                blockMessage($('#formregister'),'Please Wait','#fff');
+            }
+        }).done(function(data){
+            $('#formregister').unblock();
+            sweetAlert({
+                    title: 	((data.Code!=200) ? "Opps!" : 'Success'),
+                    text: 	((data.Code!=200) ?  data.Data : 'Success'),
+                    type: 	((data.Code!=200) ? "error" : "success"),
+                },
+                function(){
+                    location.reload();
+                });
+        })
+            .fail(function() {
+                $('#formregister').unblock();
+                sweetAlert({
+                        title: 	"Opss!",
+                        text: 	"Ada Yang Salah! , Silahkan Coba Lagi Nanti",
+                        type: 	"error",
+                    },
+                    function(){
+                    });
+            })
+    });
+
+    var popupSize = {
+        width: 780,
+        height: 550
+    };
+
+    $(document).on('click', '.social-buttons > a', function(e){
+
+        var
+            verticalPos = Math.floor(($(window).width() - popupSize.width) / 2),
+            horisontalPos = Math.floor(($(window).height() - popupSize.height) / 2);
+
+        var popup = window.open($(this).prop('href'), 'social',
+            'width='+popupSize.width+',height='+popupSize.height+
+            ',left='+verticalPos+',top='+horisontalPos+
+            ',location=0,menubar=0,toolbar=0,status=0,scrollbars=1,resizable=1');
+
+        if (popup) {
+            popup.focus();
+            e.preventDefault();
+        }
+
+    });
+</script>
+
+
 </body>
 </html>

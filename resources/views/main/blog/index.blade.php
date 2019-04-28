@@ -17,7 +17,9 @@
                 @endforeach
             </div>
             <!-- Pagination -->
+            <div class="fw-row">
             {{ $blog->links() }}
+            </div>
             <!-- END Pagination -->
         </div>
     </section>
