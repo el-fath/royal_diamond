@@ -13,6 +13,20 @@
                         <img src="{{ $blog->PhotoPath }}" alt="{{ $blog->title }}" class="img-responsive" style="max-height: 500px;width: 100%;object-fit: cover">
                     </a>
                     <h2 class="pt30 pb10">{{ $blog->title }}</h2>
+                    <div class="social-buttons">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($blog->Link) }}"
+                           target="_blank">
+                            <i class="fa fa-facebook-official"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ urlencode($blog->Link) }}"
+                           target="_blank">
+                            <i class="fa fa-twitter-square"></i>
+                        </a>
+                        <a href="https://plus.google.com/share?url={{ urlencode($blog->Link) }}"
+                           target="_blank">
+                            <i class="fa fa-google-plus-square"></i>
+                        </a>
+                    </div>
                     <div class="post-content pb30 taj">
                         {!! $blog->content !!}
                     </div>

@@ -24,6 +24,13 @@ Route::get('treatment', 'Main@treatment')->name('treatment');
 Route::get('treatment/{slug}', 'Main@treatmentdetail')->name('treatmentdetail');
 Route::get('contactus', 'Main@contactus')->name('contactus');
 Route::get('aboutus', 'Main@aboutus')->name('aboutus');
+
+Route::post('contactus/addconsult', 'Main@addconsult')->name('contactus.addconsult');
+Route::post('member/register', 'Main@doRegister')->name('member.register');
+Route::post('member/login', 'Main@doLogin')->name('member.login');
+
+Route::get('member/activation/{token}', 'Main@activateMember')->name('member.activate');
+
 //END Main FrontEND
 
 
@@ -93,3 +100,15 @@ Route::delete('admin/event/{event}', 'AdminCtr2@destroy_event')->name('event.des
 
 Route::post('admin/admin/{admin}', 'AdminCtr1@update')->name('admin.update');
 Route::resource('admin/admin', 'AdminCtr1');
+
+
+Route::get('/clear', function() {
+
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+
+    return "Cleared!";
+
+});

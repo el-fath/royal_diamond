@@ -44,21 +44,23 @@
     </section>
     <!-- END Working Hours -->
     <!-- Feedback form -->
-    <section class="fw-main-row pt30 pb45">
-        <div class="fw-container">
-            <h2 class="heading-decor pb20">Request a Consultation</h2>
-            <form action="javascript:void(0);" class="form fw-row">
-                <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Name" placeholder="Your Name *" class="style1"></div>
-                <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Phone" placeholder="Phone number *" class="style1"></div>
-                <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Email" placeholder="Your Email *" class="style1"></div>
-                <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="DateTime" id="datetimepicker1" placeholder="Date & Time for call" class="style1"></div>
-                <div class="fw-col-md-12">
-                    <textarea placeholder="What is the nature of your appointment and who would you like to see? *" class="style1"></textarea>
-                    <div class="tac"><button type="submit" class="button-style1"><span>send request</span></button></div>
-                </div>
-            </form>
-        </div>
-    </section>
+    <form action="{{$action}}" method="post" id="formconsult">
+        <section class="fw-main-row pt30 pb45">
+            <div class="fw-container">
+                <h2 class="heading-decor pb20">Request a Consultation</h2>
+                <form action="javascript:void(0);" class="form fw-row">
+                    <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Name" placeholder="Your Name *" class="style1"></div>
+                    <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Phone" placeholder="Phone number *" class="style1"></div>
+                    <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Email" placeholder="Your Email *" class="style1"></div>
+                    <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="DateTime" id="datetimepicker1" placeholder="Date & Time for call" class="style1"></div>
+                    <div class="fw-col-md-12">
+                        <textarea placeholder="What is the nature of your appointment and who would you like to see? *" name="Comment" class="style1"></textarea>
+                        <div class="tac"><button type="submit" class="button-style1"><span>send request</span></button></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </form>
     <!-- END Feedback form -->
     <!-- Map -->
     <div class="fw-main-row">
@@ -67,6 +69,51 @@
     <!-- END Map -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyBqnMfRjGOw09DMXjrd5vbTgiRHRntQ7N0&amp;sensor=false"></script>
     <script>
+
+        $("#formconsult").submit(function(e){
+            e.preventDefault();
+
+            var formData = new FormData( $("#formconsult")[0] );
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $.ajax({
+                    type: "POST",
+                    url: $("#formconsult").attr('action'),
+                    processData: false,
+                    contentType: false,
+                    dataType : 'json',
+                    encode  : true,
+                    data:  		new FormData(this),
+                    beforeSend: function(){
+                        blockMessage($('#formconsult'),'Please Wait','#fff');
+                    }
+                }).done(function(data){
+                        $('#formconsult').unblock();
+                        sweetAlert({
+                                title: 	((data.Code!=200) ? "Opps!" : 'Success'),
+                                text: 	((data.Code!=200) ?  data.Data : 'Success'),
+                                type: 	((data.Code!=200) ? "error" : "success"),
+                            },
+                            function(){
+                                location.reload();
+                            });
+                    })
+                    .fail(function() {
+                        $('#formconsult').unblock();
+                        sweetAlert({
+                                title: 	"Opss!",
+                                text: 	"Ada Yang Salah! , Silahkan Coba Lagi Nanti",
+                                type: 	"error",
+                            },
+                            function(){
+                            });
+                    })
+        });
 
         $(function () {
             $('#datetimepicker1').datetimepicker({

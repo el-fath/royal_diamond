@@ -641,6 +641,7 @@ input.style1,textarea.style1,select.style1 {
 input.style1 {
     padding: 12px 10px;
     width: 270px;
+    margin-bottom: 12px;
 }
 
 input.style1.min {

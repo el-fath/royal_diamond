@@ -33,9 +33,22 @@
       <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/icon/font-awesome/css/font-awesome.min.css">
       <!-- Style.css -->
       <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/style.css">
+
+
+    <style>
+        .img-responsive{
+            width: 20%;
+        }
+
+        @media screen and (max-height: 820px) {
+            .img-responsive{
+                width: 50%;
+            }
+        }
+    </style>
   </head>
 
-  <body themebg-pattern="theme1">
+  <body themebg-pattern="theme1" style="background-color: #fff;background-image: linear-gradient(rgba(255, 255, 255, 0.2) 180px, rgba(68,138,255,0.9) 0%);">
   <!-- Pre-loader start -->
   <div class="theme-loader">
       <div class="loader-track">
@@ -98,7 +111,7 @@
                 <div class="col-sm-12">
                     <!-- Authentication card start -->
                         <div class="text-center">
-                            <img src="{{ $profile->PhotoPath }}" style="width:15%" alt="logo.png">
+                            <img class="img-responsive" style="" src="{{ $profile->PhotoPath }}" alt="logo.png">
                         </div>
                         <div class="auth-box card">
                             <div class="card-block">
