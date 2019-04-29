@@ -59,8 +59,8 @@
                             <td>{{ date('d-M-Y', strtotime($val->calltime)) }}</td>
                             <td>{{ date('d-M-Y', strtotime($val->created_at)) }}</td>
                             <td>
-                                <button type="button" class="btn btn-success btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
-                                    <i class="fa fa-pencil"></i>
+                                <button type="button" class="btn btn-primary btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
+                                    <i class="fa fa-eye"></i>
                                 </button>
                             </td>
                         </tr>
