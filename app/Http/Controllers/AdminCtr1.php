@@ -52,6 +52,24 @@ class AdminCtr1 extends Controller
         return redirect()->route('auth');
     }
 
+    public function reset_password($table, $id)
+    {
+        $default = 'RD12345';
+        if ($table == 'admin') {
+            $data = Admin::find($id);
+            $data->password = Hash::make($default);
+            $data->save();
+            return redirect('admin/admin')
+            ->with('alert', 'Success, password admin with username:'.$data->username.' was reset by default:'.$default);
+        } else {
+            $data = Member::find($id);
+            $data->password = Hash::make($default);
+            $data->save();
+            return redirect('admin/member')
+            ->with('alert', 'Success, password member with email:'.$data->email.' was reset by default:'.$default);
+        }
+    }
+
     public function index()
     {
         if(Session::get('login')){
@@ -104,6 +122,17 @@ class AdminCtr1 extends Controller
         $data->update($newdata);
         
         return redirect('admin/admin')->with('alert', 'Data Edited...!');
+    }
+
+    public function update_password_admin($id ,Request $request)
+    {
+        $data = Admin::find($id);
+        $data->password = Hash::make($request->newpass);
+        $data->save();
+        return response()->json([
+            'Code'    => "Success",
+            'Message' => "Password updated"
+        ]);
     }
 
     public function destroy($id)

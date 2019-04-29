@@ -31,6 +31,9 @@ Route::get('auth', 'AdminCtr1@auth')->name('auth');
 Route::get('log_out', 'AdminCtr1@log_out')->name('log_out');
 Route::post('authentification', 'AdminCtr1@authentification')->name('authentification');
 
+Route::get('admin/resetpass/{type}/{id}', 'AdminCtr1@reset_password')->name('resetpass.update');
+Route::post('admin/admin/updatepass/{id}', 'AdminCtr1@update_password_admin')->name('adminpass.update');
+
 Route::get('admin/profile', 'AdminCtr2@index_profile')->name('profile.index');
 Route::post('admin/profile/update', 'AdminCtr2@update_profile')->name('profile.update');
 

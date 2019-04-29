@@ -161,19 +161,14 @@
                         <ul class="nav-right">
                             <li class="user-profile header-notification">
                                 <a href="#!" class="waves-effect waves-light">
-                                    <img src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                    {{-- <img src="{{ url('public/assets/admin') }}/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> --}}
                                     <span>{{Session::get('username')}}</span>
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li class="waves-effect waves-light">
-                                        <a href="#!">
-                                            <i class="ti-settings"></i> Settings
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect waves-light">
-                                        <a href="user-profile.html">
-                                            <i class="ti-user"></i> Profile
+                                        <a href="" data-toggle="modal" data-target="#Modal-password">
+                                            <i class="ti-lock"></i> Change Password
                                         </a>
                                     </li>
                                     <li class="waves-effect waves-light">
@@ -187,6 +182,61 @@
                     </div>
                 </div>
             </nav>
+            <div class="modal fade" id="Modal-password" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="title">Type new password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form class="form-material" action="{{ route('adminpass.update', Session::get('id')) }}" id="changepass" method="POST">
+                        <div class="modal-body">
+                        {{ csrf_field() }}
+                            <div class="form-group form-default">
+                                <input type="password" name="newpass" id="newpass" class="form-control" required="">
+                                <span class="form-bar"></span>
+                                <label class="float-label">Password</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light">Save</button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <script>
+            document.getElementById("changepass").addEventListener("submit", function(e){
+                e.preventDefault()
+                $.ajax({
+                url: $("#changepass").attr('action'),
+                    method:'POST',
+                    data:new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    dataType: 'json',
+                    success:function(data){
+                        // console.log(data);
+                        if (data.Code == 'Error') {
+                            swal("error!", data.Message, "error")
+                        }else{
+                            $("#Modal-password").modal("hide");
+                            $("#newpass").val("");
+                            swal({
+                                title: "Succes",
+                                text: data.Message,
+                                type: "success"
+                            })
+                        }
+                    },
+                    error:function(data){
+                        alert("Gagal Bro")
+                    },
+                })
+            });
+            </script>
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
                     <nav class="pcoded-navbar">

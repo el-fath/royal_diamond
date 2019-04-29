@@ -76,10 +76,14 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="btn-group " role="group" data-toggle="tooltip">
-                                    <button type="button" class="btn btn-success btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
+                                    <button title="edit data" type="button" class="btn btn-success btn-mini" id="{{ $val->id }}" onClick="edit(this.id)" data-toggle="modal" data-target="#large-Modal">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-mini" id="{{ $val->id }}" onClick="hapus(this.id)">
+                                    <button title="reset password" type="button" 
+                                        class="btn btn-warning btn-mini" id="{{ $val->id }}" onClick="resetpass(this.id)">
+                                        <i class="ti-lock"></i>
+                                    </button>
+                                    <button title="delete data" type="button" class="btn btn-danger btn-mini" id="{{ $val->id }}" onClick="hapus(this.id)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                     </div>
@@ -127,6 +131,33 @@ function add(){
     $("#password").prop("disabled", false);
     $('#form').attr('action', "{{ route('admin.store') }}");
     $('#form').attr('method', "post");
+}
+function resetpass(id){
+    swal({
+        title: "Are you sure?",
+        text: "Password will be reset by default",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, reset",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false
+    },
+    function(isConfirm){
+        if (isConfirm) {
+            swal({
+                title: "Okey",
+                text: "Password will be reset",
+                type: "success",
+            },function(){
+                window.location = "{{ url('admin/resetpass') }}" + "/admin/" + id ;
+            });
+            } else {
+            swal("Cancelled", "Your data is safe :)", "error");
+        }
+    });
+    return false;
 }
 function hapus(id){
     swal({
