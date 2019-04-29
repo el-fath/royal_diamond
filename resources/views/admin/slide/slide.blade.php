@@ -27,6 +27,7 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Url</th>
+                            <th>Is Show</th>
                             {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
@@ -37,6 +38,15 @@
                             <td>{{ $val->title }}</td>
                             <td>{!! Str::limit($val->content, $limit = 70, $end = '...') !!}</td>
                             <td>{{ $val->url }}</td>
+                            <td>
+                                <input id="show{{ $val->id }}" type="checkbox" class="js-switch{{ $val->id }}"
+                                onchange="set_active({{ $val->id }})"
+                                {{ $val->is_show == 1 ? "checked" : "" }}/>
+                                <script>
+                                    var elem = document.querySelector('.js-switch{{ $val->id }}');
+                                    var init = new Switchery(elem, { color : '#448aff' });
+                                </script>
+                            </td>
                             {{-- <td>{{ $val->photo }}</td> --}}
                             <td>
                                 <form action="{{ route('slide.destroy', $val->id) }}" id="delete_data{{ $val->id }}" method="post">
@@ -60,6 +70,7 @@
                             <th>Title</th>
                             <th>Content</th>
                             <th>Url</th>
+                            <th>Is Show</th>
                             {{-- <th>Photo</th> --}}
                             <th>Action</th>
                         </tr>
@@ -71,6 +82,25 @@
     <!-- Default ordering table end -->
 </div>
 <script>
+function set_active(id) {
+    if ($('#show'+id).prop("checked") == true) {
+        show = 1
+    }else{
+        show = 0
+    }
+    $.ajax({
+        url: "{{ URL('admin/slide') }}/"+ id +"/"+ show,
+        type: 'GET',
+        success: function(response){
+            console.log(response.is_show)
+            if (response.is_show === 0) {
+                swal("Success", "slide with title "+ response.title +" is not displayed!", "success")
+            }else{
+                swal("Success", "slide with title "+ response.title +" is displayed!", "success")
+            }
+        }
+    })
+}
 function hapus(id){
     swal({
         title: "Are you sure?",

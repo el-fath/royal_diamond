@@ -52,6 +52,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/jquery.mCustomScrollbar.css">
     <!-- ck editor -->
     <script src="{{ url('public/assets/admin') }}/assets/pages/ckeditor/ckeditor.js"></script>
+    
+    <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery/js/jquery.min.js"></script>
+    <!-- Switch component js -->
+    <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/switchery/js/switchery.min.js"></script>
 </head>
 
 <body>
@@ -418,7 +422,6 @@
 <![endif]-->
 <!-- Warning Section Ends -->
 <!-- Required Jquery -->
-<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery/js/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/popper.js/js/popper.min.js"></script>
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/bootstrap/js/bootstrap.min.js"></script>
@@ -426,8 +429,7 @@
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/sweetalert/js/sweetalert.min.js"></script>
 <!-- waves js -->
 <script src="{{ url('public/assets/admin') }}/assets/pages/waves/js/waves.min.js"></script>
-<!-- Switch component js -->
-<script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/switchery/js/switchery.min.js"></script>
+
 <!-- jquery slimscroll js -->
 <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
 <!-- modernizr js -->

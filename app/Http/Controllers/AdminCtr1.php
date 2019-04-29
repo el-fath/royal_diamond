@@ -363,6 +363,18 @@ class AdminCtr1 extends Controller
         return view('admin/slide/slideform', compact('data','title', 'action'));
     }
 
+    public function active_slide($id, $show)
+    {
+        $data = Slide::find($id);
+        if ($show == 1) {
+            $data->is_show = 1;
+        }else{
+            $data->is_show = 0;
+        }
+        $data->save();
+        return response()->json($data);
+    }
+
     public function update_slide(Request $request, $id)
     {
         $data = Slide::find($id);
