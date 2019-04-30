@@ -32,6 +32,20 @@
                     <form class="form-material" id="form" enctype="multipart/form-data">
                     <div class="modal-body">
                     {{ csrf_field() }}
+                        <div class="form-radio">
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="role" id="super" value="super">
+                                    <i class="helper"></i>Super
+                                </label>
+                            </div>
+                            <div class="radio radiofill radio-inline">
+                                <label>
+                                    <input type="radio" name="role" id="regular" value="regular">
+                                    <i class="helper"></i>Regular
+                                </label>
+                            </div>
+                        </div>
                         <div class="form-group form-default">
                             <input type="text" name="name" id="name" class="form-control" required="">
                             <span class="form-bar"></span>
@@ -116,6 +130,11 @@ function edit(id){
             $('#title').html("Form Edit admin")
             $("#name").val(response.name);
             $("#username").val(response.username);
+            if ( response.role === "super" ) {
+                $("#super").prop("checked", true);                
+            }else{
+                $("#regular").prop("checked", true);
+            }
             // $("#password").val(response.password);
             $("#password").prop('disabled', true);
             $('#form').attr('method', "post");
@@ -129,6 +148,8 @@ function add(){
     $("#username").val("");
     $("#password").val("");
     $("#password").prop("disabled", false);
+    $("#super").prop("checked", false);                
+    $("#regular").prop("checked", false);
     $('#form').attr('action', "{{ route('admin.store') }}");
     $('#form').attr('method', "post");
 }
