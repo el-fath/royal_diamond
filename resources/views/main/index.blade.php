@@ -80,7 +80,7 @@
             <h2 class="heading-decor pb20">Promo</h2>
             <!-- Team carousel -->
             <section class="team-carousel">
-                @foreach($slide as $row)
+                @foreach($promo as $row)
                     @include('main.item_promo')
                 @endforeach
             </section>

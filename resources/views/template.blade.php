@@ -574,7 +574,7 @@
                     type: 	((data.Code!=200) ? "error" : "success"),
                 },
                 function(){
-                    location.reload();
+
                 });
         })
             .fail(function() {

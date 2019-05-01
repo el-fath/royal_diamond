@@ -3,31 +3,53 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Config;
 use App\Models\Consultation;
 use App\Models\Event;
 use App\Models\Member;
+use App\Models\Profile;
 use App\Models\Service;
 use App\Models\Slide;
 use App\Models\Team;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\View;
 use Mail;
 use Illuminate\Support\Facades\Session;
 
 class Main extends Controller
 {
+    public function __construct()
+    {
+        $profile = Profile::find(1);
+        $config = Config::find(1);
+
+        View::share('profile', $profile);
+        View::share('config', $config);
+
+        if(Session::get('IsLogin')){
+            $member = Member::find(Session::get('MemberID'));
+            View::share('CurrentMember', $member);
+        }
+
+    }
+
     //
     function index(){
         $title = "Home";
-        $slide = Slide::all();
+        $slide = Slide::where('is_show', 1)->get();
+        $promo = Slide::where('is_show', 0)->get();
+
         $blog = Blog::all()->take(3)->sortByDesc("created_at");
         $treatment = Treatment::all()->take(3)->sortByDesc("created_at");
         $team = Team::all();
         $service = Service::all();
 
-        return view('main/index', compact('title','slide','blog','treatment','team','service'));
+        return view('main/index', compact('title','slide','blog','treatment','team','service','promo'));
     }
+
+
 
     public function sendActivationMail($user)
     {
@@ -77,7 +99,7 @@ class Main extends Controller
 
             if(Hash::check($request->post('Password'),$data->password)){
                 $Session = [
-                    'id'       => $data->id,
+                    'MemberID'       => $data->id,
                     'Email' => $data->email,
                     'IsLogin'    => TRUE
                 ];
@@ -124,7 +146,7 @@ class Main extends Controller
             'gender'   => $request->post('Gender'),
             'activation_code' => $this->getToken(),
             'status' => 0,
-            'password' => Hash::make($request->post('password')),
+            'password' => Hash::make($request->post('Password')),
             'address'  => $request->post('Address'),
         ];
 
