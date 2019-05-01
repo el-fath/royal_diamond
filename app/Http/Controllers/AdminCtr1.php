@@ -31,10 +31,11 @@ class AdminCtr1 extends Controller
                 $Session = [
                     'id'       => $data->id,
                     'username' => $data->username,
+                    'role'     => $data->role,
                     'login'    => TRUE
                 ];
                 Session::put($Session);
-                return redirect()->route('admin.index');
+                return redirect()->route('profile.index');
             }else{
                 return redirect()->route('auth')
                 ->with('alert', 'Your password is wrong, please type again...!')
@@ -92,7 +93,7 @@ class AdminCtr1 extends Controller
             'name'     => $request->get('name'),
             'username' => $request->get('username'),
             'password' => Hash::make($request->get('password')),
-            'role'     => "admin"
+            'role'     => $request->get('role')
         ];
         $data = Admin::create($data);
         return redirect('admin/admin')->with('alert', 'Data Added...!');
@@ -116,6 +117,7 @@ class AdminCtr1 extends Controller
         $newdata = [
             'name'     => $request->get('name'),
             'username' => $request->get('username'),
+            'role'     => $request->get('role')
             // 'password' => $request->get('password')
         ];
 

@@ -291,6 +291,7 @@
                             </ul>
                             <div class="pcoded-navigation-label">Data Master</div>
                             <ul class="pcoded-item pcoded-left-item">
+                            @if (Session::get('role') == "super")
                                 <li class="{{ Request::segment(2) == 'admin' ? 'active':'' }}">
                                     <a href="{{ route('admin.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-gears"></i><b>N</b></span>
@@ -298,6 +299,7 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                            @endif
                                 <li class="{{ Request::segment(2) == 'team' ? 'active':'' }}">
                                     <a href="{{ route('team.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="ion-person-stalker"></i><b>N</b></span>

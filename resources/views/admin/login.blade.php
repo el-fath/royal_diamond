@@ -40,7 +40,7 @@
             width: 20%;
         }
 
-        @media screen and (max-height: 820px) {
+        @media screen and (max-height: 200px) {
             .img-responsive{
                 width: 50%;
             }
