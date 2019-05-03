@@ -290,9 +290,15 @@
                         </ul>
                     </nav>
                     <div class="fw-col-sm-2 search-module">
-                        <form action="javascript:void(0);">
-                            <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
-                        </form>
+                        <div style="position: relative;">
+
+                                @if (isset($CurrentMember) && $CurrentMember)
+                                    <a href="{{ route('member.profile') }}"><div class="label" style="pointer-events: auto;margin-top: -10px;font-weight: bold;">{{$CurrentMember->name}}</div></a>
+                                    <a href="{{ route('member.logout') }}"> <button type="button" href="{{ route('member.logout') }}" class="submit"><i class="icon-font icon-logout"></i></button></a>
+                                @else
+                                    <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
+                                @endif
+                        </div>
                     </div>
                     <!-- Mobile side button -->
                     <div class="mobile-side-button"><i class="icon-font icon-menu"></i></div>
@@ -307,10 +313,16 @@
                         </div>
                         <!-- END Social link -->
                         <div class="search-module">
-                            <form action="javascript:void(0);">
-                                <button type="submit" href="#signup" data-toggle="modal" data-target=".log-sign" class="submit"><i class="icon-font icon-profile"></i></button>
-                            </form>
+                            <div style="position: relative;">
+                                @if (isset($CurrentMember) && $CurrentMember)
+                                    <a href="{{ route('member.profile') }}"><label class="label" style="pointer-events: auto;margin-top: -8px;font-weight: bold;">{{$CurrentMember->name}}</label></a>
+                                    <a href="{{ route('member.logout') }}"> <button type="button" href="{{ route('member.logout') }}" class="submit"><i class="icon-font icon-logout"></i></button></a>
+                                @else
+                                    <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
+                                @endif
+                            </div>
                         </div>
+                        <br>
                         <!-- Mobile navigation -->
                         <nav class="mobile-navigation">
                             <ul>
@@ -399,6 +411,29 @@
 
 {{--Modal--}}
 
+<div class="modal fade bs-modal-sm log-sign" id="forgot-password" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header" style="text-align: center;">
+                <h4>Forgot Password</h4>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('member.forgot')}}" method="post" id="formforgot">
+                    <div class="form-group">
+                        <label for="email">Email address:</label>
+                        <input type="email" class="form-control" id="email" name="Email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </form>
+            </div>
+            <!--<div class="modal-footer">
+            <center>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </center>
+            </div>-->
+        </div>
+    </div>
+</div>
 <!-- Modal -->
 <div class="modal fade bs-modal-sm log-sign" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-sm">
@@ -433,7 +468,7 @@
                                 <em>minimum 6 characters</em>
 
                                 <div class="forgot-link">
-                                    <a href="#forgot" data-toggle="modal" data-target="#forgot-password"> I forgot my password</a>
+                                    <a href="#forgot" data-toggle="modal" data-target="#forgot-password" data-dismiss="modal"> I forgot my password</a>
                                 </div>
 
 
@@ -542,6 +577,51 @@
         $('#tab1').removeClass('login-shadow');
 
 
+    });
+
+    $("#formforgot").submit(function(e){
+        e.preventDefault();
+
+        var formData = new FormData( $("#formforgot")[0] );
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+            type: "POST",
+            url: $("#formforgot").attr('action'),
+            processData: false,
+            contentType: false,
+            dataType : 'json',
+            encode  : true,
+            data:  		new FormData(this),
+            beforeSend: function(){
+                blockMessage($('#formforgot'),'Please Wait','#fff');
+            }
+        }).done(function(data){
+            $('#formforgot').unblock();
+            sweetAlert({
+                    title: 	((data.Code!=200) ? "Opps!" : 'Success'),
+                    text: 	((data.Code!=200) ?  data.Data : 'Success'),
+                    type: 	((data.Code!=200) ? "error" : "success"),
+                },
+                function(){
+
+                });
+        })
+            .fail(function() {
+                $('#formforgot').unblock();
+                sweetAlert({
+                        title: 	"Opss!",
+                        text: 	"Ada Yang Salah! , Silahkan Coba Lagi Nanti",
+                        type: 	"error",
+                    },
+                    function(){
+                    });
+            })
     });
 
     $("#formlogin").submit(function(e){

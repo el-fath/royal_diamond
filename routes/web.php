@@ -28,8 +28,12 @@ Route::get('aboutus', 'Main@aboutus')->name('aboutus');
 Route::post('contactus/addconsult', 'Main@addconsult')->name('contactus.addconsult');
 Route::post('member/register', 'Main@doRegister')->name('member.register');
 Route::post('member/login', 'Main@doLogin')->name('member.login');
-
+Route::get('member', 'Main@profilemember')->name('member.profile');
+Route::post('member/profile', 'Main@doProfile')->name('member.doprofile');
 Route::get('member/activation/{token}', 'Main@activateMember')->name('member.activate');
+Route::get('member/logout', 'Main@doLogout')->name('member.logout');
+Route::post('member/forgot', 'Main@doForgot')->name('member.forgot');
+Route::get('member/forgotpassword', 'Main@forgotpassword')->name('member.forgotpassword');
 
 //END Main FrontEND
 

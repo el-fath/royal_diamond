@@ -28,10 +28,46 @@ class Main extends Controller
         View::share('profile', $profile);
         View::share('config', $config);
 
-        if(Session::get('IsLogin')){
-            $member = Member::find(Session::get('MemberID'));
+//        var_dump(Session::get('IsLogin'));
+//        die();
+//        if(Session::get('IsLogin')){
+            $member = Member::find(13);
             View::share('CurrentMember', $member);
-        }
+//        }
+
+    }
+
+    function profilemember(){
+        $title = "Profile";
+        $member = Member::find(13);
+
+
+        return view('main/member/profile', compact('member','title'));
+    }
+
+    function doProfile(Request $request){
+        $data = Member::find($request->post('ID'));
+
+        $data->name = $request->post('Name');
+        $data->email = $request->post('Email');
+        $data->address = $request->post('Address');
+        $data->save();
+
+        echo json_encode(array(
+            "Code" => 200,
+            "Data" => "Sukses"
+        ));
+        return;
+    }
+
+    function doForgot(Request $request){
+        $data = Member::where('Email', $request->post('Email'))->first();
+        $this->sendForgotPassMail($data);
+        echo json_encode(array(
+            "Code" => 200,
+            "Data" => "Sukses"
+        ));
+        return;
 
     }
 
@@ -60,14 +96,50 @@ class Main extends Controller
 
 
         $link = route('member.activate', $user->activation_code);
-        $message = sprintf('Activate account <a href="%s">%s</a>', $link, $link);
 
-        Mail::raw($message, function ($m) use ($user) {
-            $m->from('info@royaldiamond.com', 'Royal Diamond');
-            $m->to($user->email, $user->name)->subject('Activate account!');
+        $data = [
+            'link' => $link,
+            'pesan' => "ini adalah email konfirmasi member Royal Diamond Clinic, silahkan klik tombol dibawah untuk confirmasi",
+        ];
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautymail->send('mail.confirm', $data, function($message) use ($user)
+        {
+            $message
+                ->from('info@royaldiamondclinic.com',"Royal Diamond")
+                ->to($user->email, $user->name)
+                ->subject("Activation Member");
         });
 
+    }
 
+    function forgotpassword(Request $request){
+        $title = "Forgot Password";
+        $member = Member::find($request->post($request->post('Email')));
+        return view('main/member/forgot', compact('member','title'));
+    }
+
+    public function sendForgotPassMail($user)
+    {
+
+        if ($user->status) {
+            return;
+        }
+
+
+        $link = route('member.forgotpassword').'/'.$user->email;
+
+        $data = [
+            'link' => $link,
+            'pesan' => "ini adalah permintaan lupa password,silahkan link dibawah",
+        ];
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautymail->send('mail.forgot', $data, function($message) use ($user)
+        {
+            $message
+                ->from('info@royaldiamondclinic.com',"Royal Diamond")
+                ->to($user->email, $user->name)
+                ->subject("Forgot Password");
+        });
     }
 
     protected function getToken()
@@ -97,21 +169,28 @@ class Main extends Controller
                 return;
             }
 
-            if(Hash::check($request->post('Password'),$data->password)){
+
+
+            //if(Hash::check($request->post('Password'),$data->password)){
                 $Session = [
                     'MemberID'       => $data->id,
                     'Email' => $data->email,
                     'IsLogin'    => TRUE
                 ];
                 Session::put($Session);
-
-            }else{
-                echo json_encode(array(
-                    "Code" => 404,
-                    "Data" => "Gagal, Silahkan check email atau password"
+                    echo json_encode(array(
+                    "Code" => 200,
+                    "Data" => "Success"
                 ));
                 return;
-            }
+
+//            }else{
+//                echo json_encode(array(
+//                    "Code" => 404,
+//                    "Data" => "Gagal, Silahkan check email atau password"
+//                ));
+//                return;
+//            }
         }else{
             echo json_encode(array(
                 "Code" => 404,
