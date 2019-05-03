@@ -315,7 +315,7 @@
                         <div class="search-module">
                             <div style="position: relative;">
                                 @if (isset($CurrentMember) && $CurrentMember)
-                                    <a href="{{ route('member.profile') }}"><label class="label" style="pointer-events: auto;margin-top: -8px;font-weight: bold;">{{$CurrentMember->name}}</label></a>
+                                        <a href="{{ route('member.profile') }}"><label class="label" style="pointer-events: auto;margin-top: -8px;font-weight: bold;">{{$CurrentMember->name}}</label></a>
                                     <a href="{{ route('member.logout') }}"> <button type="button" href="{{ route('member.logout') }}" class="submit"><i class="icon-font icon-logout"></i></button></a>
                                 @else
                                     <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
