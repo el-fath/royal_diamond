@@ -6,7 +6,7 @@
     <!-- Blog items -->
     <section class="fw-main-row pt40">
         <div class="fw-container">
-            <h2 class="heading-decor pb20">Blog</h2>
+            <h2 class="heading-decor pb20">Event</h2>
             <div class="fw-row">
                 <!-- Blog item -->
                 @foreach($event as $row)

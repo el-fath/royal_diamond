@@ -28,12 +28,15 @@ class Main extends Controller
         View::share('profile', $profile);
         View::share('config', $config);
 
-//        var_dump(Session::get('IsLogin'));
-//        die();
-//        if(Session::get('IsLogin')){
-            $member = Member::find(13);
-            View::share('CurrentMember', $member);
-//        }
+
+        $this->middleware(function ($request, $next) {
+            $islogin = Session::get('IsLogin');
+            if($islogin){
+                $member = Member::find(Session::get('MemberID'));
+                View::share('CurrentMember', $member);
+            }
+            return $next($request);
+        });
 
     }
 
@@ -170,13 +173,19 @@ class Main extends Controller
             }
 
             if(Hash::check($request->post('Password'),$data->password)){
+
+
                 $Session = [
                     'MemberID' => $data->id,
                     'Email'    => $data->email,
                     'IsLogin'  => TRUE
                 ];
+
+
+
                 Session::put($Session);
-                    echo json_encode(array(
+
+                echo json_encode(array(
                     "Code" => 200,
                     "Data" => "Success"
                 ));
@@ -199,7 +208,13 @@ class Main extends Controller
     }
 
     function doLogout(){
-
+        Session::forget('IsLogin');
+        Session::forget('MemberID');
+        Session::forget('Email');
+        if(!Session::has('IsLogin') && !Session::has('MemberID') && !Session::has('Email'))
+        {
+            return redirect()->route('home');
+        }
     }
 
     function doRegister(Request $request){
@@ -249,7 +264,8 @@ class Main extends Controller
     function blogdetail($slug){
         $title = "Blog";
         $blog = Blog::where('url_segment', $slug)->first();
-
+        $blog->view+=1;
+        $blog->save();
         return view('main/blog/detail', compact('title','blog'));
     }
 
@@ -263,7 +279,8 @@ class Main extends Controller
     function eventdetail($slug){
         $title = "Event";
         $event = Event::where('url_segment', $slug)->first();
-
+        $event->view+=1;
+        $event->save();
         return view('main/event/detail', compact('title','event'));
     }
 

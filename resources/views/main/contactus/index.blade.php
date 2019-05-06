@@ -47,7 +47,7 @@
     <form action="{{$action}}" method="post" id="formconsult">
         <section class="fw-main-row pt30 pb45">
             <div class="fw-container">
-                <h2 class="heading-decor pb20">Request a Consultation</h2>
+                <h2 class="heading-decor pb20">Request a Consultation {{$profile->latitude}}</h2>
                 <form action="javascript:void(0);" class="form fw-row">
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Name" placeholder="Your Name *" class="style1"></div>
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Phone" placeholder="Phone number *" class="style1"></div>
@@ -67,7 +67,7 @@
         <div id="map" style="height: 395px; width: 100%;"></div>
     </div>
     <!-- END Map -->
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyBqnMfRjGOw09DMXjrd5vbTgiRHRntQ7N0&amp;sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&amp;key=AIzaSyCghcnyi7IpQ7qRTE9BsfBn9gCloZ5T3pA&amp;sensor=false"></script>
     <script>
 
         $("#formconsult").submit(function(e){
@@ -122,7 +122,7 @@
         });
 
         function initialize() {
-            var myLatlng = new google.maps.LatLng(37.319836, -122.045168);
+            var myLatlng = new google.maps.LatLng({{$profile->latitude}}, {{$profile->longitude}});
             var mapOptions = {
                 zoom: 16,
                 center: myLatlng,
@@ -132,7 +132,7 @@
             }
             var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
-            var myLatLng = new google.maps.LatLng(37.319836, -122.045168);
+            var myLatLng = new google.maps.LatLng({{$profile->latitude}}, {{$profile->longitude}});
             var beachMarker = new google.maps.Marker({
                 position: myLatLng,
                 map: map
