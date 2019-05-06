@@ -296,6 +296,7 @@
                                     <a href="{{ route('member.profile') }}"><div class="label" style="pointer-events: auto;margin-top: -10px;font-weight: bold;">{{$CurrentMember->name}}</div></a>
                                     <a href="{{ route('member.logout') }}"> <button type="button" href="{{ route('member.logout') }}" class="submit"><i class="icon-font icon-logout"></i></button></a>
                                 @else
+                                    <div class="label" style="pointer-events: auto;margin-top: -10px;font-weight: bold;">Login</div>
                                     <button type="submit" href="#signup" data-toggle="modal" data-target="#myModal" class="submit"><i class="icon-font icon-profile"></i></button>
                                 @endif
                         </div>
