@@ -169,13 +169,11 @@ class Main extends Controller
                 return;
             }
 
-
-
-            //if(Hash::check($request->post('Password'),$data->password)){
+            if(Hash::check($request->post('Password'),$data->password)){
                 $Session = [
-                    'MemberID'       => $data->id,
-                    'Email' => $data->email,
-                    'IsLogin'    => TRUE
+                    'MemberID' => $data->id,
+                    'Email'    => $data->email,
+                    'IsLogin'  => TRUE
                 ];
                 Session::put($Session);
                     echo json_encode(array(
@@ -183,14 +181,14 @@ class Main extends Controller
                     "Data" => "Success"
                 ));
                 return;
-
-//            }else{
-//                echo json_encode(array(
-//                    "Code" => 404,
-//                    "Data" => "Gagal, Silahkan check email atau password"
-//                ));
-//                return;
-//            }
+           }else{
+               echo json_encode(array(
+                   "Code" => 404,
+                   "Data" => "Gagal, Silahkan check email atau password"
+               ));
+               return;
+           }
+           
         }else{
             echo json_encode(array(
                 "Code" => 404,
