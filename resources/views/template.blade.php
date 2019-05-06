@@ -498,13 +498,13 @@
                                 <div class="group">
 
                                     <select name="Gender" id="" class="input">
+                                        <option></option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
-                                        <option value="Other">Other</option>
                                     </select>
                                     
                                     <span class="highlight"></span><span class="bar"></span>
-                                    <label class="label" for="date">Gender</label></div>
+                                    <label class="label">Gender</label></div>
 
                                 <!-- Password input-->
                                 <div class="group">
@@ -513,7 +513,7 @@
 
                                 <!-- Text input-->
                                 <div class="group">
-                                    <input required="" class="input" name="ConfirmPassword" type="password"><span class="highlight"></span><span class="bar"></span>
+                                    <input required="" class="input" name="Password" type="password"><span class="highlight"></span><span class="bar"></span>
                                     <label class="label" for="date">Password</label></div>
                                 <em>1-8 Characters</em>
 
