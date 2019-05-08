@@ -28,15 +28,17 @@ class AdminCtr2 extends Controller
             $data = Profile::find(1);
 
             if ($request->file('photo')) {
-                $myFile = "public/image/profile/".$data->photo;
-                unlink($myFile);
+                $myFile = "public/image/profile/".$data->logo;
+                if ($data->logo) {
+                    unlink($myFile);
+                }
     
                 $file = $request->file('photo');
                 $ext = $file->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;
                 $file->move('public/image/profile',$newName);
-    
-                $newdata = [ 'photo' => $newName ];
+
+                $newdata = [ 'logo' => $newName ];
                 $data->update($newdata);
             }
 
@@ -82,9 +84,11 @@ class AdminCtr2 extends Controller
             $data = Config::find(1);
 
             if ($request->file('photo')) {
-                $myFile = "public/image/config/".$data->photo;
-                unlink($myFile);
-    
+                $myFile = "public/image/config/".$data->icon;
+                if ($data->icon) {
+                    unlink($myFile);
+                }
+
                 $file = $request->file('photo');
                 $ext = $file->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;
@@ -95,8 +99,8 @@ class AdminCtr2 extends Controller
             }
 
             if ($request->file('baner_1')) {
-                $myFile = "public/image/config/".$data->baner_1;
-                if ($data->baner_1 != NULL) {
+                $myFile = "public/image/config/".$data->contact_us_banner_1;
+                if ($data->contact_us_banner_1) {
                     unlink($myFile);
                 }
                 $file = $request->file('baner_1');
@@ -109,8 +113,8 @@ class AdminCtr2 extends Controller
             }
 
             if ($request->file('baner_2')) {
-                $myFile = "public/image/config/".$data->baner_2;
-                if ($data->baner_2 != NULL) {
+                $myFile = "public/image/config/".$data->contact_us_banner_2;
+                if ($data->contact_us_banner_2) {
                     unlink($myFile);
                 }
                 $file = $request->file('baner_2');
