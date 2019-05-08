@@ -94,6 +94,34 @@ class AdminCtr2 extends Controller
                 $data->update($newdata);
             }
 
+            if ($request->file('baner_1')) {
+                $myFile = "public/image/config/".$data->baner_1;
+                if ($data->baner_1 != NULL) {
+                    unlink($myFile);
+                }
+                $file = $request->file('baner_1');
+                $ext = $file->getClientOriginalExtension();
+                $newName = rand(100000,1001238912).".".$ext;
+                $file->move('public/image/config',$newName);
+    
+                $newdata = [ 'contact_us_banner_1' => $newName ];
+                $data->update($newdata);
+            }
+
+            if ($request->file('baner_2')) {
+                $myFile = "public/image/config/".$data->baner_2;
+                if ($data->baner_2 != NULL) {
+                    unlink($myFile);
+                }
+                $file = $request->file('baner_2');
+                $ext = $file->getClientOriginalExtension();
+                $newName = rand(100000,1001238912).".".$ext;
+                $file->move('public/image/config',$newName);
+    
+                $newdata = [ 'contact_us_banner_2' => $newName ];
+                $data->update($newdata);
+            }
+
             $newdata = [
                 'web_name'           => $request->web_name,
                 'description'        => $request->description,

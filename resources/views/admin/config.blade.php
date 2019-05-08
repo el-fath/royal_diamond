@@ -31,6 +31,20 @@
                 <label>Description</label>
                 <textarea name="desc" id="desc" required="">{{ $data->description }}</textarea>
             </div>
+            <div class="form-group form-default">
+                <label>Banner Contact Us 1</label>
+                <input type="file" class="form-control" name="baner_1" id="baner_1" onchange="readURLbaner_1(this);">
+                <img id="preview_baner_1"
+                src="{{ url('public/image/config')."/".$data->contact_us_banner_1 }}" 
+                alt="your image" style="max-height:300px; width: 700px;"/>
+            </div>
+            <div class="form-group form-default">
+                <label>Banner Contact Us 2</label>
+                <input type="file" class="form-control" name="baner_2" id="baner_2" onchange="readURLbaner_2(this);">
+                <img id="preview_baner_2"
+                src="{{ url('public/image/config')."/".$data->contact_us_banner_2 }}" 
+                alt="your image" style="max-height:300px; width: 700px;"/>
+            </div>
             <br>
             <div class="form-group form-default">
                 <textarea class="form-control" name="meta_keyword" id="meta_keyword" required>{{ $data->meta_keyword }}</textarea>
@@ -80,9 +94,27 @@ function readURL(input) {
         reader.readAsDataURL(input.files[0]);
     }
 }
-// function test() {
-//     swal("Good job!", "You clicked the button!", "success")
-// }
+function readURLbaner_1(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview_baner_1').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}function readURLbaner_2(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#preview_baner_2').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
 document.getElementById("formConfig").addEventListener("submit", function(e){
     e.preventDefault()
     var formData = new FormData( $("#formConfig")[0])
