@@ -5,7 +5,7 @@
 @section('content')
 
     <!-- Full screen section -->
-    <section class="full-screen fw-main-row fixed-height" style="background-image: url(http://placehold.it/1980x450); height: 450px; ">
+    <section class="full-screen fw-main-row fixed-height" style="background-color: #ccc; height: 450px; ">
         <div class="fw-container centered-container tac">
             <div class="container tac fw-col-md-5">
                 {{--<h2 class="h1"><span class="blue-color">Helping You</span><br>Stay Happy One</h2>--}}

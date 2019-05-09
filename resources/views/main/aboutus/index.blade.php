@@ -19,7 +19,7 @@
                 {{--<div class="fw-col-md-6">--}}
                     {{--<img src="{{$profile->PhotoPath}}" style="max-height: 300px;" alt="People">--}}
                 {{--</div>--}}
-                <div class="fw-col-md-12 content">
+                <div class="fw-col-md-12 content" style="word-wrap: break-word">
                     {!! $profile->desc !!}
                 </div>
             </div>

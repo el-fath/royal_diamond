@@ -62,6 +62,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Raleway');
 
+        .contact-item:not(:last-of-type) {
+            margin-right: 40px;
+        }
+
+
         .tab-style{
             font-size:20px;
             width:50%;
@@ -235,15 +240,15 @@
                 <div class="fl">
                     <!-- Social link -->
                     <div class="social-link">
-                        <a href="{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                     <!-- END Social link -->
                 </div>
                 <div class="fr">
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>{{$profile->address}}</span></span>
+                    <span class="contact-item" style="margin-right: 10px;"><i class="icon-font icon-placeholder-1"></i> <span style="word-wrap: break-word;font-size:11px;">{{$profile->address}}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
                     <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>{{$profile->OpenCloseTime}}</span></span>
@@ -279,11 +284,11 @@
                                 </li>
                             @endif
 
-                            <li class="{{ Request::segment(1) == 'contactus' ? 'current-menu-item':'' }}">
-                                <a href="{{ route('contactus') }}">Contact Us</a>
-                            </li>
                             <li class="{{ Request::segment(2) == 'aboutus' ? 'current-menu-item':'' }}">
                                 <a href="{{ route('aboutus') }}">About Us</a>
+                            </li>
+                            <li class="{{ Request::segment(1) == 'contactus' ? 'current-menu-item':'' }}">
+                                <a href="{{ route('contactus') }}">Contact Us</a>
                             </li>
 
                             @if (isset($CurrentMember) && $CurrentMember)
@@ -314,9 +319,9 @@
                     <div class="mobile-side">
                         <!-- Social link -->
                         <div class="social-link">
-                            <a href="{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                            <a href="{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                            <a href="{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                            <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                            <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                            <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                         </div>
                         <!-- END Social link -->
                         <div class="search-module">
@@ -376,15 +381,15 @@
     <footer class="footer fw-main-row">
         <div class="fw-container">
             <div class="fw-row">
-                <div class="fw-col-xs-12 fw-col-sm-5 fw-col-md-4">
+                <div class="fw-col-xs-12 fw-col-sm-5 fw-col-md-4" style="word-wrap: break-word">
                     <div class="footer-logo"><a href="{{ url('public/assets/main') }}//"><img src="{{$profile->PhotoPath}}" alt="{{$profile->name}}"></a></div>
-                    <p class="footer-text taj">{{$profile->desc}}</p>
+                    <!--<p class="footer-text taj">{!!$profile->desc!!}</p>-->
                     <div class="footer-copy">(c) royaldiamondclinic.com {{date('Y')}}</div>
                 </div>
                 <div class="fw-col-xs-12 fw-col-sm-4 fw-col-md-3">
                     <h6>Contact us:</h6>
                     <!-- Contact item -->
-                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>{{$profile->address}}</span></span>
+                    <span class="contact-item"><i class="icon-font icon-placeholder-1"></i> <span>{!!$profile->address!!}</span></span>
                     <!-- END Contact item -->
                     <!-- Contact item -->
                     <span class="contact-item"><i class="icon-font icon-clock-2"></i> <span>{{$profile->OpenCloseTime}}</span></span>
@@ -402,8 +407,8 @@
                             <li><a href="{{ route('blog') }}">Blog</a></li>
                             <li><a href="{{ route('event') }}">Event</a></li>
                         @endif
-                        <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                         <li><a href="{{ route('aboutus') }}">About Us</a></li>
+                        <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                         @if (isset($CurrentMember) && $CurrentMember)
                             @if($config->url_olshop)
                                 <li><a href="{{ route('aboutus') }}">Shop</a></li>
@@ -419,9 +424,9 @@
                     {{--</form>--}}
                     <h6>Follow us:</h6>
                     <div class="social-link">
-                        <a href="{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                 </div>
             </div>

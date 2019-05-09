@@ -75,7 +75,7 @@
         </div>
     </section>
     <!-- END Category items -->
-    <section class="fw-main-row dark-bg pt20" style="background-image: url(http://placehold.it/1980x800)">
+    <section class="fw-main-row dark-bg pt20" style="background-color: #ccc">
         <div class="fw-container">
             <h2 class="heading-decor pb20">Promo</h2>
             <!-- Team carousel -->
@@ -135,7 +135,7 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</section>--}}
-    <section class="fw-main-row dark-bg pt20" style="background-image: url(http://placehold.it/1980x800)">
+    <section class="fw-main-row dark-bg pt20" style="background-color: #ccc">
         <div class="fw-container">
             <h2 class="heading-decor pb20">Our Teams</h2>
             <!-- Team carousel -->

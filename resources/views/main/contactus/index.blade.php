@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <!-- Full screen section -->
-    <section class="full-screen fw-main-row fixed-height" style="background-image: url(http://placehold.it/1980x450);height:450px;">
+    <section class="full-screen fw-main-row fixed-height" style="background-image: url({{$config->ContactBanner1Path}});height:450px;">
         <div class="fw-container centered-container tac">
             <div class="container tac">
 
@@ -32,7 +32,7 @@
         </div>
     </section>
     <!-- Working Hours -->
-    <section class="fw-main-row pt40 pb50" style="background-image: url(http://placehold.it/1980x900)">
+    <section class="fw-main-row pt40 pb50" style="background-image: url({{$config->ContactBanner2Path}})">
         <div class="fw-container" style="text-align: center">
             <h2 class="heading-decor pb20">Working Hours</h2>
             <!-- Week days -->

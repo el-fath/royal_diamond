@@ -122,8 +122,11 @@
     </div>
 </div>
 </div>
+
 <script>
 CKEDITOR.replace('desc');
+
+
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
@@ -164,7 +167,7 @@ document.getElementById("formProfile").addEventListener("submit", function(e){
             }
         },
         error:function(data){
-            alert("Gagal Bro")
+            alert("Gagal Menyimpan")
         },
     })
 });

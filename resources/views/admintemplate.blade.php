@@ -51,8 +51,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/assets/css/jquery.mCustomScrollbar.css">
     <!-- ck editor -->
-    <script src="{{ url('public/assets/admin') }}/assets/pages/ckeditor/ckeditor.js"></script>
-    
+    {{--<script src="{{ url('public/assets/admin') }}/assets/pages/ckeditor/ckeditor.js"></script>--}}
+    <script src="//cdn.ckeditor.com/4.11.4/full/ckeditor.js"></script>
     <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/jquery/js/jquery.min.js"></script>
     <!-- Switch component js -->
     <script type="text/javascript" src="{{ url('public/assets/admin') }}/bower_components/switchery/js/switchery.min.js"></script>

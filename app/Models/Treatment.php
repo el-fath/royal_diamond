@@ -18,4 +18,5 @@ class Treatment extends Model
     public function getContentSmallAttribute(){
         return Str::words($this->content, $words = 50, $end = '...');
     }
+
 }

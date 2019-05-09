@@ -47,31 +47,31 @@
             </div>
             <br>
             <div class="form-group form-default">
-                <textarea class="form-control" name="meta_keyword" id="meta_keyword" required>{{ $data->meta_keyword }}</textarea>
+                <textarea class="form-control" name="meta_keyword" id="meta_keyword">{{ $data->meta_keyword }}</textarea>
                 <span class="form-bar"></span>
                 <label class="float-label">Meta keyword</label>
             </div>
             <br>
             <div class="form-group form-default">
-                <textarea class="form-control" name="meta_desc" id="meta_desc" required>{{ $data->meta_desc }}</textarea>
+                <textarea class="form-control" name="meta_desc" id="meta_desc">{{ $data->meta_desc }}</textarea>
                 <span class="form-bar"></span>
                 <label class="float-label">Meta description</label>
             </div>
             <br>
             <div class="form-group form-default">
-                <textarea class="form-control" name="head_script" id="head_script" required>{{ $data->head_script }}</textarea>
+                <textarea class="form-control" name="head_script" id="head_script">{{ $data->head_script }}</textarea>
                 <span class="form-bar"></span>
                 <label class="float-label">Head script</label>
             </div>
             <br>
             <div class="form-group form-default">
-                <textarea class="form-control" name="after_body_script" id="after_body_script" required>{{ $data->after_body_script }}</textarea>
+                <textarea class="form-control" name="after_body_script" id="after_body_script">{{ $data->after_body_script }}</textarea>
                 <span class="form-bar"></span>
                 <label class="float-label">After body script</label>
             </div>
             <br>
             <div class="form-group form-default">
-                <textarea class="form-control" name="before_body_script" id="before_body_script" required>{{ $data->before_body_script }}</textarea>
+                <textarea class="form-control" name="before_body_script" id="before_body_script">{{ $data->before_body_script }}</textarea>
                 <span class="form-bar"></span>
                 <label class="float-label">Before body script</label>
             </div>
@@ -141,7 +141,7 @@ document.getElementById("formConfig").addEventListener("submit", function(e){
             }
         },
         error:function(data){
-            alert("Gagal Bro")
+            alert("Gagal Menyimpan")
         },
     })
 });
