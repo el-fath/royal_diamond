@@ -135,21 +135,21 @@
             {{--</div>--}}
         {{--</div>--}}
     {{--</section>--}}
-    <section class="fw-main-row dark-bg pt20" style="background-color: #ccc">
-        <div class="fw-container">
-            <h2 class="heading-decor pb20">Our Teams</h2>
-            <!-- Team carousel -->
-            <section class="team-carousel">
-                @foreach($team as $row)
-                    @include('main.item_team')
-                @endforeach
-            </section>
-            <!-- END Team carousel -->
-        </div>
-    </section>
+    {{--<section class="fw-main-row dark-bg pt20" style="background-color: #ccc">--}}
+        {{--<div class="fw-container">--}}
+            {{--<h2 class="heading-decor pb20">Our Teams</h2>--}}
+            {{--<!-- Team carousel -->--}}
+            {{--<section class="team-carousel">--}}
+                {{--@foreach($team as $row)--}}
+                    {{--@include('main.item_team')--}}
+                {{--@endforeach--}}
+            {{--</section>--}}
+            {{--<!-- END Team carousel -->--}}
+        {{--</div>--}}
+    {{--</section>--}}
     <section class="fw-main-row pt40">
         <div class="fw-container">
-            <h2 class="heading-decor pb20">Latest from blog</h2>
+            <h2 class="heading-decor pb20">Latest from Article</h2>
             <div class="fw-row">
                 @foreach($blog as $row)
                     <!-- Blog item -->

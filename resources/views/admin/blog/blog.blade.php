@@ -7,7 +7,7 @@
     <!-- Default ordering table start -->
     <div class="card">
         <div class="card-header">
-            <h5>Blog Master</h5>
+            <h5>Article Master</h5>
             <!-- <span>Lets say you want to sort the </span> -->
         </div>
         <div class="card-block">

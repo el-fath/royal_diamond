@@ -56,6 +56,9 @@
             font-size: 100%;
             color: #3c3d41;
         }
+        .contact-item{
+            font-size: 12px;
+        }
     </style>
     {{$config->head_script}}
 

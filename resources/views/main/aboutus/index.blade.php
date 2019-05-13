@@ -3,6 +3,7 @@
     {{$title}}
 @endsection
 @section('content')
+
     <!-- Full screen section -->
     <section class="full-screen fw-main-row" style="background-image: url({{$profile->PhotoPath}});background-position: center;background-size: 500px;">
         <div class="fw-container centered-container tal">
@@ -25,18 +26,18 @@
             </div>
         </div>
     </section>
-    <section class="fw-main-row dark-bg pt40" style="background-image: url(http://placehold.it/1980x800)">
-        <div class="fw-container">
-            <h2 class="heading-decor pb20">Our Team</h2>
-            <!-- Team carousel -->
-            <section class="team-carousel">
-                @foreach($team as $row)
-                    @include('main.item_team')
-                @endforeach
-            </section>
-            <!-- END Team carousel -->
-        </div>
-    </section>
+    {{--<section class="fw-main-row dark-bg pt40" style="background-image: url(http://placehold.it/1980x800)">--}}
+        {{--<div class="fw-container">--}}
+            {{--<h2 class="heading-decor pb20">Our Team</h2>--}}
+            {{--<!-- Team carousel -->--}}
+            {{--<section class="team-carousel">--}}
+                {{--@foreach($team as $row)--}}
+                    {{--@include('main.item_team')--}}
+                {{--@endforeach--}}
+            {{--</section>--}}
+            {{--<!-- END Team carousel -->--}}
+        {{--</div>--}}
+    {{--</section>--}}
     <section class="fw-main-row pt40 pb40">
         <div class="fw-container">
             <h2 class="heading-decor pb35">Our Services</h2>

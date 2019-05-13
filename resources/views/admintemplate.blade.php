@@ -331,7 +331,7 @@
                                 <li class="{{ Request::segment(2) == 'blog' ? 'active':'' }}">
                                     <a href="{{ route('blog.index') }}" class="waves-effect waves-dark">
                                         <span class="pcoded-micon"><i class="fa fa-desktop"></i><b>N</b></span>
-                                        <span class="pcoded-mtext">Blog</span>
+                                        <span class="pcoded-mtext">Article</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
