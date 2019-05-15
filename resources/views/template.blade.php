@@ -274,22 +274,23 @@
                             <li class="{{ Request::segment(1) == 'home' ? 'current-menu-item':'' }}">
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
+                            <li class="{{ Request::segment(2) == 'aboutus' ? 'current-menu-item':'' }}">
+                                <a href="{{ route('aboutus') }}">About Us</a>
+                            </li>
 
                             @if (isset($CurrentMember) && $CurrentMember)
                                 <li class="{{ Request::segment(1) == 'treatment' ? 'current-menu-item':'' }}">
                                     <a href="{{ route('treatment') }}">Treatment</a>
                                 </li>
-                                <li class="{{ Request::segment(1) == 'blog' ? 'current-menu-item':'' }}">
-                                    <a href="{{ route('blog') }}">Blog</a>
-                                </li>
                                 <li class="{{ Request::segment(1) == 'event' ? 'current-menu-item':'' }}">
                                     <a href="{{ route('event') }}">Event</a>
                                 </li>
+                                <li class="{{ Request::segment(1) == 'blog' ? 'current-menu-item':'' }}">
+                                    <a href="{{ route('blog') }}">Article</a>
+                                </li>
                             @endif
 
-                            <li class="{{ Request::segment(2) == 'aboutus' ? 'current-menu-item':'' }}">
-                                <a href="{{ route('aboutus') }}">About Us</a>
-                            </li>
+
                             <li class="{{ Request::segment(1) == 'contactus' ? 'current-menu-item':'' }}">
                                 <a href="{{ route('contactus') }}">Contact Us</a>
                             </li>
@@ -346,15 +347,19 @@
                                     <a href="{{ route('home') }}">Home</a>
                                 </li>
 
+                                <li class="{{ Request::segment(2) == 'aboutus' ? 'current-menu-item':'' }}">
+                                    <a href="{{ route('aboutus') }}">About Us</a>
+                                </li>
+
                                 @if (isset($CurrentMember) && $CurrentMember)
                                     <li class="{{ Request::segment(1) == 'treatment' ? 'current-menu-item':'' }}">
                                         <a href="{{ route('treatment') }}">Treatment</a>
                                     </li>
-                                    <li class="{{ Request::segment(1) == 'blog' ? 'current-menu-item':'' }}">
-                                        <a href="{{ route('blog') }}">Blog</a>
-                                    </li>
                                     <li class="{{ Request::segment(1) == 'event' ? 'current-menu-item':'' }}">
                                         <a href="{{ route('event') }}">Event</a>
+                                    </li>
+                                    <li class="{{ Request::segment(1) == 'blog' ? 'current-menu-item':'' }}">
+                                        <a href="{{ route('blog') }}">Article</a>
                                     </li>
                                 @endif
 
@@ -405,12 +410,13 @@
                     <h6>Links:</h6>
                     <ul class="footer-menu">
                         <li><a href="{{ route('home') }}">Home</a></li>
+                        <li><a href="{{ route('aboutus') }}">About Us</a></li>
                         @if (isset($CurrentMember) && $CurrentMember)
                             <li><a href="{{ route('treatment') }}">Treatment</a></li>
-                            <li><a href="{{ route('blog') }}">Blog</a></li>
                             <li><a href="{{ route('event') }}">Event</a></li>
+                            <li><a href="{{ route('blog') }}">Article</a></li>
                         @endif
-                        <li><a href="{{ route('aboutus') }}">About Us</a></li>
+
                         <li><a href="{{ route('contactus') }}">Contact Us</a></li>
                         @if (isset($CurrentMember) && $CurrentMember)
                             @if($config->url_olshop)
