@@ -28,6 +28,11 @@
                 </div>
             </div>
             <div class="form-group form-default">
+                <input type="text" class="form-control" name="url_olshop" id="url_olshop" value="{{ $data->url_olshop }}">
+                <span class="form-bar"></span>
+                <label class="float-label">Url online shop</label>
+            </div>
+            <div class="form-group form-default">
                 <label>Description</label>
                 <textarea name="desc" id="desc" required="">{{ $data->description }}</textarea>
             </div>
