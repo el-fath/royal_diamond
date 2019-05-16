@@ -128,6 +128,7 @@ class AdminCtr2 extends Controller
 
             $newdata = [
                 'web_name'           => $request->web_name,
+                'url_olshop'         => $request->url_olshop,
                 'description'        => $request->description,
                 'meta_keyword'       => $request->meta_keyword,
                 'meta_desc'          => $request->meta_desc,
