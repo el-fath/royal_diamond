@@ -243,9 +243,9 @@
                 <div class="fl">
                     <!-- Social link -->
                     <div class="social-link">
-                        <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a target="_blank" href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                     <!-- END Social link -->
                 </div>
@@ -298,7 +298,7 @@
                             @if (isset($CurrentMember) && $CurrentMember)
                                 @if($config->url_olshop)
                                     <li class="{{ Request::segment(2) == 'shop' ? 'current-menu-item':'' }}">
-                                        <a href="{{$config->url_olshop}}">Shop</a>
+                                        <a target="_blank" href="{{$config->url_olshop}}">Shop</a>
                                     </li>
                                 @endif
                             @endif
@@ -323,9 +323,9 @@
                     <div class="mobile-side">
                         <!-- Social link -->
                         <div class="social-link">
-                            <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                            <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                            <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                            <a target="_blank" href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                            <a target="_blank" href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                            <a target="_blank" href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                         </div>
                         <!-- END Social link -->
                         <div class="search-module">
@@ -433,9 +433,9 @@
                     {{--</form>--}}
                     <h6>Follow us:</h6>
                     <div class="social-link">
-                        <a href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
-                        <a href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
-                        <a href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/{{$profile->facebook}}"><i class="social-icons icon-facebook-logo"></i></a>
+                        <a target="_blank" href="https://twitter.com/{{$profile->twitter}}"><i class="social-icons icon-twitter-social-logotype"></i></a>
+                        <a target="_blank" href="https://www.instagram.com/{{$profile->instagram}}"><i class="social-icons icon-instagram-social-network-logo-of-photo-camera"></i></a>
                     </div>
                 </div>
             </div>

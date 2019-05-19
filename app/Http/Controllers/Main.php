@@ -42,8 +42,11 @@ class Main extends Controller
 
     function profilemember(){
         $title = "Profile";
-        $member = Member::find(13);
-
+        $member = "";
+        $islogin = Session::get('IsLogin');
+        if($islogin){
+            $member = Member::find(Session::get('MemberID'));
+        }
 
         return view('main/member/profile', compact('member','title'));
     }
@@ -86,6 +89,25 @@ class Main extends Controller
         $service = Service::all();
 
         return view('main/index', compact('title','slide','blog','treatment','team','service','promo'));
+    }
+
+    public function sendConsultMail($consult)
+    {
+
+        $data = [
+            'pesan' => "Anda mendapat medapatkan pesan untuk request consultation di web Royal Diamond",
+            'consult' => $consult,
+        ];
+        $beautymail = app()->make(\Snowfire\Beautymail\Beautymail::class);
+        $beautymail->send('mail.consult', $data, function($message) use ($consult)
+        {
+            $message
+                ->from('info@royaldiamondclinic.com',"Royal Diamond")
+                ->to("info@royaldiamondclinic.com", "Royal Diamond")
+                ->cc($consult->email,$consult->name)
+                ->subject("Consultation Request");
+        });
+
     }
 
 
@@ -314,15 +336,17 @@ class Main extends Controller
     public function addconsult(Request $request){
 
         $data = [
-            'Name'  => $request->post('Name'),
-            'Phone'  => $request->post('Phone'),
-            'Email'  => $request->post('Email'),
-            'DateTime'  => $request->post('DateTime'),
-            'Comment'  => $request->post('Comment'),
+            'name'  => $request->post('Name'),
+            'phone'  => $request->post('Phone'),
+            'email'  => $request->post('Email'),
+            'datecall'  => $request->post('DateTime'),
+            'comment'  => $request->post('Comment'),
         ];
 
         $data = Consultation::create($data);
         $data->save();
+
+        $this->sendConsultMail($data);
 
        echo json_encode(array(
             "Code" => 200,

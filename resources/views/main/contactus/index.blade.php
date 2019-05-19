@@ -47,13 +47,14 @@
     <form action="{{$action}}" method="post" id="formconsult">
         <section class="fw-main-row pt30 pb45">
             <div class="fw-container">
-                <h2 class="heading-decor pb20">Request a Consultation {{$profile->latitude}}</h2>
+                <h2 class="heading-decor pb20">Request a Consultation</h2>
                 <form action="javascript:void(0);" class="form fw-row">
+                    @csrf
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Name" placeholder="Your Name *" class="style1"></div>
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Phone" placeholder="Phone number *" class="style1"></div>
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="Email" placeholder="Your Email *" class="style1"></div>
                     <div class="fw-col-sm-6 fw-col-md-3"><input type="text" name="DateTime" id="datetimepicker1" placeholder="Date & Time for call" class="style1"></div>
-                    <div class="fw-col-md-12">
+                    <div class="fw-col-md-12" style="margin-top:10px;">
                         <textarea placeholder="What is the nature of your appointment and who would you like to see? *" name="Comment" class="style1"></textarea>
                         <div class="tac"><button type="submit" class="button-style1"><span>send request</span></button></div>
                     </div>
@@ -117,7 +118,8 @@
 
         $(function () {
             $('#datetimepicker1').datetimepicker({
-                locale: 'id'
+                locale: 'id',
+                format:'YYYY/MM/DD HH:mm:ss',
             });
         });
 
@@ -137,6 +139,15 @@
                 position: myLatLng,
                 map: map
             });
+
+            beachMarker.info = new google.maps.InfoWindow({
+                content: "{{preg_replace("/[\n\r]/","",$profile->address)}}"
+            });
+
+            google.maps.event.addListener(beachMarker, 'click', function() {
+                beachMarker.info.open(map, beachMarker);
+            });
+
             google.maps.event.addDomListener(window, "resize", function() {
                 var center = map.getCenter();
                 google.maps.event.trigger(map, "resize");
