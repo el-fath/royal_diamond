@@ -17,7 +17,7 @@
     <meta name="keywords" content="bootstrap, bootstrap admin template, admin theme, admin dashboard, dashboard template, admin template, responsive" />
     <meta name="author" content="Phoenixcoded" />
     <!-- Favicon icon -->
-    <link rel="icon" href="{{$config->IconPath}}" type="image/png">
+    <link rel="icon" href="{{$config->IconPathSmall}}" type="image/png">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
     <!-- waves.css -->
@@ -135,7 +135,7 @@
                         </div>
                         <a href="">
                             {{-- <img class="img-fluid" src="{{ url('public/assets/admin') }}/assets/images/logo.png" alt="Theme-Logo" /> --}}
-                            <img class="img-fluid" src="{{ $config->IconPath }}" style="width:30px" alt="Theme-Logo" />
+                            <img class="img-fluid" src="{{ $config->IconPathSmall }}" style="width:30px" alt="Theme-Logo" />
                         </a>
                         <a class="mobile-options waves-effect waves-light">
                             <i class="ti-more"></i>

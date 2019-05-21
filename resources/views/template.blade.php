@@ -7,9 +7,9 @@
     <meta name="keywords" content="{{$config->meta_keyword}}">
     <meta name="description" content="{{$config->meta_desc}}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link id="favicon" rel="shortcut icon" href="{{$config->IconPath}}" type="image/png">
-    <link rel="apple-touch-icon" sizes="144x144" href="{{$config->IconPath}}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{{$config->IconPath}}">
+    <link id="favicon" rel="shortcut icon" href="{{$config->IconPathSmall}}" type="image/png">
+    <link rel="apple-touch-icon" sizes="144x144" href="{{$config->IconPathSmall}}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{{$config->IconPathSmall}}">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     {{--<link rel="stylesheet" type="text/css" href="{{ url('public/assets/admin') }}/bower_components/bootstrap/css/bootstrap.min.css">--}}

@@ -10,7 +10,7 @@
             <div class="fw-row">
                 <div class="fw-col-lg-10 fw-col-lg-offset-1">
                     <a data-fancybox="gallery" href="{{ $blog->PhotoPath }}">
-                        <img src="{{ $blog->PhotoPath }}" alt="{{ $blog->title }}" class="img-responsive" style="max-height: 500px;width: 100%;object-fit: cover">
+                        <img src="{{ $blog->PhotoPathMedium }}" alt="{{ $blog->title }}" class="img-responsive" style="max-height: 500px;width: 100%;object-fit: cover">
                     </a>
                     <h2 class="pt30 pb10">{{ $blog->title }}</h2>
                     <div class="social-buttons">

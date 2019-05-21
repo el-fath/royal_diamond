@@ -68,12 +68,23 @@ class Main extends Controller
 
     function doForgot(Request $request){
         $data = Member::where('Email', $request->post('Email'))->first();
-        $this->sendForgotPassMail($data);
-        echo json_encode(array(
-            "Code" => 200,
-            "Data" => "Sukses"
-        ));
-        return;
+        
+        if($data){
+            $this->sendForgotPassMail($data);
+            echo json_encode(array(
+                "Code" => 200,
+                "Data" => "Sukses"
+            ));
+            return;
+        }else{
+            echo json_encode(array(
+                "Code" => 404,
+                "Data" => "Member Not found"
+            ));
+            return;
+        }
+        
+       
 
     }
 
@@ -137,9 +148,9 @@ class Main extends Controller
 
     }
 
-    function forgotpassword(Request $request){
+    function forgotpassword($email){
         $title = "Forgot Password";
-        $member = Member::find($request->post($request->post('Email')));
+        $member = Member::where('Email', $email)->first();
         return view('main/member/forgot', compact('member','title'));
     }
 
@@ -150,8 +161,7 @@ class Main extends Controller
             return;
         }
 
-
-        $link = route('member.forgotpassword').'/'.$user->email;
+        $link = route('member.forgotpassword', ['email' =>$user->email ]);
 
         $data = [
             'link' => $link,
@@ -165,6 +175,8 @@ class Main extends Controller
                 ->to($user->email, $user->name)
                 ->subject("Forgot Password");
         });
+        
+        //dd($beautymail);
     }
 
     protected function getToken()

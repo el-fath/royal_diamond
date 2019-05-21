@@ -12,10 +12,10 @@
             @foreach($slide as $row)
                 <div class="swiper-slide">
                     <!-- Full screen section -->
-                        <section data-fancybox="gallery" href="{{ $row->PhotoPath }}" class="full-screen fw-main-row" style="background-image: url({{$row->PhotoPath}});">
+                        <section class="full-screen fw-main-row" style="background-image: url({{$row->PhotoPathMedium}});">
                             <div class="fw-container centered-container tar">
                                 <div class="container tar fw-col-xs-12 fw-col-sm-6 fw-col-md-5">
-                                    <h2 class="h1"><span class="blue-color">{{$row->title}}</span></h2>
+                                    <h2 class="h1" data-fancybox="gallery" href="{{ $row->PhotoPathMedium }}"><span class="blue-color">{{$row->title}}</span></h2>
                                     <div style="word-break: break-all;">{!! $row->ContentSmall !!}</div>
                                     <a href="{{ url('/promo/'.$row->url_segment) }}" class="button-style1"><span>CHECK OUT</span></a>
                                 </div>
