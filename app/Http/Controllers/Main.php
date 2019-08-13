@@ -10,6 +10,7 @@ use App\Models\Member;
 use App\Models\Profile;
 use App\Models\Service;
 use App\Models\Slide;
+use App\Models\Promo;
 use App\Models\Team;
 use App\Models\Treatment;
 use Illuminate\Http\Request;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\View;
 use Mail;
 use Illuminate\Support\Facades\Session;
+use DB;
+use App\Quotation;
 
 class Main extends Controller
 {
@@ -27,7 +30,7 @@ class Main extends Controller
 
         View::share('profile', $profile);
         View::share('config', $config);
-
+    
 
         $this->middleware(function ($request, $next) {
             $islogin = Session::get('IsLogin');
@@ -92,7 +95,14 @@ class Main extends Controller
     function index(){
         $title = "Home";
         $slide = Slide::where('is_show', 1)->get();
-        $promo = Slide::where('is_show', 0)->get();
+//        dd($slide);
+        $slide = Slide::where( 'is_show', '=', 1 )
+            ->whereDate('expired', '>', date('Y-m-d'))
+            ->get();
+
+//        dd($slide);
+
+        $promo = Promo::where('is_show', 1)->get();
 
         $blog = Blog::all()->take(3)->sortByDesc("created_at");
         $treatment = Treatment::all()->take(3)->sortByDesc("created_at");

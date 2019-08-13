@@ -75,6 +75,14 @@ Route::post('admin/slide', 'AdminCtr1@store_slide')->name('slide.store');
 Route::post('admin/slide/{slide}', 'AdminCtr1@update_slide')->name('slide.update');
 Route::delete('admin/slide/{slide}', 'AdminCtr1@destroy_slide')->name('slide.destroy');
 
+Route::get('admin/promo', 'AdminCtr1@index_promo')->name('promo.index');
+Route::get('admin/promo/add', 'AdminCtr1@add_promo')->name('promo.add');
+Route::get('admin/promo/{promo}/{show}', 'AdminCtr1@active_promo')->name('promo.show');
+Route::get('admin/promo/{promo}', 'AdminCtr1@show_promo')->name('promo.show');
+Route::post('admin/promo', 'AdminCtr1@store_promo')->name('promo.store');
+Route::post('admin/promo/{promo}', 'AdminCtr1@update_promo')->name('promo.update');
+Route::delete('admin/promo/{promo}', 'AdminCtr1@destroy_promo')->name('promo.destroy');
+
 Route::get('admin/treatment', 'AdminCtr1@index_treatment')->name('treatment.index');
 Route::get('admin/treatment/add', 'AdminCtr1@add_treatment')->name('treatment.add');
 Route::get('admin/treatment/{treatment}', 'AdminCtr1@show_treatment')->name('treatment.show');

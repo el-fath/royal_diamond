@@ -25,7 +25,7 @@ class Blog extends Model
                 $fileexist = File::exists(url('/')."/public/image/blog/".$path_parts['filename']."_small.png");
                 if(!$fileexist){
                     $img = Image::make($this->getPhotoPathAttribute())->resize(370, 270);
-                    $img->save('public/image/blog/'.$path_parts['filename']."_small.png",60);
+                    $img->save('public/image/blog/'.$path_parts['filename']."_small.png",50);
                     // $img->encode('png');
                     // $type = 'png';
                     // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
@@ -42,8 +42,8 @@ class Blog extends Model
         if(isset($path_parts['filename'])){
             $fileexist = File::exists(url('/')."/public/image/blog/".$path_parts['filename']."_medium.png");
                 if($fileexist){
-                    $img = Image::make($this->getPhotoPathAttribute())->resize(945, 400,60);
-                    $img->save('public/image/blog/'.$path_parts['filename']."_medium.png");
+                    $img = Image::make($this->getPhotoPathAttribute())->resize(945, 400);
+                    $img->save('public/image/blog/'.$path_parts['filename']."_medium.png",50);
                     // $img->encode('png');
                     // $type = 'png';
                     // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);

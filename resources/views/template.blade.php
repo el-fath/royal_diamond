@@ -267,7 +267,7 @@
         <div class="fw-main-row header-wrap">
             <div class="fw-container">
                 <div class="fw-row">
-                    <div class="fw-col-sm-3 fw-col-md-2 logo-area"><a href=""><img src="{{$profile->PhotoPath}}" alt="{{$profile->name}}"></a></div>
+                    <div class="fw-col-sm-3 fw-col-md-2 logo-area"><a href=""><img src="{{$profile->PhotoPathSmall}}" alt="{{$profile->name}}"></a></div>
                     <nav class="fw-col-sm-8 fw-col-md-8 navigation">
                         <ul>
                             <!-- Current menu item -->
@@ -390,7 +390,7 @@
         <div class="fw-container">
             <div class="fw-row">
                 <div class="fw-col-xs-12 fw-col-sm-5 fw-col-md-4" style="word-wrap: break-word">
-                    <div class="footer-logo"><a href="{{ url('public/assets/main') }}//"><img src="{{$profile->PhotoPath}}" alt="{{$profile->name}}"></a></div>
+                    <div class="footer-logo"><a href="{{ url('public/assets/main') }}//"><img src="{{$profile->PhotoPathSmall}}" alt="{{$profile->name}}"></a></div>
                     <!--<p class="footer-text taj">{!!$profile->desc!!}</p>-->
                     <div class="footer-copy">(c) royaldiamondclinic.com {{date('Y')}}</div>
                 </div>

@@ -9,6 +9,7 @@ use App\Models\Admin;
 use App\Models\Member;
 use App\Models\Team;
 use App\Models\Slide;
+use App\Models\Promo;
 use App\Models\Treatment;
 use Illuminate\Support\Str;
 
@@ -417,6 +418,112 @@ class AdminCtr1 extends Controller
         $data->delete();
         return redirect('admin/slide')->with('alert', 'Data Deleted...!');
     }
+
+
+    public function index_promo(){
+        if(Session::get('login')){
+            $title = "Promo";
+            $promo = Promo::all()->sortByDesc('id');
+            return view('admin/promo/promo', compact('promo','title'));
+        }else{
+            return redirect('auth');
+        }
+    }
+
+    public function add_promo()
+    {
+        $title = "Add";
+        $action = route('promo.store');
+        return view('admin/promo/promoform', compact('title', 'action'));
+    }
+
+    public function store_promo(Request $request)
+    {
+        if ($request->file('photo')) {
+            $file    = $request->file('photo');
+            $ext     = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/promo',$newName);
+        }else{
+            $newName = NULL;
+        }
+
+        $data = [
+            'title'   => $request->get('title'),
+            'url'     => $request->get('url'),
+            'content' => $request->get('content'),
+            'expired' => $request->get('expired'),
+            'is_show' => 1,
+            'photo'   => $newName
+        ];
+        
+        $data = Promo::create($data);
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
+        return redirect('admin/promo')->with('alert', 'Data Added...!');
+    }
+
+    public function show_promo($id)
+    {
+        $title = "Edit";
+        $data  = Promo::find($id);
+        $action = route('promo.update', $data->id);
+        return view('admin/promo/promoform', compact('data','title', 'action'));
+    }
+
+    public function active_promo($id, $show)
+    {
+        $data = Promo::find($id);
+        if ($show == 1) {
+            $data->is_show = 1;
+        }else{
+            $data->is_show = 0;
+        }
+        $data->save();
+        return response()->json($data);
+    }
+
+    public function update_promo(Request $request, $id)
+    {
+        $data = Slide::find($id);
+
+        if ($request->file('photo')) {
+            $myFile = "public/image/promo/".$data->photo;
+            unlink($myFile);
+
+            $file = $request->file('photo');
+            $ext = $file->getClientOriginalExtension();
+            $newName = rand(100000,1001238912).".".$ext;
+            $file->move('public/image/promo',$newName);
+
+            $newdata = [ 'photo' => $newName ];
+            $data->update($newdata);
+        }
+
+        $newdata = [
+            'title'   => $request->get('title'),
+            'expired' => $request->get('expired'),
+            'url'     => $request->get('url'),
+            'content' => $request->get('content')
+        ];
+
+        $data->update($newdata);
+        $data->url_segment = Str::slug($data->title.'-'.$data->id, '-');
+        $data->save();
+        return redirect('admin/promo')->with('alert', 'Data Edited...!');
+    }
+
+    public function destroy_promo($id)
+    {
+        $data = Promo::find($id);
+        if ($data->photo != NULL) {
+            $myFile = "public/image/promo/".$data->photo;
+            unlink($myFile);
+        }
+        $data->delete();
+        return redirect('admin/promo')->with('alert', 'Data Deleted...!');
+    }
+
     
     public function index_treatment(){
         if(Session::get('login')){

@@ -288,6 +288,13 @@
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
+                                <li class="{{ Request::segment(2) == 'promo' ? 'active':'' }}">
+                                    <a href="{{ route('promo.index') }}" class="waves-effect waves-dark">
+                                        <span class="pcoded-micon"><i class="ti-gallery"></i><b>N</b></span>
+                                        <span class="pcoded-mtext">Promo</span>
+                                        <span class="pcoded-mcaret"></span>
+                                    </a>
+                                </li>
                             </ul>
                             <div class="pcoded-navigation-label">Data Master</div>
                             <ul class="pcoded-item pcoded-left-item">

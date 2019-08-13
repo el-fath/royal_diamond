@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\File;
 
 class Config extends Model
 {
@@ -17,11 +18,22 @@ class Config extends Model
 
     public function getIconPathSmallAttribute()
     {
-        $img = Image::make($this->getIconPathAttribute())->resize(161, 100);
-        $img->encode('png');
-        $type = 'png';
-        $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
-        return $base64;
+        $path_parts = pathinfo($this->getIconPathAttribute());
+
+        if(isset($path_parts['filename'])){
+
+            $fileexist = File::exists(url('/')."/public/image/config/".$path_parts['filename']."_small.png");
+            if(!$fileexist){
+                $img = Image::make($this->getIconPathAttribute())->resize(161, 100);
+                $img->save('public/image/config/'.$path_parts['filename']."_small.png",50);
+                // $img->encode('png');
+                // $type = 'png';
+                // $base64 = 'data:image/' . $type . ';base64,' . base64_encode($img);
+            }
+            return url('/')."/public/image/config/".$path_parts['filename']."_small.png";
+        }else{
+            return url('/')."/public/image/config/".$this->photo;
+        }
     }
 
     public function getContactBanner1PathAttribute()
